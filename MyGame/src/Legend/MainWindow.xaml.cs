@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -13,55 +14,58 @@ namespace Legend
         private int count = 1;
         private readonly Image spirit;
         private readonly DispatcherTimer dispatcherTimer;
-        private readonly BitmapFrame bitmapFrame;
 
-        private bool runing;
+        private Storyboard storyboard;
+
 
         public MainWindow()
         {
             InitializeComponent();
 
-            spirit = new Image {Width = 150, Height = 150};
+            spirit = new Image { Width = 150, Height = 150 };
             Carrier.Children.Add(spirit);
-            dispatcherTimer = new DispatcherTimer();
+            Canvas.SetLeft(spirit, 0);
+            Canvas.SetTop(spirit, 0);
+            dispatcherTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(150) };
             dispatcherTimer.Tick += dispatcherTimer_Tick;
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(150);
-            //dispatcherTimer.Start();
-
-            bitmapFrame = BitmapFrame.Create(new Uri("pack://application:,,,/Images/Player/PlayerMagic.png"));
+            dispatcherTimer.Start();
+            //bitmapFrame = BitmapFrame.Create(new Uri("pack://application:,,,/Images/Player/PlayerMagic.png"));
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            //spirit.Source = new BitmapImage((new Uri(@"Images\Player\" + count + ".png", UriKind.Relative)));
-            //count = count == 7 ? 0 : count + 1;
-
-            //var image = new BitmapImage(new Uri("pack://application:,,,/Images/Player/PlayerMagic.png"));
-
-            
-
-            //spirit.Source = CutImage("pack://application:,,,/Images/Player/PlayerMagic.png", count * 150, 0, 150, 150);
-
-            spirit.Source = CutImage(count * 150, 0, 150, 150);
-            count = count == 9 ? 0 : count + 1;
-        }
-
-        private BitmapSource CutImage(int x, int y, int width, int height)
-        {
-            return new CroppedBitmap(bitmapFrame, new Int32Rect(x, y, width, height));
+            spirit.Source = new BitmapImage((new Uri(@"Images\Player\" + count + ".png", UriKind.Relative)));
+            count = count == 7 ? 0 : count + 1;
         }
 
         private void Carrier_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (runing)
+            var position = e.GetPosition(Carrier);
+            MoveTo(position);
+        }
+
+        private void MoveTo(Point position)
+        {
+            storyboard = new Storyboard();
+
+            DoubleAnimation doubleAnimation = new DoubleAnimation(Canvas.GetLeft(spirit), position.X, new Duration(TimeSpan.FromSeconds(1)));
+            Storyboard.SetTarget(doubleAnimation, spirit);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.LeftProperty));
+
+            storyboard.Children.Add(doubleAnimation);
+
+            doubleAnimation = new DoubleAnimation(Canvas.GetTop(spirit), position.Y, new Duration(TimeSpan.FromSeconds(1)));
+            Storyboard.SetTarget(doubleAnimation, spirit);
+            Storyboard.SetTargetProperty(doubleAnimation, new PropertyPath(Canvas.TopProperty));
+
+            storyboard.Children.Add(doubleAnimation);
+
+            if (!Resources.Contains("rectAnimation"))
             {
-                dispatcherTimer.Stop();
+                Resources.Add("rectAnimation", storyboard);
             }
-            else
-            {
-                dispatcherTimer.Start();
-            }
-            runing = !runing;
+
+            storyboard.Begin();
         }
     }
 }
