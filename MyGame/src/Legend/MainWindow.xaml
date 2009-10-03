@@ -1,0 +1,8 @@
+﻿<Window x:Class="Legend.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Legend">
+    <Canvas x:Name="Carrier" Width="800" Height="500" Background="Silver" MouseLeftButtonDown="Carrier_MouseLeftButtonDown">
+         
+    </Canvas>
+</Window>
