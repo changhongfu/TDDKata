@@ -1,0 +1,93 @@
+﻿<Window x:Class="DemoApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:v="clr-namespace:DemoApp.Views"
+    FontSize="13" 
+    FontFamily="Verdana"
+    MinWidth="650" MinHeight="420"
+    Width="650" Height="420"
+    WindowStartupLocation="CenterScreen"
+    Title="DemoApp">
+    <Window.Resources>
+        <ResourceDictionary Source="Styles/AppStyle.xaml" />
+    </Window.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="None">
+            <Menu KeyboardNavigation.TabNavigation="Cycle">
+                <MenuItem Header="_File">
+                    <MenuItem Header="E_xit" Command="{Binding Path=CloseCommand}" />
+                </MenuItem>
+                <MenuItem Header="_Edit" />
+                <MenuItem Header="_Options" />
+                <MenuItem Header="_Help" />
+            </Menu>
+        </DockPanel>
+        <Grid Margin="4">
+            <Grid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="WhiteSmoke" />
+                    <Setter Property="BorderBrush" Value="LightGray" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="CornerRadius" Value="5" />
+                    <Setter Property="SnapsToDevicePixels" Value="True" />
+                </Style>
+                <DataTemplate x:Key="CommandsTemplate">
+                    <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="2,6">
+                                    <Hyperlink Command="{Binding Path=Command}">
+                                      <TextBlock Text="{Binding Path=DisplayName}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DataTemplate>
+                <DataTemplate x:Key="ClosableTabItemTemplate">
+                    <DockPanel Width="120">
+                        <Button Command="{Binding Path=CloseCommand}"
+                                Content="X"
+                                Cursor="Hand"
+                                DockPanel.Dock="Right"
+                                Focusable="False"
+                                FontFamily="Courier" 
+                                FontSize="9"
+                                FontWeight="Bold"  
+                                Margin="0,1,0,0"
+                                Padding="0"
+                                VerticalContentAlignment="Bottom"
+                                Width="16" Height="16" />
+                        <ContentPresenter Content="{Binding Path=DisplayName}" 
+                                          VerticalAlignment="Center" />
+                    </DockPanel>
+                </DataTemplate>
+                <DataTemplate x:Key="WorkspacesTemplate">
+                    <TabControl IsSynchronizedWithCurrentItem="True" 
+                                ItemsSource="{Binding}" 
+                                ItemTemplate="{StaticResource ClosableTabItemTemplate}"
+                                Margin="4" />
+                </DataTemplate>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Width="170" >
+                <HeaderedContentControl Content="{Binding Path=Commands}"
+                                        ContentTemplate="{StaticResource CommandsTemplate}"
+                                        Header="Control Panel"
+                                        Style="{StaticResource HeaderedContentStyle}" />
+            </Border>
+
+            <Border Grid.Column="2">
+                <HeaderedContentControl Content="{Binding Path=Workspaces}" 
+                                        ContentTemplate="{StaticResource WorkspacesTemplate}"
+                                        Header="Workspaces" 
+                                        Style="{StaticResource HeaderedContentStyle}" />
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>
