@@ -34,8 +34,17 @@ namespace Legend
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            spirit.Source = new BitmapImage((new Uri(@"Images\Player\" + count + ".png", UriKind.Relative)));
-            count = count == 7 ? 0 : count + 1;
+            if (storyboard != null && storyboard.GetCurrentTime() == TimeSpan.FromSeconds(1))
+            {
+                spirit.Source = new BitmapImage((new Uri(@"Images\Player\0.png", UriKind.Relative)));
+                count = 0;
+            }
+            else
+            {
+                spirit.Source = new BitmapImage((new Uri(@"Images\Player\" + count + ".png", UriKind.Relative)));
+                count = count == 7 ? 0 : count + 1;
+            }
+            
         }
 
         private void Carrier_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
