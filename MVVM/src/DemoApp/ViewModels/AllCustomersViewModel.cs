@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using DemoApp.Models;
-using Quark.Tools.Mvvm;
+using DemoApp.Services;
 
 namespace DemoApp.ViewModels
 {
@@ -10,9 +7,17 @@ namespace DemoApp.ViewModels
     {
         private readonly ObservableCollection<CustomerViewModel> customers;
 
-        public AllCustomersViewModel()
+        public AllCustomersViewModel() : this(new InMemoryCustomerService())
+        {
+        }
+
+        public AllCustomersViewModel(ICustomerService service)
         {
             customers = new ObservableCollection<CustomerViewModel>();
+            foreach (var customer in service.GetAllCustomers())
+            {
+                customers.Add(new CustomerViewModel(customer));
+            }
         }
 
         public ObservableCollection<CustomerViewModel> Customers

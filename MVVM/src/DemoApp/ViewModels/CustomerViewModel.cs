@@ -15,9 +15,13 @@ namespace DemoApp.ViewModels
         private readonly ICommand saveCommand;
         private readonly Customer customer;
 
-        public CustomerViewModel() : this(null)
+        public CustomerViewModel() : this(new InMemoryCustomerService())
         {
-            
+        }
+
+        public CustomerViewModel(Customer customer) : this(new InMemoryCustomerService())
+        {
+            this.customer = customer;
         }
 
         public CustomerViewModel(ICustomerService service)
@@ -88,6 +92,20 @@ namespace DemoApp.ViewModels
                     OnPropertyChanged("Type");
                 }
             }
+        }
+
+        public string DisplayName
+        {
+            get
+            {
+                return customer.Type == CustomerType.Company ? FirstName :
+                       FirstName + " " + LastName;
+            }
+        }
+
+        public decimal TotalSales
+        {
+            get { return customer.TotalSales;  }
         }
 
         public IEnumerable<string> CustomerTypes

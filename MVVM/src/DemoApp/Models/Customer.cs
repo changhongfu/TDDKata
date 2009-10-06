@@ -20,6 +20,6 @@ namespace DemoApp.Models
 
         public CustomerType Type { get; set; }
 
-        public double TotalSales { get; set; }
+        public decimal TotalSales { get; set; }
     }
 }

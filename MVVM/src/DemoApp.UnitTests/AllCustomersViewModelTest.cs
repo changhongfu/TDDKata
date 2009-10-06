@@ -1,4 +1,7 @@
+using DemoApp.Models;
+using DemoApp.Services;
 using DemoApp.ViewModels;
+using Moq;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -7,10 +10,15 @@ namespace UnitTests
     public class AllCustomersViewModelTest
     {
         [Test]
-        public void TestCustomers()
+        public void TestConstructor_ShouldLoadAllCustomers()
         {
-            var model = new AllCustomersViewModel();
-            Assert.IsNotNull(model.Customers);
+            var mock = new Mock<ICustomerService>();
+            var customers = new[] {new Customer()};
+            mock.Setup(m => m.GetAllCustomers()).Returns(customers);
+
+            var model = new AllCustomersViewModel(mock.Object);
+
+            Assert.AreEqual(customers[0], model.Customers[0].Customer);
         }
     }
 }

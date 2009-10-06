@@ -105,6 +105,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Services\ICustomerService.cs" />
+    <Compile Include="Services\InMemoryCustomerService.cs" />
     <Compile Include="ViewModels\AllCustomersViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />

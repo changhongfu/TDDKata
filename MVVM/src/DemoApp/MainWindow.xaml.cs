@@ -8,7 +8,6 @@ namespace DemoApp
         public MainWindow()
         {
             InitializeComponent();
-            
         }
     }
 }

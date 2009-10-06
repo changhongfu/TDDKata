@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
-using System.Windows.Input;
 using Quark.Tools.Mvvm;
 
 namespace DemoApp.ViewModels
@@ -19,7 +16,7 @@ namespace DemoApp.ViewModels
             commands = new List<CommandViewModel>
             {
                 new CommandViewModel(new RelayCommand(ShowAllCustomers), "View all customers"),
-                new CommandViewModel(new RelayCommand(delegate { }), "Create new customer")
+                new CommandViewModel(new RelayCommand(CreateNewCustomer), "Create new customer")
             };
             workspaces = new ObservableCollection<WorkspaceViewModel>();
         }
@@ -37,7 +34,6 @@ namespace DemoApp.ViewModels
         private void ShowAllCustomers()
         {
             var workspace = FindExisting<AllCustomersViewModel>() ?? CreateAllCustomersViewModel();
-
             SetActiveWorkspace(workspace);
         }
 
@@ -62,5 +58,11 @@ namespace DemoApp.ViewModels
             }
         }
 
+        private void CreateNewCustomer()
+        {
+            var workspace = new CustomerViewModel();
+            Workspaces.Add(workspace);
+            SetActiveWorkspace(workspace);
+        }
     }
 }
