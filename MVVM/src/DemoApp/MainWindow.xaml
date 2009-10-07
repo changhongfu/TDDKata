@@ -83,8 +83,8 @@
                 <DataTemplate x:Key="WorkspacesTemplate">
                     <TabControl IsSynchronizedWithCurrentItem="True" 
                                 ItemsSource="{Binding}" 
-                                ItemTemplate="{StaticResource ClosableTabItemTemplate}"
-                                Margin="4" />
+                                ItemTemplate="{StaticResource ClosableTabItemTemplate}" 
+                                Margin="4" />               
                 </DataTemplate>
             </Grid.Resources>
             

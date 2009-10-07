@@ -7,14 +7,14 @@ namespace Quark.Tools.Mvvm
     {
         public event EventHandler CanExecuteChanged;
 
-        private readonly Action action;
-        private readonly Func<bool> canExecute;
+        private readonly Action<object> action;
+        private readonly Func<object, bool> canExecute;
 
-        public RelayCommand(Action action) : this(action, null)
+        public RelayCommand(Action<object> action) : this(action, null)
         {
         }
 
-        public RelayCommand(Action action, Func<bool> canExecute)
+        public RelayCommand(Action<object> action, Func<object, bool> canExecute)
         {
             this.action = action;
             this.canExecute = canExecute;
@@ -22,12 +22,12 @@ namespace Quark.Tools.Mvvm
 
         public void Execute(object parameter)
         {
-            action();
+            action(parameter);
         }
 
         public bool CanExecute(object parameter)
         {
-            return canExecute == null || canExecute();
+            return canExecute == null || canExecute(parameter);
         }
     }
 }

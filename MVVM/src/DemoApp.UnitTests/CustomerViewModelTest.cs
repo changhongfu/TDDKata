@@ -55,11 +55,11 @@ namespace UnitTests
         }
 
         [Test]
-        public void TestDisplayName_UseOnlyLastName_IfCustomerIsCompany()
+        public void TestDisplayName_UseOnlyFirstName_IfCustomerIsCompany()
         {
             var model = new CustomerViewModel(new Customer { FirstName = "a", LastName = "b", Type = CustomerType.Company});
             var displayName = model.DisplayName;
-            Assert.AreEqual("b", displayName);
+            Assert.AreEqual("a", displayName);
         }
     }
 }

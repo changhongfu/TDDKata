@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Data;
 using Quark.Tools.Mvvm;
+using Quark.Tools.Mvvm.Extensions;
 
 namespace DemoApp.ViewModels
 {
@@ -10,6 +11,7 @@ namespace DemoApp.ViewModels
     {
         private readonly IEnumerable<CommandViewModel> commands;
         private readonly ObservableCollection<WorkspaceViewModel> workspaces;
+        private WorkspaceViewModel currentWorkspace;
 
         public MainWindowViewModel()
         {
@@ -31,10 +33,23 @@ namespace DemoApp.ViewModels
             get { return workspaces; }
         }
 
+        public WorkspaceViewModel CurrentWorkspace
+        {
+            get { return currentWorkspace; }
+            set
+            {
+                if (currentWorkspace != value)
+                {
+                    currentWorkspace = value;
+                    OnPropertyChanged("CurrentWorkspace");
+                }
+            }
+        }
+
         private void ShowAllCustomers()
         {
             var workspace = FindExisting<AllCustomersViewModel>() ?? CreateAllCustomersViewModel();
-            SetActiveWorkspace(workspace);
+            Workspaces.SetCurrentView(workspace);
         }
 
         private T FindExisting<T>() where T : WorkspaceViewModel
@@ -45,24 +60,18 @@ namespace DemoApp.ViewModels
         private AllCustomersViewModel CreateAllCustomersViewModel()
         {
             var workspace = new AllCustomersViewModel();
+            workspace.RequestClose += delegate { Workspaces.Remove(workspace); };
             Workspaces.Add(workspace);
+           
             return workspace;
-        }
-
-        private void SetActiveWorkspace(WorkspaceViewModel workspace)
-        {
-            var collectionView = CollectionViewSource.GetDefaultView(Workspaces);
-            if (collectionView != null)
-            {
-                collectionView.MoveCurrentTo(workspace);
-            }
         }
 
         private void CreateNewCustomer()
         {
             var workspace = new CustomerViewModel();
-            Workspaces.Add(workspace);
-            SetActiveWorkspace(workspace);
+            workspace.RequestClose += delegate { Workspaces.Remove(workspace); };
+            Workspaces.Add(workspace); 
+            Workspaces.SetCurrentView(workspace);
         }
     }
 }
