@@ -10,7 +10,7 @@ namespace DemoApp.ViewModels
 
         protected WorkspaceViewModel()
         {
-            CloseCommand = new RelayCommand(OnRequestClose);
+            CloseCommand = new RelayCommand(p => OnRequestClose());
         }
 
         public virtual string DisplayName { get; protected set; }

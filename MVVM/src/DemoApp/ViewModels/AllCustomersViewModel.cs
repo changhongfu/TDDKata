@@ -25,7 +25,7 @@ namespace DemoApp.ViewModels
             {
                 customers.Add(new CustomerViewModel(customer));
             }
-            SelectCustomerCommand = new RelayCommand(vm => OnCustomerSelected(vm));
+            SelectCustomerCommand = new RelayCommand(OnCustomerSelected);
         }
 
         public override string DisplayName
@@ -40,12 +40,13 @@ namespace DemoApp.ViewModels
 
         public ICommand SelectCustomerCommand { get; set; }
 
-        private void OnCustomerSelected(CustomerViewModel selected)
+        private void OnCustomerSelected(object selected)
         {
+            var viewModel = (CustomerViewModel)selected;
             var handler = CustomerSelected;
             if (handler != null)
             {
-                handler(this, new EventArgs<Customer>(selected.Customer));
+                handler(this, new EventArgs<Customer>(viewModel.Customer));
             }
         }
     }

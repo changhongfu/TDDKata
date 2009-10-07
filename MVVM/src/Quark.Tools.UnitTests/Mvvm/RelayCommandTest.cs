@@ -16,7 +16,7 @@ namespace Quark.Tools.UnitTests.Mvvm
         [Test]
         public void TestConstructor_CanAssignFunctionForCanExecute()
         {
-            var command = new RelayCommand(delegate { }, () => true);
+            var command = new RelayCommand(delegate { }, p => true);
             Assert.IsNotNull(command);
         }
 
@@ -44,7 +44,7 @@ namespace Quark.Tools.UnitTests.Mvvm
         [Test]
         public void TestCanExecute_ShouldReturnTrue_IfCanExecuteFuncReturnTrue()
         {
-            var command = new RelayCommand(delegate { }, () => true);
+            var command = new RelayCommand(delegate { }, p => true);
 
             bool canExecute = command.CanExecute(null);
 
@@ -54,7 +54,7 @@ namespace Quark.Tools.UnitTests.Mvvm
         [Test]
         public void TestCanExecute_ShouldReturnFalse_IfCanExecuteFuncReturnFalse()
         {
-            var command = new RelayCommand(delegate { }, () => false);
+            var command = new RelayCommand(delegate { }, p => false);
 
             bool canExecute = command.CanExecute(null);
 
