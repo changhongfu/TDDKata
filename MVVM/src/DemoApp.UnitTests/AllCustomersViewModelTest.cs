@@ -43,21 +43,22 @@ namespace UnitTests
             bool raised = false;
             model.CustomerSelected += delegate { raised = true; };
 
-            model.SelectCustomerCommand.Execute(null);
+            model.SelectCustomerCommand.Execute(new CustomerViewModel());
 
             Assert.IsTrue(raised);
         }
 
         [Test]
-        public void CustomerSelectedEvent_ShouldHaveSelectedCustomerEventArg()
+        public void CustomerSelectedEvent_ShouldHaveSelectedCustomerInEventArgs()
         {
             var model = new AllCustomersViewModel();
             Customer selectedCustomer = null;
             model.CustomerSelected += (sender, args) => selectedCustomer = args.Item;
 
-            model.SelectCustomerCommand.Execute(null);
+            var customerViewModel = new CustomerViewModel(new Customer());
+            model.SelectCustomerCommand.Execute(customerViewModel);
 
-            Assert.IsNotNull(selectedCustomer);
+            Assert.AreEqual(customerViewModel.Customer, selectedCustomer);
         }
     }
 }

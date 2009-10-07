@@ -34,7 +34,7 @@ namespace DemoApp.ViewModels
                 LastName = String.Empty,
                 Email = String.Empty
             };
-            saveCommand = new RelayCommand(Save, CanSave);
+            saveCommand = new RelayCommand(p => Save(), p => CanSave());
         }
 
         public CustomerViewModel(Customer customer, ICustomerService service)
@@ -42,7 +42,7 @@ namespace DemoApp.ViewModels
             this.service = service;
             isNewCustomer = false;
             this.customer = customer;
-            saveCommand = new RelayCommand(Save, CanSave);
+            saveCommand = new RelayCommand(p => Save(), p => CanSave());
         }
 
         public Customer Customer

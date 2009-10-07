@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Data;
+using DemoApp.Models;
 using Quark.Tools.Mvvm;
 using Quark.Tools.Mvvm.Extensions;
 
@@ -17,8 +18,8 @@ namespace DemoApp.ViewModels
         {
             commands = new List<CommandViewModel>
             {
-                new CommandViewModel(new RelayCommand(ShowAllCustomers), "View all customers"),
-                new CommandViewModel(new RelayCommand(CreateNewCustomer), "Create new customer")
+                new CommandViewModel(new RelayCommand(p => ShowAllCustomers()), "View all customers"),
+                new CommandViewModel(new RelayCommand(p => CreateNewCustomer()), "Create new customer")
             };
             workspaces = new ObservableCollection<WorkspaceViewModel>();
         }
@@ -52,18 +53,34 @@ namespace DemoApp.ViewModels
             Workspaces.SetCurrentView(workspace);
         }
 
-        private T FindExisting<T>() where T : WorkspaceViewModel
-        {
-            return Workspaces.FirstOrDefault(vm => vm is T) as T;
-        }
-
         private AllCustomersViewModel CreateAllCustomersViewModel()
         {
             var workspace = new AllCustomersViewModel();
             workspace.RequestClose += delegate { Workspaces.Remove(workspace); };
+            workspace.CustomerSelected += (sender, args) => ShowCustomerDetails(args.Item);
             Workspaces.Add(workspace);
            
             return workspace;
+        }
+
+        private void ShowCustomerDetails(Customer customer)
+        {
+            var workspace = FindExisting<CustomerViewModel>(customer) ?? CreateCustomerViewModel(customer);
+            Workspaces.SetCurrentView(workspace);
+        }
+
+        private WorkspaceViewModel CreateCustomerViewModel(Customer customer)
+        {
+            var workspace = new CustomerViewModel(customer);
+            workspace.RequestClose += delegate { Workspaces.Remove(workspace); };
+            Workspaces.Add(workspace);
+
+            return workspace;
+        }
+
+        private WorkspaceViewModel FindExisting<T>(Customer customer) where T : WorkspaceViewModel
+        {
+            return Workspaces.FirstOrDefault(vm => vm is T && ((CustomerViewModel)vm).Customer == customer) as T;
         }
 
         private void CreateNewCustomer()
@@ -72,6 +89,11 @@ namespace DemoApp.ViewModels
             workspace.RequestClose += delegate { Workspaces.Remove(workspace); };
             Workspaces.Add(workspace); 
             Workspaces.SetCurrentView(workspace);
+        }
+
+        private T FindExisting<T>() where T : WorkspaceViewModel
+        {
+            return Workspaces.FirstOrDefault(vm => vm is T) as T;
         }
     }
 }
