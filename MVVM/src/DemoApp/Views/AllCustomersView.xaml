@@ -23,6 +23,13 @@
             <Style x:Key="CustomerItemStyle" TargetType="{x:Type ListViewItem}">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                <Setter Property="mvvm:CommandBehavior.Event"
+                        Value="MouseDoubleClick" />
+                <Setter Property="mvvm:CommandBehavior.Command"
+                        Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SelectCustomerCommand}" />
+                <Setter Property="mvvm:CommandBehavior.CommandParameter"
+                        Value="{Binding}" />
+
                 <Style.Triggers>
                     <MultiTrigger>
                         <MultiTrigger.Conditions>
@@ -61,7 +68,6 @@
             <ListView.GroupStyle>
                 <StaticResourceExtension ResourceKey="CustomerGroupStyle" />
             </ListView.GroupStyle>
-
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=DisplayName}" />
