@@ -9,6 +9,7 @@ namespace DemoApp.ViewModels
 
         public AllCustomersViewModel() : this(new InMemoryCustomerService())
         {
+            DisplayName = "All Customers";
         }
 
         public AllCustomersViewModel(ICustomerService service)

@@ -2,8 +2,8 @@ using Quark.Tools.Mvvm;
 
 namespace DemoApp.ViewModels
 {
-    public class WorkspaceViewModel : ViewModelBase
+    public abstract class WorkspaceViewModel : ViewModelBase
     {
-        
+        public virtual string DisplayName { get; protected set; } 
     }
 }

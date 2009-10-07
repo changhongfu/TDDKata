@@ -14,25 +14,34 @@ namespace DemoApp.ViewModels
         private readonly ICustomerService service;
         private readonly ICommand saveCommand;
         private readonly Customer customer;
+        private bool isNewCustomer;
 
         public CustomerViewModel() : this(new InMemoryCustomerService())
         {
         }
 
-        public CustomerViewModel(Customer customer) : this(new InMemoryCustomerService())
+        public CustomerViewModel(Customer customer) : this(customer, new InMemoryCustomerService())
         {
-            this.customer = customer;
         }
 
         public CustomerViewModel(ICustomerService service)
         {
             this.service = service;
+            isNewCustomer = true;
             customer = new Customer
             {
                 FirstName = String.Empty,
                 LastName = String.Empty,
                 Email = String.Empty
             };
+            saveCommand = new RelayCommand(Save, CanSave);
+        }
+
+        public CustomerViewModel(Customer customer, ICustomerService service)
+        {
+            this.service = service;
+            isNewCustomer = false;
+            this.customer = customer;
             saveCommand = new RelayCommand(Save, CanSave);
         }
 
@@ -94,11 +103,12 @@ namespace DemoApp.ViewModels
             }
         }
 
-        public string DisplayName
+        public override string DisplayName
         {
             get
             {
-                return customer.Type == CustomerType.Company ? FirstName :
+                return isNewCustomer ? "New Customer" :
+                       customer.Type == CustomerType.Company ? FirstName :
                        FirstName + " " + LastName;
             }
         }

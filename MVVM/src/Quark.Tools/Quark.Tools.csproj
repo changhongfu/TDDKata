@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum.cs" />
-    <Compile Include="Mvvm\EnumComboBox.cs" />
     <Compile Include="Mvvm\EnumToStringConverter.cs" />
     <Compile Include="Mvvm\IView.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />

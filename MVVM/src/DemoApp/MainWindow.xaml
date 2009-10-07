@@ -13,6 +13,7 @@
         <ResourceDictionary Source="Styles/AppStyle.xaml" />
     </Window.Resources>
     <DockPanel>
+        <!-- Menu bar -->
         <DockPanel DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="None">
             <Menu KeyboardNavigation.TabNavigation="Cycle">
                 <MenuItem Header="_File">
@@ -25,13 +26,6 @@
         </DockPanel>
         <Grid Margin="4">
             <Grid.Resources>
-                <DataTemplate DataType="{x:Type vm:AllCustomersViewModel}">
-                    <v:AllCustomersView />
-                </DataTemplate>
-                
-                <DataTemplate DataType="{x:Type vm:CustomerViewModel}">
-                    <v:CustomerView />
-                </DataTemplate>
                 
                 <Style TargetType="Border">
                     <Setter Property="Background" Value="WhiteSmoke" />
@@ -40,6 +34,7 @@
                     <Setter Property="CornerRadius" Value="5" />
                     <Setter Property="SnapsToDevicePixels" Value="True" />
                 </Style>
+                
                 <DataTemplate x:Key="CommandsTemplate">
                     <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
                         <ItemsControl.ItemTemplate>
@@ -53,6 +48,18 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </DataTemplate>
+
+                <!-- AllCustomerView Template - will be use as tab's ContentComplete -->
+                <DataTemplate DataType="{x:Type vm:AllCustomersViewModel}">
+                    <v:AllCustomersView />
+                </DataTemplate>
+
+                <!-- CustomerView Template - will be use as tab's ContentComplete -->
+                <DataTemplate DataType="{x:Type vm:CustomerViewModel}">
+                    <v:CustomerView />
+                </DataTemplate>
+
+                <!-- Template for tab -->
                 <DataTemplate x:Key="ClosableTabItemTemplate">
                     <DockPanel Width="120">
                         <Button Command="{Binding Path=CloseCommand}"
@@ -71,6 +78,8 @@
                                           VerticalAlignment="Center" />
                     </DockPanel>
                 </DataTemplate>
+
+                <!-- ContentTemplate is not specified, so it will pick either AllCustomerView or CustomerView depending on the data type -->
                 <DataTemplate x:Key="WorkspacesTemplate">
                     <TabControl IsSynchronizedWithCurrentItem="True" 
                                 ItemsSource="{Binding}" 

@@ -45,5 +45,21 @@ namespace UnitTests
 
             mock.Verify(s => s.SaveCustmer(model.Customer));
         }
+
+        [Test]
+        public void TestDisplayName_CombineFirstNameAndLastName_IfCustomerIsPerson()
+        {
+            var model = new CustomerViewModel(new Customer { FirstName = "a", LastName = "b", Type = CustomerType.Person });
+            var displayName = model.DisplayName;
+            Assert.AreEqual("a b", displayName);
+        }
+
+        [Test]
+        public void TestDisplayName_UseOnlyLastName_IfCustomerIsCompany()
+        {
+            var model = new CustomerViewModel(new Customer { FirstName = "a", LastName = "b", Type = CustomerType.Company});
+            var displayName = model.DisplayName;
+            Assert.AreEqual("b", displayName);
+        }
     }
 }
