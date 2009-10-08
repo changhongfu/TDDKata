@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using MvcDemo.Models;
@@ -8,7 +7,7 @@ namespace MvcDemo.Services
     public class InMemoryPropertyService : IPropertyService
     {
         #region List of InMemory Data
-        private static List<RentalProperty> Properties = new List<RentalProperty>
+        private static readonly List<RentalProperty> Properties = new List<RentalProperty>
             {
                 new RentalProperty
                    {
