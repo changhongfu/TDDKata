@@ -4,8 +4,6 @@ namespace DemoApp.Models
 {
     public class Customer
     {
-        public string Email { get; set; }
-
         public Customer()
         {
             FirstName = String.Empty;
@@ -14,11 +12,13 @@ namespace DemoApp.Models
             Type = CustomerType.Person;
         }
 
+        public CustomerType Type { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
-        public CustomerType Type { get; set; }
+        public string Email { get; set; }
 
         public decimal TotalSales { get; set; }
     }
