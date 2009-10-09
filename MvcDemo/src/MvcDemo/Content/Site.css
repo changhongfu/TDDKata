@@ -351,13 +351,11 @@ div.rentalProperty
 {
     padding-top: 5px;
     padding-bottom: 5px;
-   /* border-bottom: solid 1px #D3D3D3; */
 }
 
 .rentalProperty tr.property-details td.property-details-column1
 {
     padding-left: 2px;
-/*    border-left: solid 1px #D3D3D3; */
 }
 
 .rentalProperty tr.property-details td.property-details-column2

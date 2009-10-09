@@ -41,11 +41,5 @@ namespace MvcDemo.Controllers
             }
             return RedirectToAction("List");
         }
-
-
-        public string GetSomeText()
-        {
-            return "Hello Ajax";
-        }
     }
 }

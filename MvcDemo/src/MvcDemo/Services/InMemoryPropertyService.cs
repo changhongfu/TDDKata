@@ -79,6 +79,9 @@ namespace MvcDemo.Services
 
         public void CreateProperty(RentalProperty propertyToCreate)
         {
+            propertyToCreate.ImageUrl1 = "../../Images/property4-1.JPG";
+            propertyToCreate.ImageUrl2 = "../../Images/property4-2.JPG";
+
             Properties.Add(propertyToCreate);
         }
     }

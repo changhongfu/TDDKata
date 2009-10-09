@@ -11,11 +11,7 @@
         function flashit(context) {
             var selector = '#' + context.get_updateTarget().id + ' :first';
             $(selector).hide().fadeIn('slow');
-            $(selector).css("border", "solid 4px red");
-
             $(selector).pulse({
-                //backgroundColors: ['#ffffff', '#0000ff'],
-               // textColors: ['#de0000', '#ff0000'],
                 borderColors: ['red', 'yellow'],
                 speed: 500,
                 duration: 5050
@@ -62,7 +58,7 @@
                         <%= Html.ValidationMessage("AddressSuburb", "*") %>
                     </td>
                     
-                    <td><label for="NumberCarSpaces">CarSpaces:</label></td>
+                    <td><label for="NumberCarSpaces">Car Spaces:</label></td>
                     <td>
                         <%= Html.TextBox("NumberCarSpaces") %>
                         <%= Html.ValidationMessage("NumberCarSpaces", "*") %>

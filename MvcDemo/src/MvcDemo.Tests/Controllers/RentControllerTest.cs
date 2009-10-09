@@ -16,53 +16,60 @@ namespace MvcDemo.Tests.Controllers
         [Test]
         public void TestList_ShouldLoadAllPropertiesAndAssignToViewModel()
         {
+            //Arrange
             var service = new FakePropertyService();
             var controller = new RentController(service);
-
             var properties = new RentalProperty[0];
             service.PropertiesToReturn = properties;
 
+            //Act
             var result = (ViewResult)controller.List();
 
+            //Assert
             Assert.AreEqual(properties, result.ViewData.Model);
         }
 
         [Test]
         public void TestCreate_ShouldSaveProperty()
         {
+            //Arrange
             var service = new FakePropertyService();
             var controller = new RentController(service);
+            CreateControllerContextStubFor(controller);     //Must create ControllerContextStub, as method under test needs asscess to Controller.Resuest
+            
+            //Act
             var propertyToCreate = new RentalProperty();
-
-            var stubHttpContext = MockRepository.GenerateStub<HttpContextBase>();
-            var stubRequest = MockRepository.GenerateStub<HttpRequestBase>();
-            stubHttpContext.Stub(s => s.Request).Return(stubRequest);
-           // stubRequest.Stub(r => r["X-Requested-With"]).Return("XMLHttpRequest");
-            var context = new ControllerContext(stubHttpContext, new RouteData(), controller);
-            controller.ControllerContext = context;
-
             controller.Create(propertyToCreate);
 
+            //Assert
             Assert.AreEqual(propertyToCreate, service.LastCreatedProperty);
         }
 
         [Test]
         public void TestCreate_ShouldReturnPropertyPartialView_ForAjaxRequest()
         {
+            //Arrange
             var service = new FakePropertyService();
             var controller = new RentController(service);
+            CreateControllerContextStubFor(controller);
+            controller.Request.Stub(r => r["X-Requested-With"]).Return("XMLHttpRequest");   //This makes request to be Ajax request
+            
+            //Act
             var propertyToCreate = new RentalProperty();
+            var result = (PartialViewResult)controller.Create(propertyToCreate);
 
+            //Assert
+            Assert.AreEqual("PropertyPartial", result.ViewName);
+        }
+
+        private static void CreateControllerContextStubFor(ControllerBase controller)
+        {
             var stubHttpContext = MockRepository.GenerateStub<HttpContextBase>();
             var stubRequest = MockRepository.GenerateStub<HttpRequestBase>();
             stubHttpContext.Stub(s => s.Request).Return(stubRequest);
-            stubRequest.Stub(r => r["X-Requested-With"]).Return("XMLHttpRequest");
+
             var context = new ControllerContext(stubHttpContext, new RouteData(), controller);
             controller.ControllerContext = context;
-
-            var result = (PartialViewResult)controller.Create(propertyToCreate);
-
-            Assert.AreEqual("PropertyPartial", result.ViewName);
         }
 
         private class FakePropertyService : IPropertyService
