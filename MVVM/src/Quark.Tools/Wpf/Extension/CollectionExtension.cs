@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Windows.Data;
+using Quark.Tools.Wpf.ViewModel;
 
-namespace Quark.Tools.Mvvm.Extensions
+namespace Quark.Tools.Wpf.Extension
 {
     public static class CollectionExtension
     {
