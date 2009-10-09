@@ -35,7 +35,7 @@ namespace MvcDemo.Tests.Controllers
             //Arrange
             var service = new FakePropertyService();
             var controller = new RentController(service);
-            CreateControllerContextStubFor(controller);     //Must create ControllerContextStub, as method under test needs asscess to Controller.Resuest
+            CreateControllerContextStubFor(controller);    //Must setup ControllerContext, as method under test needs asscess to Controller.Resuest
             
             //Act
             var propertyToCreate = new RentalProperty();
@@ -52,7 +52,7 @@ namespace MvcDemo.Tests.Controllers
             var service = new FakePropertyService();
             var controller = new RentController(service);
             CreateControllerContextStubFor(controller);
-            controller.Request.Stub(r => r["X-Requested-With"]).Return("XMLHttpRequest");   //This makes request to be Ajax request
+            controller.Request.Stub(r => r["X-Requested-With"]).Return("XMLHttpRequest");   //make it Ajax request
             
             //Act
             var propertyToCreate = new RentalProperty();
@@ -60,6 +60,23 @@ namespace MvcDemo.Tests.Controllers
 
             //Assert
             Assert.AreEqual("PropertyPartial", result.ViewName);
+        }
+
+        [Test]
+        public void TestCreate_ShouldRedirectToListView_ForNonAjaxRequest()
+        {
+            //Arrange
+            var service = new FakePropertyService();
+            var controller = new RentController(service);
+            CreateControllerContextStubFor(controller);
+            controller.Request.Stub(r => r["X-Requested-With"]).Return("");   //make it Non-Ajax request
+
+            //Act
+            var propertyToCreate = new RentalProperty();
+            var result = (RedirectToRouteResult)controller.Create(propertyToCreate);
+
+            //Assert
+            Assert.AreEqual("List", result.RouteValues["action"]);
         }
 
         private static void CreateControllerContextStubFor(ControllerBase controller)

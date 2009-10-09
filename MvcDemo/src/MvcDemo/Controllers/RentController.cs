@@ -22,7 +22,7 @@ namespace MvcDemo.Controllers
         public ActionResult List()
         {
             ViewData.Model = _service.GetProperties();
-            return View();
+            return View("List");
         }
 
         public ActionResult Create()
