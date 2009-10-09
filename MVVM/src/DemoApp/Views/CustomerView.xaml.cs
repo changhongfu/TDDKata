@@ -1,5 +1,5 @@
 ﻿using DemoApp.ViewModels;
-using Quark.Tools.Mvvm;
+using Quark.Tools.Wpf.View;
 
 namespace DemoApp.Views
 {

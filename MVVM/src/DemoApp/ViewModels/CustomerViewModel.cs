@@ -5,7 +5,7 @@ using System.Windows.Input;
 using DemoApp.Models;
 using DemoApp.Services;
 using Quark.Tools;
-using Quark.Tools.Mvvm;
+using Quark.Tools.Wpf.Command;
 
 namespace DemoApp.ViewModels
 {

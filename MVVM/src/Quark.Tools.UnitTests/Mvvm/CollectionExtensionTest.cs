@@ -1,7 +1,7 @@
 using System.Windows.Data;
 using NUnit.Framework;
-using Quark.Tools.Mvvm;
-using Quark.Tools.Mvvm.Extensions;
+using Quark.Tools.Wpf.Extension;
+using Quark.Tools.Wpf.ViewModel;
 
 namespace Quark.Tools.UnitTests.Mvvm
 {

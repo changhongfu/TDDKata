@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using Quark.Tools.Mvvm;
+using Quark.Tools.Wpf.ViewModel;
 
 namespace Quark.Tools.UnitTests.Mvvm
 {

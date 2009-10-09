@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using DemoApp.Models;
-using Quark.Tools.Mvvm;
-using Quark.Tools.Mvvm.Extensions;
+using Quark.Tools.Wpf.Command;
+using Quark.Tools.Wpf.Extension;
+using Quark.Tools.Wpf.ViewModel;
 
 namespace DemoApp.ViewModels
 {

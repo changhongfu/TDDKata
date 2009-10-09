@@ -1,5 +1,5 @@
 using System.Windows.Input;
-using Quark.Tools.Mvvm;
+using Quark.Tools.Wpf.ViewModel;
 
 namespace DemoApp.ViewModels
 {
