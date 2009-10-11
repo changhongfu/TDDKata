@@ -5,7 +5,7 @@
     xmlns:vm="clr-namespace:DemoApp.ViewModels"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     xmlns:view="clr-namespace:Quark.Tools.Wpf.View;assembly=Quark.Tools"             
-    xmlns:cmd="clr-namespace:Quark.Tools.Wpf.Command;assembly=Quark.Tools">
+    xmlns:cmd="clr-namespace:Quark.Tools.Wpf.Command.Behavior;assembly=Quark.Tools">
     <UserControl.Resources>
         <ResourceDictionary Source="../Styles/AppStyle.xaml" />
     </UserControl.Resources>
@@ -24,13 +24,22 @@
             <Style x:Key="CustomerItemStyle" TargetType="{x:Type ListViewItem}">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
-                <Setter Property="cmd:CommandBehavior.Event"
+                <!--<Setter Property="cmd:CommandBehavior.Event"
                         Value="MouseDoubleClick" />
                 <Setter Property="cmd:CommandBehavior.Command"
                         Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SelectCustomerCommand}" />
                 <Setter Property="cmd:CommandBehavior.CommandParameter"
-                        Value="{Binding}" />
-
+                        Value="{Binding}" />-->
+                
+                <Setter Property="cmd:CommandBehaviorCollection.Behaviors">
+                    <Setter.Value>
+  
+                            <cmd:BehaviorBinding Event="MouseDoubleClick" 
+                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SelectCustomerCommand}" 
+                                             CommandParameter="{Binding}"/>
+             
+                    </Setter.Value>
+                </Setter>
                 <Style.Triggers>
                     <MultiTrigger>
                         <MultiTrigger.Conditions>
