@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using DemoApp.Models;
 using DemoApp.Services;
@@ -48,6 +49,12 @@ namespace DemoApp.ViewModels
             {
                 handler(this, new EventArgs<Customer>(viewModel.Customer));
             }
+        }
+
+        public static readonly ICommand _someCommand = new RelayCommand(p => MessageBox.Show("xxx"));
+        public ICommand SomeCommand
+        {
+            get { return _someCommand; }
         }
     }
 }

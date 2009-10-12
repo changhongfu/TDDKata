@@ -24,22 +24,27 @@
             <Style x:Key="CustomerItemStyle" TargetType="{x:Type ListViewItem}">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
-                <!--<Setter Property="cmd:CommandBehavior.Event"
-                        Value="MouseDoubleClick" />
-                <Setter Property="cmd:CommandBehavior.Command"
-                        Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SelectCustomerCommand}" />
-                <Setter Property="cmd:CommandBehavior.CommandParameter"
-                        Value="{Binding}" />-->
+               
                 
-                <Setter Property="cmd:CommandBehaviorCollection.Behaviors">
+                <!--<Setter Property="cmd:CommandBehaviorCollection.Behaviors">
                     <Setter.Value>
-  
-                            <cmd:BehaviorBinding Event="MouseDoubleClick" 
-                                             Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SelectCustomerCommand}" 
-                                             CommandParameter="{Binding}"/>
-             
+                        <cmd:BehaviorBindingCollection>
+                            <cmd:BehaviorBinding Event="MouseLeftButtonDown" Command="{Binding SomeCommand}" CommandParameter="An Action on MouseLeftButtonDown"/>
+                            <cmd:BehaviorBinding Event="MouseRightButtonDown" Command="{Binding SomeCommand}" CommandParameter="A Command on MouseRightButtonDown"/>
+                        </cmd:BehaviorBindingCollection>
+                    </Setter.Value>
+                </Setter>-->
+
+                <Setter Property="cmd:EventCommander.InternalMappings">
+                    <Setter.Value>
+                        <cmd:CommandEventCollection>
+                            <cmd:CommandEvent Event="MouseLeftButtonDown" Command="{Binding SomeCommand}" />
+                            <cmd:CommandEvent Event="MouseRightButtonDown" Command="{Binding SomeCommand}" />
+                        </cmd:CommandEventCollection>
                     </Setter.Value>
                 </Setter>
+
+
                 <Style.Triggers>
                     <MultiTrigger>
                         <MultiTrigger.Conditions>
@@ -74,12 +79,26 @@
             <TextBlock Text="Total selected sales: " />
             <ContentPresenter Content="{Binding Path=TotalSelectedSales}" ContentStringFormat="c" />
         </StackPanel>
+        
+        
+        <Border Width="50" Background="Red">
+            <TextBlock Text="{Binding Path=DisplayName}" />
+            <cmd:EventCommander.Mappings>
+                <cmd:CommandEventCollection>
+                    <cmd:CommandEvent Event="MouseLeftButtonDown" Command="{Binding SomeCommand}" />
+                    <cmd:CommandEvent Event="MouseRightButtonDown" Command="{Binding SomeCommand}" />
+                </cmd:CommandEventCollection>
+            </cmd:EventCommander.Mappings>    
+        </Border>
+        
+        
         <ListView DataContext="{StaticResource CustomerGroups}" ItemContainerStyle="{StaticResource CustomerItemStyle}" ItemsSource="{Binding}">
             <ListView.GroupStyle>
                 <StaticResourceExtension ResourceKey="CustomerGroupStyle" />
             </ListView.GroupStyle>
             <ListView.View>
                 <GridView>
+
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=DisplayName}" />
                     <GridViewColumn Header="E-mail" DisplayMemberBinding="{Binding Path=Email}" />
                     <GridViewColumn Header="Total Sales">
@@ -92,5 +111,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+
     </DockPanel>
 </view:ViewUserControl>

@@ -124,7 +124,8 @@ namespace Quark.Tools.Wpf.Command.Behavior
 
         protected override Freezable CreateInstanceCore()
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
+            return new BehaviorBinding();
         }
     }
 }

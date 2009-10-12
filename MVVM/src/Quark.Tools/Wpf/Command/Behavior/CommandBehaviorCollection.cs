@@ -4,37 +4,31 @@ using System.Collections.Specialized;
 
 namespace Quark.Tools.Wpf.Command.Behavior
 {
-    public class CommandBehaviorCollection
+    public class CommandBehaviorCollection 
     {
-        private static readonly DependencyPropertyKey BehaviorsPropertyKey
-            = DependencyProperty.RegisterAttachedReadOnly("Behaviors", typeof(BehaviorBindingCollection), typeof(CommandBehaviorCollection),
-                                                          new FrameworkPropertyMetadata((BehaviorBindingCollection)null));
+        private static readonly DependencyProperty BehaviorsProperty
+            = DependencyProperty.RegisterAttached("Behaviors", typeof(BehaviorBindingCollection), typeof(CommandBehaviorCollection),
+                                                          new FrameworkPropertyMetadata((BehaviorBindingCollection)null, OnBehaviorsChanged));
 
-        public static readonly DependencyProperty BehaviorsProperty = BehaviorsPropertyKey.DependencyProperty;
+        private static void OnBehaviorsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var collection = d.GetValue(BehaviorsProperty) as BehaviorBindingCollection;
+            
+        }
+
+
+        // public static readonly DependencyProperty BehaviorsProperty = BehaviorsPropertyKey.DependencyProperty;
 
         public static BehaviorBindingCollection GetBehaviors(DependencyObject d)
         {
-            if (d == null)
-            {
-                throw new InvalidOperationException("The dependency object trying to attach to is set to null");
-            }
-
-            BehaviorBindingCollection collection = d.GetValue(BehaviorsProperty) as BehaviorBindingCollection;
-            if (collection == null)
-            {
-                collection = new BehaviorBindingCollection { Owner = d };
-                SetBehaviors(d, collection);
-            }
-            return collection;
+            return d.GetValue(BehaviorsProperty) as BehaviorBindingCollection;
         }
 
-        private static void SetBehaviors(DependencyObject d, BehaviorBindingCollection value)
+        public static void SetBehaviors(DependencyObject d, BehaviorBindingCollection value)
         {
-            d.SetValue(BehaviorsPropertyKey, value);
-            INotifyCollectionChanged collection = value;
-            collection.CollectionChanged += CollectionChanged;
+            d.SetValue(BehaviorsProperty, value);
         }
-
+       
         static void CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             BehaviorBindingCollection sourceCollection = (BehaviorBindingCollection)sender;
@@ -75,10 +69,5 @@ namespace Quark.Tools.Wpf.Command.Behavior
                     break;
             }
         }
-    }
-
-    public class BehaviorBindingCollection : FreezableCollection<BehaviorBinding>
-    {
-        public DependencyObject Owner { get; set; }
     }
 }

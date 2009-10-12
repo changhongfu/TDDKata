@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using DemoApp.Models;
 using DemoApp.Services;
@@ -136,6 +137,12 @@ namespace DemoApp.ViewModels
         private void Save()
         {
             service.SaveCustmer(customer);
+        }
+
+        public static readonly ICommand _someCommand = new RelayCommand(p => MessageBox.Show("xxx"));
+        public ICommand SomeCommand
+        {
+            get { return _someCommand; }
         }
     }
 }
