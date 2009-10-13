@@ -52,27 +52,27 @@ namespace Quark.Tools.Wpf.Command.Behavior
 
         private static void OnSetCommandCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            Control control = dependencyObject as Control;
+            var control = dependencyObject as Control;
             if (control != null)
             {
-                DoubleClickCommandBehavior behavior = GetOrCreateBehavior(control);
+                var behavior = GetOrCreateBehavior(control);
                 behavior.Command = e.NewValue as ICommand;
             }
         }
 
         private static void OnSetCommandParameterCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            Control control = dependencyObject as Control;
+            var control = dependencyObject as Control;
             if (control != null)
             {
-                DoubleClickCommandBehavior behavior = GetOrCreateBehavior(control);
+                var behavior = GetOrCreateBehavior(control);
                 behavior.CommandParameter = e.NewValue;
             }
         }
 
         private static DoubleClickCommandBehavior GetOrCreateBehavior(Control control)
         {
-            DoubleClickCommandBehavior behavior = control.GetValue(DoubleClickCommandBehaviorProperty) as DoubleClickCommandBehavior;
+            var behavior = control.GetValue(DoubleClickCommandBehaviorProperty) as DoubleClickCommandBehavior;
             if (behavior == null)
             {
                 behavior = new DoubleClickCommandBehavior(control);

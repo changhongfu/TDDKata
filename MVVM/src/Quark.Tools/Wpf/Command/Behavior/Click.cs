@@ -52,27 +52,27 @@ namespace Quark.Tools.Wpf.Command.Behavior
 
         private static void OnSetCommandCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            ButtonBase buttonBase = dependencyObject as ButtonBase;
+            var buttonBase = dependencyObject as ButtonBase;
             if (buttonBase != null)
             {
-                ClickCommandBehavior behavior = GetOrCreateBehavior(buttonBase);
+                var behavior = GetOrCreateBehavior(buttonBase);
                 behavior.Command = e.NewValue as ICommand;
             }
         }
 
         private static void OnSetCommandParameterCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            ButtonBase buttonBase = dependencyObject as ButtonBase;
+            var buttonBase = dependencyObject as ButtonBase;
             if (buttonBase != null)
             {
-                ClickCommandBehavior behavior = GetOrCreateBehavior(buttonBase);
+                var behavior = GetOrCreateBehavior(buttonBase);
                 behavior.CommandParameter = e.NewValue;
             }
         }
 
         private static ClickCommandBehavior GetOrCreateBehavior(ButtonBase buttonBase)
         {
-            ClickCommandBehavior behavior = buttonBase.GetValue(ClickCommandBehaviorProperty) as ClickCommandBehavior;
+            var behavior = buttonBase.GetValue(ClickCommandBehaviorProperty) as ClickCommandBehavior;
             if (behavior == null)
             {
                 behavior = new ClickCommandBehavior(buttonBase);
