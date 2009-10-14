@@ -68,13 +68,13 @@
     <Compile Include="WorkspaceViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\QuarkTools\src\Quark.Tools\Quark.Tools.csproj">
+      <Project>{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}</Project>
+      <Name>Quark.Tools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DemoApp\DemoApp.csproj">
       <Project>{079155F7-8F03-4099-A704-302EB8759AEB}</Project>
       <Name>DemoApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Quark.Tools\Quark.Tools.csproj">
-      <Project>{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}</Project>
-      <Name>Quark.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

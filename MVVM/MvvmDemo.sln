@@ -5,11 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp", "src\DemoApp\Demo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{41F811F5-ABC3-4443-8833-3F03EF80FA6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quark.Tools", "src\Quark.Tools\Quark.Tools.csproj", "{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quark.Tools.UnitTests", "src\Quark.Tools.UnitTests\Quark.Tools.UnitTests.csproj", "{B4D3284D-8F1A-4F03-A60E-5D45308A3189}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.UnitTests", "src\DemoApp.UnitTests\DemoApp.UnitTests.csproj", "{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quark.Tools", "..\QuarkTools\src\Quark.Tools\Quark.Tools.csproj", "{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quark.Tools.UnitTests", "..\QuarkTools\src\Quark.Tools.UnitTests\Quark.Tools.UnitTests.csproj", "{B4D3284D-8F1A-4F03-A60E-5D45308A3189}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,10 @@ Global
 		{079155F7-8F03-4099-A704-302EB8759AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{079155F7-8F03-4099-A704-302EB8759AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{079155F7-8F03-4099-A704-302EB8759AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,16 +33,12 @@ Global
 		{B4D3284D-8F1A-4F03-A60E-5D45308A3189}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4D3284D-8F1A-4F03-A60E-5D45308A3189}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4D3284D-8F1A-4F03-A60E-5D45308A3189}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B4D3284D-8F1A-4F03-A60E-5D45308A3189} = {41F811F5-ABC3-4443-8833-3F03EF80FA6D}
 		{E42C9333-19F5-4E97-9AA4-F7EC5C1A3FB3} = {41F811F5-ABC3-4443-8833-3F03EF80FA6D}
+		{B4D3284D-8F1A-4F03-A60E-5D45308A3189} = {41F811F5-ABC3-4443-8833-3F03EF80FA6D}
 	EndGlobalSection
 EndGlobal

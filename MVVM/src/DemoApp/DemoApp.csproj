@@ -128,7 +128,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Quark.Tools\Quark.Tools.csproj">
+    <ProjectReference Include="..\..\..\QuarkTools\src\Quark.Tools\Quark.Tools.csproj">
       <Project>{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}</Project>
       <Name>Quark.Tools</Name>
     </ProjectReference>
