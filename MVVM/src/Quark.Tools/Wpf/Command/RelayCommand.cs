@@ -5,12 +5,11 @@ namespace Quark.Tools.Wpf.Command
 {
     public class RelayCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
-
         private readonly Action<object> action;
         private readonly Func<object, bool> canExecute;
 
-        public RelayCommand(Action<object> action) : this(action, null)
+        public RelayCommand(Action<object> action)
+            : this(action, null)
         {
         }
 
@@ -18,6 +17,12 @@ namespace Quark.Tools.Wpf.Command
         {
             this.action = action;
             this.canExecute = canExecute;
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
 
         public void Execute(object parameter)

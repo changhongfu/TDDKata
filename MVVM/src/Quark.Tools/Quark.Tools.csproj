@@ -62,8 +62,13 @@
     <Compile Include="Wpf\Command\Behavior\CommandBehaviorBase.cs" />
     <Compile Include="Wpf\Command\Behavior\DoubleClick.cs" />
     <Compile Include="Wpf\Command\Behavior\DoubleClickCommandBehavior.cs" />
+    <Compile Include="Wpf\Command\Decorator\AfterCommandDecorator.cs" />
+    <Compile Include="Wpf\Command\Decorator\AsyncCommandDecorator.cs" />
+    <Compile Include="Wpf\Command\Decorator\BeforeCommandDecorator.cs" />
+    <Compile Include="Wpf\Command\Decorator\CommandDecorator.cs" />
+    <Compile Include="Wpf\Command\Decorator\CommandExtensions.cs" />
+    <Compile Include="Wpf\Command\Decorator\ICommandDecorator.cs" />
     <Compile Include="Wpf\Extension\CollectionExtension.cs" />
-    <Compile Include="Wpf\PropertyRegister.cs" />
     <Compile Include="Wpf\View\IView.cs" />
     <Compile Include="Wpf\Command\RelayCommand.cs" />
     <Compile Include="Wpf\ViewModel\ViewModelBase.cs" />
