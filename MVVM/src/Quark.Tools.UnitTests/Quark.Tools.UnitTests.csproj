@@ -63,10 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumTest.cs" />
-    <Compile Include="Mvvm\CollectionExtensionTest.cs" />
-    <Compile Include="Mvvm\RelayCommandTest.cs" />
-    <Compile Include="Mvvm\ViewModelBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wpf\AfterCommandDecoratorTest.cs" />
+    <Compile Include="Wpf\BeforeCommandDecoratorTest.cs" />
+    <Compile Include="Wpf\CollectionExtensionTest.cs" />
+    <Compile Include="Wpf\CommandDecoratorTest.cs" />
+    <Compile Include="Wpf\Helpers\DelegateCommand.cs" />
+    <Compile Include="Wpf\RelayCommandTest.cs" />
+    <Compile Include="Wpf\ViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quark.Tools\Quark.Tools.csproj">

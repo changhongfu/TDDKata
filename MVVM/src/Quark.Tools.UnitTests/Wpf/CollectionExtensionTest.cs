@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Quark.Tools.Wpf.Extension;
 using Quark.Tools.Wpf.ViewModel;
 
-namespace Quark.Tools.UnitTests.Mvvm
+namespace Quark.Tools.UnitTests.Wpf
 {
     [TestFixture]
     public class CollectionExtensionTest
