@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Quark.Tools.Wpf.Command.Decorator
 {
-    public class AfterCommandDecoratorx : CommandDecorator
+    public class AfterCommandDecorator : CommandDecorator
     {
         private readonly Action _afterExecutionAction;
 
