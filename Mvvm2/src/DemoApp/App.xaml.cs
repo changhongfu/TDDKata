@@ -10,9 +10,7 @@ namespace DemoApp
         {
             base.OnStartup(e);
 
-            var window = new Shell();
-            var viewModel = new ShellViewModel();
-            window.DataContext = viewModel;
+            var window = new Shell(new ShellViewModel());
             window.Show();
         }
     }

@@ -1,8 +1,6 @@
 ﻿<Window x:Class="DemoApp.Views.Shell"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:view="clr-namespace:DemoApp.Views"
-    xmlns:vm="clr-namespace:DemoApp.ViewModels"
     xmlns:ctr="clr-namespace:DemoApp.Controls"
     Title="Shell">
     <Window.Resources>
@@ -11,7 +9,7 @@
                 <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,-60,0,0"/>
                 <SplineThicknessKeyFrame KeyTime="00:00:00.5000000" Value="0,0,0,0"/>
             </ThicknessAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.Opacity)">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="topBar" Storyboard.TargetProperty="(UIElement.Opacity)">
                 <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
                 <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0.2"/>
                 <SplineDoubleKeyFrame KeyTime="00:00:00.8000000" Value="1"/>
@@ -32,17 +30,11 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         
-        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
-            <AdornerDecorator>
-                <view:HomeView />
-            </AdornerDecorator>
-        </DataTemplate>
-        
     </Window.Resources>
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource OnLoadedStoryBoard}"/>
+            <BeginStoryboard Storyboard="{StaticResource OnLoadedStoryBoard}" />
         </EventTrigger>
     </Window.Triggers>
 
@@ -70,10 +62,10 @@
         </Border>
 
         <ctr:MyTabControl x:Name="tabControl" Grid.Row="2" Grid.Column="0" 
-                    IsSynchronizedWithCurrentItem="True" 
-                    ItemsSource="{Binding Path=Workspaces}" 
-                    RenderTransformOrigin="0.5,0.5"
-                    Template="{StaticResource MainTabControlTemplate}">
+                          IsSynchronizedWithCurrentItem="True" 
+                          ItemsSource="{Binding Path=Workspaces}" 
+                          RenderTransformOrigin="0.5,0.5"
+                          Template="{StaticResource MainTabControlTemplate}">
             <ctr:MyTabControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1" ScaleY="1" />
