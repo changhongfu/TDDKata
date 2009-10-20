@@ -77,6 +77,8 @@
     <Compile Include="Wpf\Events\IMessage.cs" />
     <Compile Include="Wpf\Events\Message.cs" />
     <Compile Include="Wpf\Extension\CollectionExtension.cs" />
+    <Compile Include="Wpf\ViewModel\CloseWorkspaceMessage.cs" />
+    <Compile Include="Wpf\ViewModel\WorkspaceViewModel.cs" />
     <Compile Include="Wpf\View\IView.cs" />
     <Compile Include="Wpf\Command\RelayCommand.cs" />
     <Compile Include="Wpf\ViewModel\ViewModelBase.cs" />

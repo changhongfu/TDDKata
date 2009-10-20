@@ -1,4 +1,3 @@
-using System;
 using System.Windows.Input;
 using DemoApp.Messages;
 using Quark.Tools.Wpf.Command;
@@ -7,29 +6,26 @@ using Quark.Tools.Wpf.ViewModel;
 
 namespace DemoApp.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class HomeViewModel : WorkspaceViewModel
     {
-        private readonly ICommand _openSearchCustomersCommand;
+        private readonly ICommand openSearchCustomersCommand;
         private readonly ICommand openAddCustomerCommand;
 
         public HomeViewModel() : this(EventAggregator.Instance)
         {
-            
         }
 
-        public HomeViewModel(IEventAggregator eventAggregator)
+        public HomeViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-            _openSearchCustomersCommand = new RelayCommand(delegate { eventAggregator.SendMessage(new OpenSearchCustomersWorkspaceMessage()); });
-            openAddCustomerCommand = new RelayCommand(delegate { eventAggregator.SendMessage(new OpenAddCustomerWorkspaceMessage()); });
+            DisplayName = "Home";
+            IsCloseable = false;
+            openSearchCustomersCommand = new RelayCommand(p => PublishMessage(new OpenSearchCustomersWorkspaceMessage()));
+            openAddCustomerCommand = new RelayCommand(p => PublishMessage(new OpenAddCustomerWorkspaceMessage()));
         }
-
-        public string DisplayName { get { return "Home"; } }
-
-        public bool IsCloseable { get { return false; } }
 
         public ICommand OpenSearchCustomersCommand
         {
-            get { return _openSearchCustomersCommand; }
+            get { return openSearchCustomersCommand; }
         }
 
         public ICommand OpenAddCustomerCommand

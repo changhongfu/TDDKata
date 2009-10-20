@@ -1,18 +1,17 @@
 using Quark.Tools.Wpf.Events;
-using Quark.Tools.Wpf.ViewModel;
 
-namespace DemoApp.Messages
+namespace Quark.Tools.Wpf.ViewModel
 {
     public class CloseWorkspaceMessage : IMessage
     {
-        private readonly ViewModelBase workspaceToClose;
+        private readonly WorkspaceViewModel workspaceToClose;
 
-        public CloseWorkspaceMessage(ViewModelBase workspaceToClose)
+        public CloseWorkspaceMessage(WorkspaceViewModel workspaceToClose)
         {
             this.workspaceToClose = workspaceToClose;
         }
 
-        public ViewModelBase WorkspaceToClose
+        public WorkspaceViewModel WorkspaceToClose
         {
             get { return workspaceToClose; }
         }

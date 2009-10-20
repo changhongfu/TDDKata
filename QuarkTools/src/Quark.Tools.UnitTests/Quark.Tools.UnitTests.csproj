@@ -73,6 +73,7 @@
     <Compile Include="Wpf\Helpers\DelegateCommand.cs" />
     <Compile Include="Wpf\RelayCommandTest.cs" />
     <Compile Include="Wpf\ViewModelBaseTest.cs" />
+    <Compile Include="Wpf\WorkspaceViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quark.Tools\Quark.Tools.csproj">

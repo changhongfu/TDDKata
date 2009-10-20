@@ -1,9 +1,9 @@
 using System.Windows.Input;
-using DemoApp.Messages;
 using DemoApp.ViewModels;
 using Moq;
 using NUnit.Framework;
 using Quark.Tools.Wpf.Events;
+using Quark.Tools.Wpf.ViewModel;
 
 namespace DemoApp.UnitTests
 {

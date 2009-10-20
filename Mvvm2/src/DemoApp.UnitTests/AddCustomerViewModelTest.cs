@@ -15,10 +15,10 @@ namespace DemoApp.UnitTests
         }
 
         [Test]
-        public void AddCustomerViewModel_IsClosable()
+        public void AddCustomerViewModel_IsCloseable()
         {
             var model = new AddCustomerViewModel();
-            bool closable = model.IsClosable;
+            bool closable = model.IsCloseable;
             Assert.IsTrue(closable);
         }
     }
