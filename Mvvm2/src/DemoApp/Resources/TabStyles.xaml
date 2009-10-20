@@ -104,7 +104,7 @@
                         <DockPanel Width="Auto">
                             <Button x:Name="PART_Close" HorizontalAlignment="Center" Margin="3" 
                                     VerticalAlignment="Center" Width="16" Height="16" 
-                                    Command="{Binding Path=CloseWorkSpaceCommand}"    
+                                    Command="{Binding Path=CloseCommand}"    
                                     Visibility="{Binding Path=IsCloseable, Converter={StaticResource BoolToVisibilityConverter}}"    
                                     DockPanel.Dock="Right" 
                                     Focusable="False"

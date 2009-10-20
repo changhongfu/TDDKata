@@ -69,6 +69,7 @@
     <Compile Include="Wpf\BoolToVisibilityConverterTest.cs" />
     <Compile Include="Wpf\CollectionExtensionTest.cs" />
     <Compile Include="Wpf\CommandDecoratorTest.cs" />
+    <Compile Include="Wpf\EventAggregatorTest.cs" />
     <Compile Include="Wpf\Helpers\DelegateCommand.cs" />
     <Compile Include="Wpf\RelayCommandTest.cs" />
     <Compile Include="Wpf\ViewModelBaseTest.cs" />
