@@ -1,29 +1,29 @@
 using System.Collections.ObjectModel;
-using DemoApp.Messages;
 using Quark.Tools.Extensions;
 using Quark.Tools.Wpf.Events;
 using Quark.Tools.Wpf.Extension;
 using Quark.Tools.Wpf.ViewModel;
+using DemoApp.Messages;
 
 namespace DemoApp.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
-        private ObservableCollection<ViewModelBase> workspaces;
+        private ObservableCollection<WorkspaceViewModel> workspaces;
 
         public ShellViewModel() : this(EventAggregator.Instance)
         {
         }
 
-        public ShellViewModel(IEventAggregator eventAggregator)
+        public ShellViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-            workspaces = new ObservableCollection<ViewModelBase> { new HomeViewModel() };
-            eventAggregator.AddListener<OpenSearchCustomersWorkspaceMessage>(ShowSearchCustomers);
-            eventAggregator.AddListener<OpenAddCustomerWorkspaceMessage>(ShowAddCustomer);
-            eventAggregator.AddListener<CloseWorkspaceMessage>(m => CloseWorkspace(m.WorkspaceToClose));
+            workspaces = new ObservableCollection<WorkspaceViewModel> { new HomeViewModel() };
+            SubscribeToMessage<OpenSearchCustomersWorkspaceMessage>(ShowSearchCustomers);
+            SubscribeToMessage<OpenAddCustomerWorkspaceMessage>(ShowAddCustomer);
+            SubscribeToMessage<CloseWorkspaceMessage>(m => CloseWorkspace(m.WorkspaceToClose));
         }
 
-        public ObservableCollection<ViewModelBase> Workspaces
+        public ObservableCollection<WorkspaceViewModel> Workspaces
         {
             get { return workspaces; }
             set
@@ -36,20 +36,20 @@ namespace DemoApp.ViewModels
             }
         }
 
-        private void ShowSearchCustomers(OpenSearchCustomersWorkspaceMessage obj)
+        private void ShowSearchCustomers(OpenSearchCustomersWorkspaceMessage message)
         {
-            var model = workspaces.FindOrCreate<SearchCustomerViewModel, ViewModelBase>();
+            var model = workspaces.FindOrCreate<SearchCustomerViewModel, WorkspaceViewModel>();
             workspaces.SetCurrentView(model);
         }
 
-        private void ShowAddCustomer(OpenAddCustomerWorkspaceMessage obj)
+        private void ShowAddCustomer(OpenAddCustomerWorkspaceMessage message)
         {
             var model = new AddCustomerViewModel();
             workspaces.Add(model);
             workspaces.SetCurrentView(model);
         }
 
-        private void CloseWorkspace(ViewModelBase viewModel)
+        private void CloseWorkspace(WorkspaceViewModel viewModel)
         {
             workspaces.Remove(viewModel);
             workspaces.SetCurrentView(workspaces[0]);

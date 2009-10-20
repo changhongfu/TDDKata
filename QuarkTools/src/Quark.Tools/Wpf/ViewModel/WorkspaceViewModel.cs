@@ -7,17 +7,14 @@ namespace Quark.Tools.Wpf.ViewModel
 {
     public class WorkspaceViewModel : ViewModelBase
     {
-        private readonly IEventAggregator eventAggregator;
         private readonly ICommand closeCommand;
 
         public WorkspaceViewModel() : this (EventAggregator.Instance)
         {
         }
 
-        public WorkspaceViewModel(IEventAggregator eventAggregator)
+        public WorkspaceViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
-            this.eventAggregator = eventAggregator;
-
             DisplayName = "Workspace";
             IsCloseable = true;
             closeCommand = new RelayCommand(p => PublishMessage(new CloseWorkspaceMessage(this)));
@@ -30,16 +27,6 @@ namespace Quark.Tools.Wpf.ViewModel
         public ICommand CloseCommand
         {
             get { return closeCommand; }
-        }
-
-        protected void PublishMessage<T>(T message) where T : IMessage
-        {
-            eventAggregator.SendMessage(message);
-        }
-
-        protected void SubscribeToMessage<T>(Action<T> action) where T : IMessage
-        {
-            eventAggregator.AddListener(action);
         }
     }
 }
