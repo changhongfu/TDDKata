@@ -18,9 +18,9 @@ namespace DemoApp.ViewModels
         public ShellViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
             workspaces = new ObservableCollection<WorkspaceViewModel> { new HomeViewModel() };
-            SubscribeToMessage<OpenSearchCustomersWorkspaceMessage>(ShowSearchCustomers);
-            SubscribeToMessage<OpenAddCustomerWorkspaceMessage>(ShowAddCustomer);
-            SubscribeToMessage<CloseWorkspaceMessage>(m => CloseWorkspace(m.WorkspaceToClose));
+            SubscribeToMessage<OpenSearchCustomersWorkspaceMessage>(msg => ShowSearchCustomers());
+            SubscribeToMessage<OpenAddCustomerWorkspaceMessage>(msg => ShowAddCustomer());
+            SubscribeToMessage<CloseWorkspaceMessage>(msg => CloseWorkspace(msg.WorkspaceToClose));
         }
 
         public ObservableCollection<WorkspaceViewModel> Workspaces
@@ -36,13 +36,13 @@ namespace DemoApp.ViewModels
             }
         }
 
-        private void ShowSearchCustomers(OpenSearchCustomersWorkspaceMessage message)
+        private void ShowSearchCustomers()
         {
             var model = workspaces.FindOrCreate<SearchCustomerViewModel, WorkspaceViewModel>();
             workspaces.SetCurrentView(model);
         }
 
-        private void ShowAddCustomer(OpenAddCustomerWorkspaceMessage message)
+        private void ShowAddCustomer()
         {
             var model = new AddCustomerViewModel();
             workspaces.Add(model);
