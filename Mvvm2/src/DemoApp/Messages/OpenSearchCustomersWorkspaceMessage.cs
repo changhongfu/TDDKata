@@ -2,8 +2,8 @@ using Quark.Tools.Wpf.Events;
 
 namespace DemoApp.Messages
 {
-    public class OpenSearchCustomerWorkspaceMessage : IMessage
+    public class OpenSearchCustomersWorkspaceMessage : IMessage
     {
-        public static OpenSearchCustomerWorkspaceMessage Instance = new OpenSearchCustomerWorkspaceMessage();
+        public static OpenSearchCustomersWorkspaceMessage Instance = new OpenSearchCustomersWorkspaceMessage();
     }
 }

@@ -9,7 +9,7 @@ namespace DemoApp.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        private readonly ICommand openSearchCustomerCommand;
+        private readonly ICommand _openSearchCustomersCommand;
         private readonly ICommand openAddCustomerCommand;
 
         public HomeViewModel() : this(EventAggregator.Instance)
@@ -19,7 +19,7 @@ namespace DemoApp.ViewModels
 
         public HomeViewModel(IEventAggregator eventAggregator)
         {
-            openSearchCustomerCommand = new RelayCommand(delegate { eventAggregator.SendMessage(new OpenSearchCustomerWorkspaceMessage()); });
+            _openSearchCustomersCommand = new RelayCommand(delegate { eventAggregator.SendMessage(new OpenSearchCustomersWorkspaceMessage()); });
             openAddCustomerCommand = new RelayCommand(delegate { eventAggregator.SendMessage(new OpenAddCustomerWorkspaceMessage()); });
         }
 
@@ -27,9 +27,9 @@ namespace DemoApp.ViewModels
 
         public bool IsCloseable { get { return false; } }
 
-        public ICommand OpenSearchCustomerCommand
+        public ICommand OpenSearchCustomersCommand
         {
-            get { return openSearchCustomerCommand; }
+            get { return _openSearchCustomersCommand; }
         }
 
         public ICommand OpenAddCustomerCommand

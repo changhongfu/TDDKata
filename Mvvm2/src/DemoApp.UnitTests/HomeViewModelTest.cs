@@ -30,7 +30,7 @@ namespace DemoApp.UnitTests
         public void HomeViewModel_ShouldHaveOpenSearchCommand()
         {
             var model = new HomeViewModel();
-            ICommand command = model.OpenSearchCustomerCommand;
+            ICommand command = model.OpenSearchCustomersCommand;
             Assert.IsNotNull(command);
         }
 
@@ -40,9 +40,9 @@ namespace DemoApp.UnitTests
             var mock = new Mock<IEventAggregator>();
             var model = new HomeViewModel(mock.Object);
 
-            model.OpenSearchCustomerCommand.Execute(null);
+            model.OpenSearchCustomersCommand.Execute(null);
 
-            mock.Verify(e => e.SendMessage(It.IsAny<OpenSearchCustomerWorkspaceMessage>()));
+            mock.Verify(e => e.SendMessage(It.IsAny<OpenSearchCustomersWorkspaceMessage>()));
         }
 
         [Test]

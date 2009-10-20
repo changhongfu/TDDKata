@@ -27,7 +27,7 @@ namespace DemoApp.UnitTests
 
             new ShellViewModel(mock.Object);
 
-            mock.Verify(e => e.AddListener(It.IsAny<Action<OpenSearchCustomerWorkspaceMessage>>()));
+            mock.Verify(e => e.AddListener(It.IsAny<Action<OpenSearchCustomersWorkspaceMessage>>()));
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace DemoApp.UnitTests
             var aggregator = new EventAggregator();
             var model = new ShellViewModel(aggregator);
 
-            aggregator.SendMessage(new OpenSearchCustomerWorkspaceMessage());
+            aggregator.SendMessage(new OpenSearchCustomersWorkspaceMessage());
 
             var searchViewModel = (SearchCustomerViewModel)model.Workspaces[1];
             Assert.IsNotNull(searchViewModel);
@@ -49,7 +49,7 @@ namespace DemoApp.UnitTests
             var model = new ShellViewModel(aggregator);
             model.Workspaces.Add(new SearchCustomerViewModel());
 
-            aggregator.SendMessage(new OpenSearchCustomerWorkspaceMessage());
+            aggregator.SendMessage(new OpenSearchCustomersWorkspaceMessage());
 
             var searchModels = model.Workspaces.Where(m => m.GetType() == typeof(SearchCustomerViewModel)).ToArray();     
             Assert.AreEqual(1, searchModels.Length);
@@ -89,5 +89,16 @@ namespace DemoApp.UnitTests
             mock.Verify(e => e.AddListener(It.IsAny<Action<OpenAddCustomerWorkspaceMessage>>()));
         }
 
+        [Test]
+        public void ShellViewModel_ShouldAddAddCustomerViewModelToWorkspaces_WhenOpenAddCustomerMessagePublished()
+        {
+            var aggregator = new EventAggregator();
+            var model = new ShellViewModel(aggregator);
+
+            aggregator.SendMessage(new OpenAddCustomerWorkspaceMessage());
+
+            var searchViewModel = (AddCustomerViewModel)model.Workspaces[1];
+            Assert.IsNotNull(searchViewModel);
+        }
     }
 }

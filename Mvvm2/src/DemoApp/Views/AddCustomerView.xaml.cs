@@ -1,8 +1,8 @@
 ﻿namespace DemoApp.Views
 {
-    public partial class SearchCustomersView
+    public partial class AddCustomerView
     {
-        public SearchCustomersView()
+        public AddCustomerView()
         {
             InitializeComponent();
         }

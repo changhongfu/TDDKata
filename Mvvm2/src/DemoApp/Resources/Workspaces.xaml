@@ -15,4 +15,9 @@
         </AdornerDecorator>
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type vm:AddCustomerViewModel}">
+        <AdornerDecorator>
+            <view:AddCustomerView />
+        </AdornerDecorator>
+    </DataTemplate>
 </ResourceDictionary>

@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Height="300" Width="300">
     <Canvas>
-        <Button Command="{Binding Path=OpenSearchCommand}" Height="22" Canvas.Left="88" Canvas.Top="87" Width="101">Search Customers</Button>
+        <Button Command="{Binding Path=OpenSearchCustomersCommand}" Height="22" Canvas.Left="88" Canvas.Top="87" Width="101">Search Customers</Button>
+        <Button Canvas.Left="88" Canvas.Top="146" Command="{Binding Path=OpenAddCustomerCommand}" Height="22" Width="101">Add Customer</Button>
     </Canvas>
 </UserControl>
