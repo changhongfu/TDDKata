@@ -30,19 +30,38 @@ namespace DemoApp.UnitTests
         public void HomeViewModel_ShouldHaveOpenSearchCommand()
         {
             var model = new HomeViewModel();
-            ICommand command = model.OpenSearchCommand;
+            ICommand command = model.OpenSearchCustomerCommand;
             Assert.IsNotNull(command);
         }
 
         [Test]
-        public void OpenSearchCommand_ShouldSendMessageToEventAggregator_WhenExecute()
+        public void OpenSearchCustomerCommand_ShouldSendMessageToEventAggregator_WhenExecute()
         {
             var mock = new Mock<IEventAggregator>();
             var model = new HomeViewModel(mock.Object);
 
-            model.OpenSearchCommand.Execute(null);
+            model.OpenSearchCustomerCommand.Execute(null);
 
             mock.Verify(e => e.SendMessage(It.IsAny<OpenSearchCustomerWorkspaceMessage>()));
+        }
+
+        [Test]
+        public void HomeViewModel_HasOpenAddCustomerCommand()
+        {
+            var model = new HomeViewModel(null);
+            ICommand command = model.OpenAddCustomerCommand;
+            Assert.IsNotNull(command);
+        }
+
+        [Test]
+        public void OpenAddCustomerCommand_ShouldSendMessageToEventAggregator_WhenExecute()
+        {
+            var mock = new Mock<IEventAggregator>();
+            var model = new HomeViewModel(mock.Object);
+
+            model.OpenAddCustomerCommand.Execute(null);
+
+            mock.Verify(e => e.SendMessage(It.IsAny<OpenAddCustomerWorkspaceMessage>()));
         }
     }
 }

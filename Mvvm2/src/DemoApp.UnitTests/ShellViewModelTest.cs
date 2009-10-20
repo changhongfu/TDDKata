@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Windows.Input;
 using DemoApp.Messages;
 using DemoApp.ViewModels;
 using Moq;
@@ -20,7 +21,7 @@ namespace DemoApp.UnitTests
         }
 
         [Test]
-        public void ShellViewModel_ShouldSubscribeOpenSearchEvent()
+        public void ShellViewModel_ShouldSubscribeOpenSearchCustomersEvent()
         {
             var mock = new Mock<IEventAggregator>();
 
@@ -30,7 +31,7 @@ namespace DemoApp.UnitTests
         }
 
         [Test]
-        public void ShellViewModel_ShouldAddSearchViewModelToWorkspaces_WhenOpenSearchMessagePublished()
+        public void ShellViewModel_ShouldAddSearchCustomersViewModelToWorkspaces_WhenOpenSearchCustomersMessagePublished()
         {
             var aggregator = new EventAggregator();
             var model = new ShellViewModel(aggregator);
@@ -42,7 +43,7 @@ namespace DemoApp.UnitTests
         }
 
         [Test]
-        public void ShellViewModel_ShouldNotAddSearchViewModelToWorkspaces_IfSearchViewModelAlreadyInWorkspaces()
+        public void ShellViewModel_ShouldNotAddSearchCustomersViewModelToWorkspaces_IfSearchCustomersViewModelAlreadyInWorkspaces()
         {
             var aggregator = new EventAggregator();
             var model = new ShellViewModel(aggregator);
@@ -55,7 +56,7 @@ namespace DemoApp.UnitTests
         }
 
         [Test]
-        public void ShellViewModel__ShouldSubscribeCloseWorkspaceEvent()
+        public void ShellViewModel_ShouldSubscribeCloseWorkspaceEvent()
         {
             var mock = new Mock<IEventAggregator>();
 
@@ -77,5 +78,16 @@ namespace DemoApp.UnitTests
             var exists = model.Workspaces.Contains(viewModel);
             Assert.IsFalse(exists);
         }
+
+        [Test]
+        public void ShellViewModel_ShouldSubscribeOpenAddCustomerEvent()
+        {
+            var mock = new Mock<IEventAggregator>();
+
+            new ShellViewModel(mock.Object);
+
+            mock.Verify(e => e.AddListener(It.IsAny<Action<OpenAddCustomerWorkspaceMessage>>()));
+        }
+
     }
 }

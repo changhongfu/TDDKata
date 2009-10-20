@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using DemoApp.Messages;
 using Quark.Tools.Extensions;
 using Quark.Tools.Wpf.Events;

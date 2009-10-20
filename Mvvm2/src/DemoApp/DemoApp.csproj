@@ -98,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\MyTabControl.cs" />
+    <Compile Include="Messages\OpenAddCustomerWorkspaceMessage.cs" />
+    <Compile Include="Messages\OpenSearchCustomersWorkspaceMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -112,9 +114,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Messages\CloseWorkspaceMessage.cs" />
+    <Compile Include="ViewModels\AddCustomerViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
-    <Compile Include="Messages\OpenSearchCustomerWorkspaceMessage.cs" />
-    <Compile Include="ViewModels\SearchCustomerViewModel.cs" />
+    <Compile Include="ViewModels\SearchCustomersViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
