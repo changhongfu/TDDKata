@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wpf\AfterCommandDecoratorTest.cs" />
     <Compile Include="Wpf\BeforeCommandDecoratorTest.cs" />
+    <Compile Include="Wpf\BoolToVisibilityConverterTest.cs" />
     <Compile Include="Wpf\CollectionExtensionTest.cs" />
     <Compile Include="Wpf\CommandDecoratorTest.cs" />
     <Compile Include="Wpf\Helpers\DelegateCommand.cs" />

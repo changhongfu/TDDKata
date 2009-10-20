@@ -68,6 +68,7 @@
     <Compile Include="Wpf\Command\Decorator\CommandDecorator.cs" />
     <Compile Include="Wpf\Command\Decorator\CommandExtensions.cs" />
     <Compile Include="Wpf\Command\Decorator\ICommandDecorator.cs" />
+    <Compile Include="Wpf\Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Wpf\Extension\CollectionExtension.cs" />
     <Compile Include="Wpf\View\IView.cs" />
     <Compile Include="Wpf\Command\RelayCommand.cs" />
