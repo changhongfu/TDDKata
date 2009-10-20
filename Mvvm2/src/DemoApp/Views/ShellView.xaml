@@ -1,8 +1,8 @@
-﻿<Window x:Class="DemoApp.Views.Shell"
+﻿<Window x:Class="DemoApp.Views.ShellView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctr="clr-namespace:DemoApp.Controls"
-    Title="Shell">
+    Title="ShellView">
     <Window.Resources>
         <Storyboard x:Key="OnLoadedStoryBoard">
             <ThicknessAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="menu" Storyboard.TargetProperty="(FrameworkElement.Margin)">

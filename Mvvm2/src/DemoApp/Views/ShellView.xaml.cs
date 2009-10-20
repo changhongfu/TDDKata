@@ -2,13 +2,13 @@
 
 namespace DemoApp.Views
 {
-    public partial class Shell
+    public partial class ShellView
     {
-        public Shell() : this(new ShellViewModel())
+        public ShellView() : this(new ShellViewModel())
         {
         }
 
-        public Shell(ShellViewModel viewModel)
+        public ShellView(ShellViewModel viewModel)
         {
             DataContext = viewModel;
             InitializeComponent();

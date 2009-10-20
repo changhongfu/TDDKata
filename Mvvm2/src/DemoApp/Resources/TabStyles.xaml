@@ -105,7 +105,7 @@
                             <Button x:Name="PART_Close" HorizontalAlignment="Center" Margin="3" 
                                     VerticalAlignment="Center" Width="16" Height="16" 
                                     Command="{Binding Path=CloseWorkSpaceCommand}"    
-                                        
+                                    Visibility="{Binding Path=IsCloseable, Converter={StaticResource BoolToVisibilityConverter}}"    
                                     DockPanel.Dock="Right" 
                                     Focusable="False"
                                     Style="{DynamicResource CloseableTabItemButtonStyle}" 

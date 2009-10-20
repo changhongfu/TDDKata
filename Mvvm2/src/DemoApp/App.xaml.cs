@@ -10,7 +10,7 @@ namespace DemoApp
         {
             base.OnStartup(e);
 
-            var window = new Shell(new ShellViewModel());
+            var window = new ShellView(new ShellViewModel());
             window.Show();
         }
     }
