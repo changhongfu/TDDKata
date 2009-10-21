@@ -9,12 +9,12 @@ using Quark.Tools.Wpf.Events;
 namespace DemoApp.UnitTests
 {
     [TestFixture]
-    public class HomeViewModelTest
+    public class HomeViewModelTest : BaseViewModelTest<HomeViewModel>
     {
         [Test]
         public void DisplayName_ShouldBe_Home()
         {
-            var model = CreateHomeViewModel();
+            var model = CreateViewModel();
             var displayName = model.DisplayName;
             Assert.AreEqual("Home", displayName);
         }
@@ -22,7 +22,7 @@ namespace DemoApp.UnitTests
         [Test]
         public void HomeViewModel_IsNotCloseable()
         {
-            var model = CreateHomeViewModel();
+            var model = CreateViewModel();
             bool canClose = model.IsCloseable;
             Assert.IsFalse(canClose);
         }
@@ -30,7 +30,7 @@ namespace DemoApp.UnitTests
         [Test]
         public void HomeViewModel_ShouldHaveOpenSearchCommand()
         {
-            var model = CreateHomeViewModel();
+            var model = CreateViewModel();
             ICommand command = model.OpenSearchCustomersCommand;
             Assert.IsNotNull(command);
         }
@@ -39,7 +39,7 @@ namespace DemoApp.UnitTests
         public void OpenSearchCustomerCommand_ShouldSendMessageToEventAggregator_WhenExecute()
         {
             var mock = new Mock<IEventAggregator>();
-            var model = CreateHomeViewModel(mock.Object);
+            var model = CreateViewModel(mock);
 
             model.OpenSearchCustomersCommand.Execute(null);
 
@@ -49,7 +49,7 @@ namespace DemoApp.UnitTests
         [Test]
         public void HomeViewModel_HasOpenAddCustomerCommand()
         {
-            var model = CreateHomeViewModel();
+            var model = CreateViewModel();
             ICommand command = model.OpenAddCustomerCommand;
             Assert.IsNotNull(command);
         }
@@ -58,23 +58,16 @@ namespace DemoApp.UnitTests
         public void OpenAddCustomerCommand_ShouldSendMessageToEventAggregator_WhenExecute()
         {
             var mock = new Mock<IEventAggregator>();
-            var model = CreateHomeViewModel(mock.Object);
+            var model = CreateViewModel(mock);
 
             model.OpenAddCustomerCommand.Execute(null);
 
             mock.Verify(e => e.SendMessage(It.IsAny<OpenAddCustomerWorkspaceMessage>()));
         }
 
-        private static HomeViewModel CreateHomeViewModel()
+        protected override HomeViewModel CreateViewModel(IIocContainer iocContainer)
         {
-            return CreateHomeViewModel(new Mock<IEventAggregator>().Object);
-        }
-
-        private static HomeViewModel CreateHomeViewModel(IEventAggregator eventAggregator)
-        {
-            var iocMock = new Mock<IIocContainer>();
-            iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventAggregator);
-            return new HomeViewModel(iocMock.Object);
+            return new HomeViewModel(iocContainer);
         }
     }
 }

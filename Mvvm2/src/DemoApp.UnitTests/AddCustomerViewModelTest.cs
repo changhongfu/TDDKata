@@ -1,25 +1,23 @@
 using DemoApp.ViewModels;
-using Moq;
 using NUnit.Framework;
 using Quark.Tools.Ioc;
 
 namespace DemoApp.UnitTests
 {
     [TestFixture]
-    public class AddCustomerViewModelTest
+    public class AddCustomerViewModelTest : BaseViewModelTest<AddCustomerViewModel>
     {
         [Test]
         public void DisplayName_ShouldBe_AddCustomer()
         {
-            var model = CreateAddCustomerViewModel();
+            var model = CreateViewModel();
             string displayName = model.DisplayName;
             Assert.AreEqual("Add Customer", displayName);
         }
 
-        private static AddCustomerViewModel CreateAddCustomerViewModel()
+        protected override AddCustomerViewModel CreateViewModel(IIocContainer iocContainer)
         {
-            var mock = new Mock<IIocContainer>();
-            return new AddCustomerViewModel(mock.Object);
+            return new AddCustomerViewModel(iocContainer);
         }
     }
 }

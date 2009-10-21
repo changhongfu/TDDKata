@@ -76,6 +76,10 @@
     <Compile Include="Wpf\WorkspaceViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Quark.Tools.Testing\Quark.Tools.Testing.csproj">
+      <Project>{EBC3C306-163F-416E-A610-71A4A7651E98}</Project>
+      <Name>Quark.Tools.Testing</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Quark.Tools\Quark.Tools.csproj">
       <Project>{B3B9275B-0384-4744-8CF4-A2426A8AE6A6}</Project>
       <Name>Quark.Tools</Name>

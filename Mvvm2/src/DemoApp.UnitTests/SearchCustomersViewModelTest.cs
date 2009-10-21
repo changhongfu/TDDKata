@@ -1,32 +1,49 @@
+using System.Linq;
 using DemoApp.ViewModels;
 using Moq;
 using NUnit.Framework;
 using Quark.Tools.Ioc;
-using Quark.Tools.Wpf.Events;
 
 namespace DemoApp.UnitTests
 {
     [TestFixture]
-    public class SearchViewModelTest
+    public class SearchViewModelTest : BaseViewModelTest<SearchCustomerViewModel>
     {
         [Test]
-        public void DisplayName_ShouldBe_SearchCustomers()
+        public void DisplayName_ShouldBeSearchCustomers()
         {
-            var model = CreateSearchCustomerViewModel();
+            var model = CreateViewModel();
             string displayName = model.DisplayName;
             Assert.AreEqual("Search Customers", displayName);
         }
 
-        private static SearchCustomerViewModel CreateSearchCustomerViewModel()
+        [Test]
+        public void HasSearchCriteriaViewModel()
         {
-            return CreateSearchCustomerViewModel(new Mock<IEventAggregator>().Object);
-        } 
+            var mock  = new Mock<IIocContainer>();
+            var expected = new SearchCriteriaViewModel(mock.Object);
+            mock.Setup(ioc => ioc.Resolve<SearchCriteriaViewModel>()).Returns(expected);
 
-        private static SearchCustomerViewModel CreateSearchCustomerViewModel(IEventAggregator eventAggregator)
+            var model = CreateViewModel(mock);
+
+            Assert.AreEqual(expected, model.SearchCriteriaViewModel);
+        }
+
+        [Test]
+        public void SearchCriteriaViewModel_ShouldHaveBoundTypeAsCustomer()
         {
-            var iocMock = new Mock<IIocContainer>();
-            iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventAggregator);
-            return new SearchCustomerViewModel(iocMock.Object);
+            var mock = new Mock<IIocContainer>();
+            var expected = new SearchCriteriaViewModel(mock.Object);
+            mock.Setup(ioc => ioc.Resolve<SearchCriteriaViewModel>()).Returns(expected);
+
+            var model = CreateViewModel(mock);
+
+            Assert.That(model.SearchCriteriaViewModel.AvailableProperties.Any(p => p.Name == "CustomerId"));
+        }
+
+        protected override SearchCustomerViewModel CreateViewModel(IIocContainer iocContainer)
+        {
+            return new SearchCustomerViewModel(iocContainer);
         }
     }
 }

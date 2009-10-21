@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{EC4FED9F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.UnitTests", "src\DemoApp.UnitTests\DemoApp.UnitTests.csproj", "{6FB82351-87BA-4975-A3D1-C48C125993D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quark.Tools.Testing", "..\QuarkTools\src\Quark.Tools.Testing\Quark.Tools.Testing.csproj", "{EBC3C306-163F-416E-A610-71A4A7651E98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{6FB82351-87BA-4975-A3D1-C48C125993D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FB82351-87BA-4975-A3D1-C48C125993D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FB82351-87BA-4975-A3D1-C48C125993D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC3C306-163F-416E-A610-71A4A7651E98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC3C306-163F-416E-A610-71A4A7651E98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC3C306-163F-416E-A610-71A4A7651E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC3C306-163F-416E-A610-71A4A7651E98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,5 +49,6 @@ Global
 		{B4D3284D-8F1A-4F03-A60E-5D45308A3189} = {41F811F5-ABC3-4443-8833-3F03EF80FA6D}
 		{6FB82351-87BA-4975-A3D1-C48C125993D7} = {41F811F5-ABC3-4443-8833-3F03EF80FA6D}
 		{B3B9275B-0384-4744-8CF4-A2426A8AE6A6} = {EC4FED9F-F0EF-4188-A887-FC9C70D01251}
+		{EBC3C306-163F-416E-A610-71A4A7651E98} = {EC4FED9F-F0EF-4188-A887-FC9C70D01251}
 	EndGlobalSection
 EndGlobal
