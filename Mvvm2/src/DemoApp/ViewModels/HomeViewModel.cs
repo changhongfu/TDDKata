@@ -1,7 +1,7 @@
 using System.Windows.Input;
 using DemoApp.Messages;
+using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.Command;
-using Quark.Tools.Wpf.Events;
 using Quark.Tools.Wpf.ViewModel;
 
 namespace DemoApp.ViewModels
@@ -11,11 +11,7 @@ namespace DemoApp.ViewModels
         private readonly ICommand openSearchCustomersCommand;
         private readonly ICommand openAddCustomerCommand;
 
-        public HomeViewModel() : this(EventAggregator.Instance)
-        {
-        }
-
-        public HomeViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        public HomeViewModel(IIocContainer iocContainer) : base(iocContainer)
         {
             DisplayName = "Home";
             IsCloseable = false;

@@ -1,5 +1,7 @@
 using System.Windows.Data;
+using Moq;
 using NUnit.Framework;
+using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.Extension;
 using Quark.Tools.Wpf.ViewModel;
 
@@ -20,6 +22,9 @@ namespace Quark.Tools.UnitTests.Wpf
 
         private class TestViewModel : ViewModelBase
         {
+            public TestViewModel() : base(new Mock<IIocContainer>().Object)
+            {
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 using DemoApp.ViewModels;
+using Moq;
 using NUnit.Framework;
+using Quark.Tools.Ioc;
 
 namespace DemoApp.UnitTests
 {
@@ -9,17 +11,15 @@ namespace DemoApp.UnitTests
         [Test]
         public void DisplayName_ShouldBe_AddCustomer()
         {
-            var model = new AddCustomerViewModel();
+            var model = CreateAddCustomerViewModel();
             string displayName = model.DisplayName;
             Assert.AreEqual("Add Customer", displayName);
         }
 
-        [Test]
-        public void AddCustomerViewModel_IsCloseable()
+        private static AddCustomerViewModel CreateAddCustomerViewModel()
         {
-            var model = new AddCustomerViewModel();
-            bool closable = model.IsCloseable;
-            Assert.IsTrue(closable);
+            var mock = new Mock<IIocContainer>();
+            return new AddCustomerViewModel(mock.Object);
         }
     }
 }

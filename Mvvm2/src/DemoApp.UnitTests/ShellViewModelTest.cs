@@ -4,6 +4,7 @@ using DemoApp.Messages;
 using DemoApp.ViewModels;
 using Moq;
 using NUnit.Framework;
+using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.Events;
 using Quark.Tools.Wpf.ViewModel;
 
@@ -15,7 +16,7 @@ namespace DemoApp.UnitTests
         [Test]
         public void WorkspacesFirstElement_ShouldBe_HomeViewModel()
         {
-            var model = new ShellViewModel();
+            var model = CreateShellViewModel();
             var homeViewModel = model.Workspaces[0];
             Assert.AreEqual(typeof(HomeViewModel), homeViewModel.GetType());
         }
@@ -25,7 +26,7 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            new ShellViewModel(mock.Object);
+            CreateShellViewModel(mock.Object);
 
             mock.Verify(e => e.AddListener(It.IsAny<Action<OpenSearchCustomersWorkspaceMessage>>()));
         }
@@ -34,7 +35,7 @@ namespace DemoApp.UnitTests
         public void ShellViewModel_ShouldAddSearchCustomersViewModelToWorkspaces_WhenOpenSearchCustomersMessagePublished()
         {
             var aggregator = new EventAggregator();
-            var model = new ShellViewModel(aggregator);
+            var model = CreateShellViewModel(aggregator);
 
             aggregator.SendMessage(new OpenSearchCustomersWorkspaceMessage());
 
@@ -46,8 +47,8 @@ namespace DemoApp.UnitTests
         public void ShellViewModel_ShouldNotAddSearchCustomersViewModelToWorkspaces_IfSearchCustomersViewModelAlreadyInWorkspaces()
         {
             var aggregator = new EventAggregator();
-            var model = new ShellViewModel(aggregator);
-            model.Workspaces.Add(new SearchCustomerViewModel());
+            var model = CreateShellViewModel(aggregator);
+            model.Workspaces.Add(new SearchCustomerViewModel(new Mock<IIocContainer>().Object));
 
             aggregator.SendMessage(new OpenSearchCustomersWorkspaceMessage());
 
@@ -60,7 +61,7 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            new ShellViewModel(mock.Object);
+            CreateShellViewModel(mock.Object);
 
             mock.Verify(e => e.AddListener(It.IsAny<Action<CloseWorkspaceMessage>>()));
         }
@@ -69,8 +70,8 @@ namespace DemoApp.UnitTests
         public void ShellViewModel_ShouldRemoveWorkspace_WhenCloseWorkspaceMessagePublished()
         {
             var aggregator = new EventAggregator();
-            var model = new ShellViewModel(aggregator);
-            var viewModel = new SearchCustomerViewModel();
+            var model = CreateShellViewModel(aggregator);
+            var viewModel = new SearchCustomerViewModel(new Mock<IIocContainer>().Object);
             model.Workspaces.Add(viewModel);
 
             aggregator.SendMessage(new CloseWorkspaceMessage(viewModel));
@@ -84,7 +85,7 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            new ShellViewModel(mock.Object);
+            CreateShellViewModel(mock.Object);
 
             mock.Verify(e => e.AddListener(It.IsAny<Action<OpenAddCustomerWorkspaceMessage>>()));
         }
@@ -93,12 +94,27 @@ namespace DemoApp.UnitTests
         public void ShellViewModel_ShouldAddAddCustomerViewModelToWorkspaces_WhenOpenAddCustomerMessagePublished()
         {
             var aggregator = new EventAggregator();
-            var model = new ShellViewModel(aggregator);
+            var model = CreateShellViewModel(aggregator);
 
             aggregator.SendMessage(new OpenAddCustomerWorkspaceMessage());
 
             var searchViewModel = (AddCustomerViewModel)model.Workspaces[1];
             Assert.IsNotNull(searchViewModel);
+        }
+
+        private static ShellViewModel CreateShellViewModel()
+        {
+            return CreateShellViewModel(new Mock<IEventAggregator>().Object);
+        }
+
+        private static ShellViewModel CreateShellViewModel(IEventAggregator eventAggregator)
+        {
+            var iocMock = new Mock<IIocContainer>();
+            iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventAggregator);
+            iocMock.Setup(ioc => ioc.Resolve<HomeViewModel>()).Returns(new HomeViewModel(iocMock.Object));
+            iocMock.Setup(ioc => ioc.Resolve<AddCustomerViewModel>()).Returns(new AddCustomerViewModel(iocMock.Object));
+            iocMock.Setup(ioc => ioc.Resolve<SearchCustomerViewModel>()).Returns(new SearchCustomerViewModel(iocMock.Object));
+            return new ShellViewModel(iocMock.Object);
         }
     }
 }

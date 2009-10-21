@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Input;
+using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.Command;
 using Quark.Tools.Wpf.Events;
 
@@ -9,11 +10,12 @@ namespace Quark.Tools.Wpf.ViewModel
     {
         private readonly ICommand closeCommand;
 
-        public WorkspaceViewModel() : this (EventAggregator.Instance)
+        public WorkspaceViewModel() : this (null)
         {
         }
 
-        public WorkspaceViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        public WorkspaceViewModel(IIocContainer iocContainer)
+            : base(iocContainer)
         {
             DisplayName = "Workspace";
             IsCloseable = true;

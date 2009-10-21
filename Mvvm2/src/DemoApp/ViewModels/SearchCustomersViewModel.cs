@@ -1,16 +1,11 @@
-using Quark.Tools.Wpf.Events;
+using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.ViewModel;
 
 namespace DemoApp.ViewModels
 {
     public class SearchCustomerViewModel : WorkspaceViewModel
     {
-
-        public SearchCustomerViewModel() : this(EventAggregator.Instance)
-        {
-        }
-
-        public SearchCustomerViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
+        public SearchCustomerViewModel(IIocContainer iocContainer) : base(iocContainer)
         {
             DisplayName = "Search Customers";
         }

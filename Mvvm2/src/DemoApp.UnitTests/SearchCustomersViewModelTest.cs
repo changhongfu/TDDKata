@@ -1,9 +1,8 @@
-using System.Windows.Input;
 using DemoApp.ViewModels;
 using Moq;
 using NUnit.Framework;
+using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.Events;
-using Quark.Tools.Wpf.ViewModel;
 
 namespace DemoApp.UnitTests
 {
@@ -13,30 +12,21 @@ namespace DemoApp.UnitTests
         [Test]
         public void DisplayName_ShouldBe_SearchCustomers()
         {
-            var model = new SearchCustomerViewModel();
+            var model = CreateSearchCustomerViewModel();
             string displayName = model.DisplayName;
             Assert.AreEqual("Search Customers", displayName);
         }
 
-        [Test]
-        public void SearchViewMode_HasCloseCommand()
+        private static SearchCustomerViewModel CreateSearchCustomerViewModel()
         {
-            var model = new SearchCustomerViewModel();
+            return CreateSearchCustomerViewModel(new Mock<IEventAggregator>().Object);
+        } 
 
-            ICommand command = model.CloseCommand;
-
-            Assert.IsNotNull(command);
-        }
-
-        [Test]
-        public void ShouldSendMessageToEventAggregator_WhenCloseCommandExecute()
+        private static SearchCustomerViewModel CreateSearchCustomerViewModel(IEventAggregator eventAggregator)
         {
-            var mock = new Mock<IEventAggregator>();
-            var model = new SearchCustomerViewModel(mock.Object);
-
-            model.CloseCommand.Execute(null);
-
-            mock.Verify(e => e.SendMessage(It.Is<CloseWorkspaceMessage>(m => m.WorkspaceToClose == model)));
+            var iocMock = new Mock<IIocContainer>();
+            iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventAggregator);
+            return new SearchCustomerViewModel(iocMock.Object);
         }
     }
 }

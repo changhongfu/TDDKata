@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.Events;
 
 namespace Quark.Tools.Wpf.ViewModel
@@ -7,18 +8,29 @@ namespace Quark.Tools.Wpf.ViewModel
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        
+        private readonly IIocContainer iocContainer;
+        private IEventAggregator eventAggregator;
 
-        private readonly IEventAggregator eventAggregator;
-
-        protected ViewModelBase() : this(EventAggregator.Instance)
+        protected ViewModelBase(IIocContainer iocContainer)
         {
+            this.iocContainer = iocContainer;
         }
 
-        protected ViewModelBase(IEventAggregator eventAggregator)
+        protected IIocContainer IocContainer
         {
-            this.eventAggregator = eventAggregator;
+            get { return iocContainer; }
         }
 
+        protected IEventAggregator EventAggregator
+        {
+            get
+            {
+                return eventAggregator ?? 
+                       (eventAggregator = IocContainer.Resolve<IEventAggregator>());
+            }
+        }
+        
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;
@@ -31,12 +43,17 @@ namespace Quark.Tools.Wpf.ViewModel
 
         protected void PublishMessage<T>(T message) where T : IMessage
         {
-            eventAggregator.SendMessage(message);
+            EventAggregator.SendMessage(message);
         }
 
         protected void SubscribeToMessage<T>(Action<T> action) where T : IMessage
         {
-            eventAggregator.AddListener(action);
+            EventAggregator.AddListener(action);
+        }
+
+        protected T CreateViewModel<T>() where T : ViewModelBase
+        {
+            return IocContainer.Resolve<T>();
         }
     }
 }
