@@ -47,9 +47,8 @@ namespace DemoApp.UnitTests
         public void HasCurrentProperty_AfterSetBoundType()
         {
             var model = CreateViewModel();
-            model.SetBoundType<TestClass>();
 
-            model.AvailableProperties.SetCurrentView(model.AvailableProperties.ToArray()[0]);
+            model.SetBoundType<TestClass>();
 
             Assert.IsNotNull(model.CurrentProperty);
         }

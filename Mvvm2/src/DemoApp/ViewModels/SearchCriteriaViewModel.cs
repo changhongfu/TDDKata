@@ -48,6 +48,7 @@ namespace DemoApp.ViewModels
         {
             var propertyNames = typeof (T).GetProperties();
             availableProperties.AddRange(propertyNames);
+            CurrentProperty = availableProperties[0];
             availableProperties.WhenCurrentChanged(p => CurrentProperty = p);
         }
     }
