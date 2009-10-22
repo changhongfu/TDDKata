@@ -43,7 +43,7 @@ namespace Quark.Tools.UnitTests.Wpf
 
             model.CloseCommand.Execute(null);
 
-            mock.Verify(e => e.SendMessage(It.IsAny<CloseWorkspaceMessage>()));
+            mock.Verify(e => e.Publish(It.IsAny<CloseWorkspaceMessage>()));
         }
 
         private static WorkspaceViewModel CreateWorkspaceViewModel()

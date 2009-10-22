@@ -43,12 +43,12 @@ namespace Quark.Tools.Wpf.ViewModel
 
         protected void PublishMessage<T>(T message) where T : IMessage
         {
-            EventAggregator.SendMessage(message);
+            EventAggregator.Publish(message);
         }
 
-        protected void SubscribeToMessage<T>(Action<T> action) where T : IMessage
+        protected void SubscribeToMessage<T>(ISubscriber<T> subscriber) where T : IMessage
         {
-            EventAggregator.AddListener(action);
+            EventAggregator.Subscribe(subscriber);
         }
 
         protected T CreateViewModel<T>() where T : ViewModelBase

@@ -43,7 +43,7 @@ namespace DemoApp.UnitTests
 
             model.OpenSearchCustomersCommand.Execute(null);
 
-            mock.Verify(e => e.SendMessage(It.IsAny<OpenSearchCustomersWorkspaceMessage>()));
+            mock.Verify(e => e.Publish(It.IsAny<OpenSearchCustomersWorkspaceMessage>()));
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace DemoApp.UnitTests
 
             model.OpenAddCustomerCommand.Execute(null);
 
-            mock.Verify(e => e.SendMessage(It.IsAny<OpenAddCustomerWorkspaceMessage>()));
+            mock.Verify(e => e.Publish(It.IsAny<OpenAddCustomerWorkspaceMessage>()));
         }
 
         protected override HomeViewModel CreateViewModel(IIocContainer iocContainer)

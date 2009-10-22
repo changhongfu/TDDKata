@@ -1,38 +1,34 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Quark.Tools.Extensions;
 
 namespace Quark.Tools.Wpf.Events
 {
     public class EventAggregator : IEventAggregator
     {
-        //Should replace this by IOC
-        public static readonly  EventAggregator Instance = new EventAggregator();
+        private Dictionary<Type, List<object>> subscribers = new Dictionary<Type, List<object>>();
 
-
-        private Dictionary<Type, IEventActions> eventActions = new Dictionary<Type, IEventActions>();
-
-
-
-        public void SendMessage<T>(T message) where T : IMessage
+        public void Publish<T>(T message) where T : IMessage
         {
-            foreach (var action in GetEventActions<T>())
+            if (subscribers.ContainsKey(typeof(T)))
             {
-                action(message);
+                subscribers[typeof(T)].Select(s => (ISubscriber<T>)s).ForEach(s => s.Handle(message));
             }
         }
 
-        public void AddListener<T>(Action<T> action) where T : IMessage
+        public void Subscribe<T>(ISubscriber<T> subscriber) where T : IMessage
         {
-            GetEventActions<T>().Add(action);
+            GetSubscriberList<T>().Add(subscriber);
         }
 
-        private EventActions<T> GetEventActions<T>() where T : IMessage
+        private List<object> GetSubscriberList<T>() where T : IMessage
         {
-            if (!eventActions.ContainsKey(typeof(T)))
+            if (!subscribers.ContainsKey(typeof(T)))
             {
-                eventActions[typeof(T)] = new EventActions<T>();
+                subscribers[typeof(T)] = new List<object>();
             }
-            return eventActions[typeof(T)] as EventActions<T>;
+            return subscribers[typeof(T)];
         }
     }
 }

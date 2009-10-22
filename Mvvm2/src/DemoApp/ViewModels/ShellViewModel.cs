@@ -1,22 +1,27 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using DemoApp.Messages;
 using Quark.Tools.Ioc;
+using Quark.Tools.Wpf.Events;
 using Quark.Tools.Wpf.Extension;
 using Quark.Tools.Wpf.ViewModel;
-using DemoApp.Messages;
 
 namespace DemoApp.ViewModels
 {
-    public class ShellViewModel : ViewModelBase
+    public class ShellViewModel : ViewModelBase, 
+        ISubscriber<OpenSearchCustomersWorkspaceMessage>, 
+        ISubscriber<OpenAddCustomerWorkspaceMessage>, 
+        ISubscriber<CloseWorkspaceMessage>
     {
         private ObservableCollection<WorkspaceViewModel> workspaces;
 
         public ShellViewModel(IIocContainer iocContainer) : base(iocContainer)
         {
             workspaces = new ObservableCollection<WorkspaceViewModel> { iocContainer.Resolve<HomeViewModel>() };
-            SubscribeToMessage<OpenSearchCustomersWorkspaceMessage>(msg => ShowSearchCustomers());
-            SubscribeToMessage<OpenAddCustomerWorkspaceMessage>(msg => ShowAddCustomer());
-            SubscribeToMessage<CloseWorkspaceMessage>(msg => CloseWorkspace(msg.WorkspaceToClose));
+            SubscribeToMessage<OpenSearchCustomersWorkspaceMessage>(this);
+            SubscribeToMessage<OpenAddCustomerWorkspaceMessage>(this);
+            SubscribeToMessage<CloseWorkspaceMessage>(this);
         }
 
         public ObservableCollection<WorkspaceViewModel> Workspaces
@@ -32,25 +37,6 @@ namespace DemoApp.ViewModels
             }
         }
 
-        private void ShowSearchCustomers()
-        {
-            var workspace = FindWorkspace<SearchCustomerViewModel>() ??
-                            AddWorkspace<SearchCustomerViewModel>();
-            workspaces.SetCurrentView(workspace);
-        }
-
-        private void ShowAddCustomer()
-        {
-            var model = AddWorkspace<AddCustomerViewModel>();
-            workspaces.SetCurrentView(model);
-        }
-
-        private void CloseWorkspace(WorkspaceViewModel viewModel)
-        {
-            workspaces.Remove(viewModel);
-            workspaces.SetCurrentView(workspaces[0]);
-        }
-
         private T FindWorkspace<T>() where T : WorkspaceViewModel
         {
             return workspaces.SingleOrDefault(w => w.GetType() == typeof(T)) as T;
@@ -62,6 +48,25 @@ namespace DemoApp.ViewModels
             workspaces.Add(workspace);
 
             return workspace;
+        }
+
+        public void Handle(OpenSearchCustomersWorkspaceMessage message)
+        {
+            var workspace = FindWorkspace<SearchCustomerViewModel>() ??
+                            AddWorkspace<SearchCustomerViewModel>();
+            workspaces.SetCurrentView(workspace);
+        }
+
+        public void Handle(OpenAddCustomerWorkspaceMessage message)
+        {
+            var model = AddWorkspace<AddCustomerViewModel>();
+            workspaces.SetCurrentView(model);
+        }
+
+        public void Handle(CloseWorkspaceMessage message)
+        {
+            workspaces.Remove(message.WorkspaceToClose);
+            workspaces.SetCurrentView(workspaces[0]);
         }
     }
 }

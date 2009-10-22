@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using DemoApp.Messages;
 using DemoApp.ViewModels;
@@ -31,31 +30,29 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            CreateViewModel(mock);
+            var model = CreateViewModel(mock);
 
-            mock.Verify(e => e.AddListener(It.IsAny<Action<OpenSearchCustomersWorkspaceMessage>>()));
+            mock.Verify(e => e.Subscribe<OpenSearchCustomersWorkspaceMessage>(model));
         }
 
         [Test]
-        public void ShellViewModel_ShouldAddSearchCustomersViewModelToWorkspaces_WhenOpenSearchCustomersMessagePublished()
+        public void ShellViewModel_ShouldAddSearchCustomersViewModelToWorkspaces_OpenSearchCustomersWorkspaceMessageHandled()
         {
-            var mock = new Mock<IEventAggregator>();
-            var model = CreateViewModel(mock); 
+            var model = CreateViewModel(); 
 
-            mock.Object.SendMessage(new OpenSearchCustomersWorkspaceMessage());
+            model.Handle(new OpenSearchCustomersWorkspaceMessage());
 
             var searchViewModel = (SearchCustomerViewModel)model.Workspaces[1];
             Assert.IsNotNull(searchViewModel);
         }
 
         [Test]
-        public void ShellViewModel_ShouldNotAddSearchCustomersViewModelToWorkspaces_IfSearchCustomersViewModelAlreadyInWorkspaces()
+        public void ShellViewModel_ShouldOnlyAddSearchCustomersViewModelOnce()
         {
-            var mock = new Mock<IEventAggregator>();
-            var model = CreateViewModel(mock); 
-            model.Workspaces.Add(new SearchCustomerViewModel(new Mock<IIocContainer>().Object));
+            var model = CreateViewModel(); 
 
-            mock.Object.SendMessage(new OpenSearchCustomersWorkspaceMessage());
+            model.Handle(new OpenSearchCustomersWorkspaceMessage());
+            model.Handle(new OpenSearchCustomersWorkspaceMessage());
 
             var searchModels = model.Workspaces.Where(m => m.GetType() == typeof(SearchCustomerViewModel)).ToArray();
             Assert.AreEqual(1, searchModels.Length);
@@ -66,22 +63,22 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            CreateViewModel(mock);
+            var model = CreateViewModel(mock);
 
-            mock.Verify(e => e.AddListener(It.IsAny<Action<CloseWorkspaceMessage>>()));
+            mock.Verify(e => e.Subscribe<CloseWorkspaceMessage>(model));
         }
 
         [Test]
-        public void ShellViewModel_ShouldRemoveWorkspace_WhenCloseWorkspaceMessagePublished()
+        public void ShellViewModel_ShouldRemoveWorkspace_CloseWorkspaceMessageHandled()
         {
             var mock = new Mock<IEventAggregator>();
-            var model = CreateViewModel(mock); 
-            var viewModel = new SearchCustomerViewModel(new Mock<IIocContainer>().Object);
-            model.Workspaces.Add(viewModel);
+            var model = CreateViewModel(mock);
 
-            mock.Object.SendMessage(new CloseWorkspaceMessage(viewModel));
+            model.Handle(new OpenAddCustomerWorkspaceMessage());    //To cause AddCustomerViewModel to be added to workspaces
+            var addCustomerModel = model.Workspaces.Single(w => w.GetType() == typeof (AddCustomerViewModel));
+            model.Handle(new CloseWorkspaceMessage(addCustomerModel));
 
-            var exists = model.Workspaces.Contains(viewModel);
+            var exists = model.Workspaces.Contains(addCustomerModel);
             Assert.IsFalse(exists);
         }
 
@@ -90,33 +87,43 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            CreateViewModel(mock);
+            var model = CreateViewModel(mock);
 
-            mock.Verify(e => e.AddListener(It.IsAny<Action<OpenAddCustomerWorkspaceMessage>>()));
+            mock.Verify(e => e.Subscribe<OpenAddCustomerWorkspaceMessage>(model));
         }
 
         [Test]
-        public void ShellViewModel_ShouldAddAddCustomerViewModelToWorkspaces_WhenOpenAddCustomerMessagePublished()
+        public void ShellViewModel_ShouldAddAddCustomerViewModelToWorkspaces_WhenOpenAddCustomerWorkspaceMessageHandled()
         {
             var mock = new Mock<IEventAggregator>();
             var model = CreateViewModel(mock); 
 
-            mock.Object.SendMessage(new OpenAddCustomerWorkspaceMessage());
+            model.Handle(new OpenAddCustomerWorkspaceMessage());
 
-            var searchViewModel = (AddCustomerViewModel)model.Workspaces[1];    //index 0 is taken by HomeViewModel
-            Assert.IsNotNull(searchViewModel);
+            var addCustomerModel = model.Workspaces.Single(w => w.GetType() == typeof(AddCustomerViewModel));
+            Assert.IsNotNull(addCustomerModel);
+        }
+
+        [Test]
+        public void ShellViewModel_ShouldAddNewAddCustomerViewModelToWorkspaces_EveryTimeOpenAddCustomerWorkspaceMessageHandled()
+        {
+            var mock = new Mock<IEventAggregator>();
+            var model = CreateViewModel(mock);
+
+            model.Handle(new OpenAddCustomerWorkspaceMessage());
+            model.Handle(new OpenAddCustomerWorkspaceMessage());
+
+            var numAddCustomerModel = model.Workspaces.Where(w => w.GetType() == typeof(AddCustomerViewModel)).Count();
+            Assert.AreEqual(2, numAddCustomerModel);
         }
 
         protected override ShellViewModel CreateViewModel(Mock<IEventAggregator> eventMock)
         {
-            HookupMessage<OpenSearchCustomersWorkspaceMessage>(eventMock);
-            HookupMessage<OpenAddCustomerWorkspaceMessage>(eventMock);
-            HookupMessage<CloseWorkspaceMessage>(eventMock);
-
             var iocMock = new Mock<IIocContainer>();
             iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventMock.Object);
             iocMock.Setup(ioc => ioc.Resolve<HomeViewModel>()).Returns(new HomeViewModel(iocMock.Object));
             iocMock.Setup(ioc => ioc.Resolve<AddCustomerViewModel>()).Returns(new AddCustomerViewModel(iocMock.Object));
+            iocMock.Setup(ioc => ioc.Resolve<SearchCriteriaViewModel>()).Returns(new SearchCriteriaViewModel(iocMock.Object));
             iocMock.Setup(ioc => ioc.Resolve<SearchCustomerViewModel>()).Returns(new SearchCustomerViewModel(iocMock.Object));
             return CreateViewModel(iocMock.Object);
         }

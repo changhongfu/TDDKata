@@ -3,6 +3,7 @@ using DemoApp.ViewModels;
 using Moq;
 using NUnit.Framework;
 using Quark.Tools.Ioc;
+using Quark.Tools.Wpf.Events;
 
 namespace DemoApp.UnitTests
 {
@@ -39,6 +40,15 @@ namespace DemoApp.UnitTests
             var model = CreateViewModel(mock);
 
             Assert.That(model.SearchCriteriaViewModel.AvailableProperties.Any(p => p.Name == "CustomerId"));
+        }
+
+
+        protected override SearchCustomerViewModel CreateViewModel(Mock<IEventAggregator> eventMock)
+        {
+            var iocMock = new Mock<IIocContainer>();
+            iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventMock.Object);
+            iocMock.Setup(ioc => ioc.Resolve<SearchCriteriaViewModel>()).Returns(new SearchCriteriaViewModel(iocMock.Object));
+            return CreateViewModel(iocMock.Object);
         }
 
         protected override SearchCustomerViewModel CreateViewModel(IIocContainer iocContainer)

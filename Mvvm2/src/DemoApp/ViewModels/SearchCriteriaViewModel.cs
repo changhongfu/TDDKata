@@ -9,8 +9,9 @@ namespace DemoApp.ViewModels
 {
     public class SearchCriteriaViewModel : ViewModelBase
     {
+        private readonly string[] DefaultConditions = new string[] { "=<", ">=", "<", ">", "==", "!=" };
+        private readonly string[] StringConditions = new string[] { "Equals", "StartsWith", "EndsWith", "Contains" };
         private readonly List<PropertyInfo> availableProperties = new List<PropertyInfo>();
-        private List<string> availableConditions = new List<string>();
         private PropertyInfo _currentProperty;
 
         public SearchCriteriaViewModel(IIocContainer iocContainer) : base(iocContainer)
@@ -24,11 +25,13 @@ namespace DemoApp.ViewModels
 
         public ICollection<string> AvailableConditions
         {
-            get { return availableConditions; }
-            set
+            get
             {
-                availableConditions = new List<string>(value);
-                OnPropertyChanged("AvailableConditions");
+                if (CurrentProperty == null || CurrentProperty.PropertyType == typeof(String))
+                {
+                    return StringConditions;
+                }
+                return DefaultConditions;
             }
         }
 

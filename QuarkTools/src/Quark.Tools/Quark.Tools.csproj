@@ -80,12 +80,10 @@
     <Compile Include="Wpf\Command\Decorator\CommandExtensions.cs" />
     <Compile Include="Wpf\Command\Decorator\ICommandDecorator.cs" />
     <Compile Include="Wpf\Converter\BoolToVisibilityConverter.cs" />
-    <Compile Include="Wpf\Events\EventActions.cs" />
     <Compile Include="Wpf\Events\EventAggregator.cs" />
-    <Compile Include="Wpf\Events\IEventActions.cs" />
     <Compile Include="Wpf\Events\IEventAggregator.cs" />
+    <Compile Include="Wpf\Events\ISubscriber.cs" />
     <Compile Include="Wpf\Events\IMessage.cs" />
-    <Compile Include="Wpf\Events\Message.cs" />
     <Compile Include="Wpf\Extension\CollectionExtension.cs" />
     <Compile Include="Wpf\ViewModel\CloseWorkspaceMessage.cs" />
     <Compile Include="Wpf\ViewModel\WorkspaceViewModel.cs" />
