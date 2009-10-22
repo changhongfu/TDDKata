@@ -41,10 +41,10 @@ namespace DemoApp.UnitTests
         }
 
         [Test]
-        public void ChangeCurrentProperty_ShouldRaisePropertyChangedEvent()
+        public void ChangeAvailableConditions_ShouldRaisePropertyChangedEvent()
         {
             var model = CreateViewModel();
-            model.AssertEventWasRaised("AvailableConditions", o => o.CurrentProperty = null);
+            model.AssertEventWasRaised("AvailableConditions", o => o.AvailableConditions = null);
         }
 
         [Test]
@@ -74,6 +74,7 @@ namespace DemoApp.UnitTests
         {
             var model = CreateViewModel();
             model.SetBoundType<TestClass>();
+            model.AvailableConditions = new [] { "==", "!=" };
 
             model.AvailableConditions.SetCurrentView("!=");
 

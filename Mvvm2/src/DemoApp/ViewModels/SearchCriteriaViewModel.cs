@@ -18,7 +18,7 @@ namespace DemoApp.ViewModels
         private static readonly string[] StringConditions = new [] { "Equals", "StartsWith", "EndsWith", "Contains" };
 
         private readonly ObservableCollection<PropertyInfo> availableProperties = new ObservableCollection<PropertyInfo>();
-        private string[] availableConditions = DefaultConditions;
+        private ICollection<string> availableConditions = DefaultConditions;
 
         private PropertyInfo _currentProperty;
 
@@ -42,7 +42,7 @@ namespace DemoApp.ViewModels
             get { return availableProperties; }
         }
 
-        public string[] AvailableConditions
+        public ICollection<string> AvailableConditions
         {
             get
             {
@@ -50,6 +50,7 @@ namespace DemoApp.ViewModels
             }
             set
             {
+
                 availableConditions = value;
                 availableConditions.WhenCurrentChanged(c => CurrentCondition = c);
                 OnPropertyChanged("AvailableConditions");
@@ -71,7 +72,19 @@ namespace DemoApp.ViewModels
 
         public ICommand SearchCommand { get; private set; }
 
-        public string CurrentCondition { get; set; }
+        private string condition;
+
+        public string CurrentCondition
+        {
+            get
+            {
+                return condition;
+            }
+            set
+            {
+                condition = value;
+            }
+        }
 
         public string CurrentFilterText { get; set; }
 
@@ -79,13 +92,16 @@ namespace DemoApp.ViewModels
         {
             IEnumerable<PropertyInfo> properties = typeof (T).GetProperties();
             properties.ForEach(p => availableProperties.Add(p));
-
-            CurrentProperty = availableProperties[0];
+            
             availableProperties.WhenCurrentChanged(p =>
             {
                 CurrentProperty = p;
-                AvailableConditions = p.PropertyType == typeof(String) ? StringConditions : DefaultConditions;
+                AvailableConditions = p.PropertyType == typeof(String) ? 
+                                      new Collection<string>(StringConditions) :
+                                      new Collection<string>(DefaultConditions);
             });
+
+            CurrentProperty = availableProperties[0];
         }
     }
 }
