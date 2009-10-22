@@ -15,8 +15,8 @@ namespace DemoApp.ViewModels
         {
             DisplayName = "Home";
             IsCloseable = false;
-            openSearchCustomersCommand = new RelayCommand(p => PublishMessage(new OpenSearchCustomersWorkspaceMessage()));
-            openAddCustomerCommand = new RelayCommand(p => PublishMessage(new OpenAddCustomerWorkspaceMessage()));
+            openSearchCustomersCommand = new RelayCommand(p => Publish(new OpenSearchCustomersWorkspaceMessage()));
+            openAddCustomerCommand = new RelayCommand(p => Publish(new OpenAddCustomerWorkspaceMessage()));
         }
 
         public ICommand OpenSearchCustomersCommand

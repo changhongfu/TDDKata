@@ -1,7 +1,13 @@
 using System.Linq;
+using System.Windows.Input;
+using DemoApp.Messages;
 using DemoApp.ViewModels;
+using Moq;
 using NUnit.Framework;
 using Quark.Tools.Ioc;
+using Quark.Tools.Testing.Extensions;
+using Quark.Tools.Wpf.Events;
+using Quark.Tools.Wpf.Extension;
 
 namespace DemoApp.UnitTests
 {
@@ -34,12 +40,12 @@ namespace DemoApp.UnitTests
             Assert.IsNotNull(model.AvailableConditions);
         }
 
-        //[Test]
-        //public void ChangeAvailableConditions_ShouldRaisePropertyChangedEvent()
-        //{
-        //    var model = CreateViewModel();
-        //    model.AssertEventWasRaised("AvailableConditions", o => o.AvailableConditions = new string[0]);
-        //}
+        [Test]
+        public void ChangeCurrentProperty_ShouldRaisePropertyChangedEvent()
+        {
+            var model = CreateViewModel();
+            model.AssertEventWasRaised("AvailableConditions", o => o.CurrentProperty = null);
+        }
 
         [Test]
         public void HasCurrentProperty_AfterSetBoundType()
@@ -50,6 +56,71 @@ namespace DemoApp.UnitTests
 
             Assert.IsNotNull(model.CurrentProperty);
         }
+
+        [Test]
+        public void SelectPropertyFromAvailableProperties_ShouldSetCurrentProperty()
+        {
+            var model = CreateViewModel();
+            model.SetBoundType<TestClass>();
+
+            var selectedProperty = model.AvailableProperties.Single(p => p.Name == "Property2");
+            model.AvailableProperties.SetCurrentView(selectedProperty);
+
+            Assert.AreEqual(selectedProperty, model.CurrentProperty);
+        }
+
+        [Test]
+        public void SelectConditionFromAvailableConditions_ShouldSetCurrentCondition()
+        {
+            var model = CreateViewModel();
+            model.SetBoundType<TestClass>();
+
+            model.AvailableConditions.SetCurrentView("!=");
+
+            Assert.AreEqual("!=", model.CurrentCondition);
+        }
+
+        [Test]
+        public void HasSearchCommand()
+        {
+            var model = CreateViewModel();
+            ICommand command = model.SearchCommand;
+            Assert.IsNotNull(command);
+        }
+
+        [Test]
+        public void RunSearchCommand_ShouldPublishSearchMessage()
+        {
+            var mock = new Mock<IEventAggregator>();
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
+
+            model.SearchCommand.Execute(null);
+
+            mock.Verify(e => e.Publish(It.IsAny<SearchCustomersMessage>()));
+        }
+
+        [Test]
+        public void RunSearchCommand_ShouldPublishSearchMessage_WithCorrectSearchCriteria()
+        {
+            var mock = new Mock<IEventAggregator>();
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
+            model.SetBoundType<TestClass>();
+
+            var searchProperty = model.AvailableProperties.Single(p => p.Name == "Property2");
+            model.CurrentProperty = searchProperty;
+            model.CurrentCondition = "=";
+            model.CurrentFilterText = "a";
+
+            model.SearchCommand.Execute(null);
+
+            mock.Verify(e => e.Publish(It.Is<SearchCustomersMessage>
+                (
+                    m => m.Property == searchProperty && 
+                         m.Condition == "=" &&
+                         m.Value == "a"
+                )));
+        }
+
 
         protected override SearchCriteriaViewModel CreateViewModel(IIocContainer iocContainer)
         {

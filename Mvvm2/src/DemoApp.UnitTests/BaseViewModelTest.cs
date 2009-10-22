@@ -9,19 +9,16 @@ namespace DemoApp.UnitTests
     {
         protected T CreateViewModel()
         {
-            return CreateViewModel(new Mock<IEventAggregator>());
+            return CreateViewModel(new Mock<IIocContainer>());
         }
 
         protected virtual T CreateViewModel(Mock<IIocContainer> iocMock)
         {
-            var eventMock = new Mock<EventAggregator>();
-            iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventMock.Object);
-            return CreateViewModel(iocMock.Object);
+            return CreateViewModel(iocMock, new Mock<IEventAggregator>());
         }
 
-        protected virtual T CreateViewModel(Mock<IEventAggregator> eventMock)
+        protected virtual T CreateViewModel(Mock<IIocContainer> iocMock, Mock<IEventAggregator> eventMock)
         {
-            var iocMock = new Mock<IIocContainer>();
             iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventMock.Object);
             return CreateViewModel(iocMock.Object);
         }

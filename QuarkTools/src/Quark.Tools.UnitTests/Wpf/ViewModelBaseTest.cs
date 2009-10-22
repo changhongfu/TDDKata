@@ -83,12 +83,12 @@ namespace Quark.Tools.UnitTests.Wpf
 
             public void TestPublishMessage<T>(T message) where T : IMessage
             {
-                PublishMessage(message);
+                Publish(message);
             }
 
             public void TestSubscribeToMessage<T>(ISubscriber<T> subscriber) where T : IMessage
             {
-                SubscribeToMessage(subscriber);
+                Subscribe(subscriber);
             }
 
             public T TestCreateViewModel<T>() where T : ViewModelBase

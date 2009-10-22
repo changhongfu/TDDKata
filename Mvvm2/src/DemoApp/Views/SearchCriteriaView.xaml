@@ -64,7 +64,7 @@
                         Template="{StaticResource toolButton}" 
                         ToolTip="Run Search"
                         VerticalAlignment="Center"
-                        Command="{Binding DoSearchCommand}" />
+                        Command="{Binding SearchCommand}" />
 
     </StackPanel>
 </UserControl>

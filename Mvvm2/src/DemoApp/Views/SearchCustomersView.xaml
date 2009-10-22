@@ -45,19 +45,19 @@
             <Label Grid.Row="0" FontWeight="Bold" Margin="10,0,0,0" 
                    Content="Search customers results"/>
             <ListView Grid.Row="1" Margin="0" 
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                  SelectionMode="Single" 
-                  ItemsSource="{Binding MatchedCustomers}"
-                  IsSynchronizedWithCurrentItem="True"
-                  Background="Transparent" 
-                  BorderBrush="#FFFFFBFB" 
-                  Foreground="#FFB5B5B5" 
-                  Opacity="1" 
-                  BorderThickness="2" 
-                  HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Stretch" 
-                  Width="Auto" Height="Auto">
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                      SelectionMode="Single" 
+                      ItemsSource="{Binding MatchedCustomers}"
+                      IsSynchronizedWithCurrentItem="True"
+                      Background="Transparent" 
+                      BorderBrush="#FFFFFBFB" 
+                      Foreground="#FFB5B5B5" 
+                      Opacity="1" 
+                      BorderThickness="2" 
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch" 
+                      Width="Auto" Height="Auto">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="CustomerId" Width="100" 

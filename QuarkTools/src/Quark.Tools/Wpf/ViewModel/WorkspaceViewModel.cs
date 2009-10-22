@@ -19,7 +19,7 @@ namespace Quark.Tools.Wpf.ViewModel
         {
             DisplayName = "Workspace";
             IsCloseable = true;
-            closeCommand = new RelayCommand(p => PublishMessage(new CloseWorkspaceMessage(this)));
+            closeCommand = new RelayCommand(p => Publish(new CloseWorkspaceMessage(this)));
         }
 
         public string DisplayName { get; set; }

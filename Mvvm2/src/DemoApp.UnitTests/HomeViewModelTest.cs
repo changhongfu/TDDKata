@@ -39,7 +39,7 @@ namespace DemoApp.UnitTests
         public void OpenSearchCustomerCommand_ShouldSendMessageToEventAggregator_WhenExecute()
         {
             var mock = new Mock<IEventAggregator>();
-            var model = CreateViewModel(mock);
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
 
             model.OpenSearchCustomersCommand.Execute(null);
 
@@ -58,7 +58,7 @@ namespace DemoApp.UnitTests
         public void OpenAddCustomerCommand_ShouldSendMessageToEventAggregator_WhenExecute()
         {
             var mock = new Mock<IEventAggregator>();
-            var model = CreateViewModel(mock);
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
 
             model.OpenAddCustomerCommand.Execute(null);
 

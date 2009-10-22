@@ -15,14 +15,11 @@ namespace DemoApp.UnitTests
         [Test]
         public void Workspaces_FirstElementShouldBeHomeViewModel()
         {
-            var mock = new Mock<IIocContainer>();
-            var expectedHomeViewModel = new HomeViewModel(mock.Object);
-            mock.Setup(ioc => ioc.Resolve<HomeViewModel>()).Returns(expectedHomeViewModel);
+            var model = CreateViewModel();
 
-            var model = CreateViewModel(mock);
+            var homeViewModel = model.Workspaces[0];
 
-            var actualHomeViewModel = model.Workspaces[0];
-            Assert.AreEqual(expectedHomeViewModel, actualHomeViewModel);
+            Assert.AreEqual(typeof(HomeViewModel), homeViewModel.GetType());
         }
 
         [Test]
@@ -30,7 +27,7 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            var model = CreateViewModel(mock);
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
 
             mock.Verify(e => e.Subscribe<OpenSearchCustomersWorkspaceMessage>(model));
         }
@@ -63,7 +60,7 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            var model = CreateViewModel(mock);
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
 
             mock.Verify(e => e.Subscribe<CloseWorkspaceMessage>(model));
         }
@@ -72,7 +69,7 @@ namespace DemoApp.UnitTests
         public void ShellViewModel_ShouldRemoveWorkspace_CloseWorkspaceMessageHandled()
         {
             var mock = new Mock<IEventAggregator>();
-            var model = CreateViewModel(mock);
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
 
             model.Handle(new OpenAddCustomerWorkspaceMessage());    //To cause AddCustomerViewModel to be added to workspaces
             var addCustomerModel = model.Workspaces.Single(w => w.GetType() == typeof (AddCustomerViewModel));
@@ -87,7 +84,7 @@ namespace DemoApp.UnitTests
         {
             var mock = new Mock<IEventAggregator>();
 
-            var model = CreateViewModel(mock);
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
 
             mock.Verify(e => e.Subscribe<OpenAddCustomerWorkspaceMessage>(model));
         }
@@ -96,7 +93,7 @@ namespace DemoApp.UnitTests
         public void ShellViewModel_ShouldAddAddCustomerViewModelToWorkspaces_WhenOpenAddCustomerWorkspaceMessageHandled()
         {
             var mock = new Mock<IEventAggregator>();
-            var model = CreateViewModel(mock); 
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock); 
 
             model.Handle(new OpenAddCustomerWorkspaceMessage());
 
@@ -108,7 +105,7 @@ namespace DemoApp.UnitTests
         public void ShellViewModel_ShouldAddNewAddCustomerViewModelToWorkspaces_EveryTimeOpenAddCustomerWorkspaceMessageHandled()
         {
             var mock = new Mock<IEventAggregator>();
-            var model = CreateViewModel(mock);
+            var model = CreateViewModel(new Mock<IIocContainer>(), mock);
 
             model.Handle(new OpenAddCustomerWorkspaceMessage());
             model.Handle(new OpenAddCustomerWorkspaceMessage());
@@ -117,9 +114,8 @@ namespace DemoApp.UnitTests
             Assert.AreEqual(2, numAddCustomerModel);
         }
 
-        protected override ShellViewModel CreateViewModel(Mock<IEventAggregator> eventMock)
+        protected override ShellViewModel CreateViewModel(Mock<IIocContainer> iocMock, Mock<IEventAggregator> eventMock)
         {
-            var iocMock = new Mock<IIocContainer>();
             iocMock.Setup(ioc => ioc.Resolve<IEventAggregator>()).Returns(eventMock.Object);
             iocMock.Setup(ioc => ioc.Resolve<HomeViewModel>()).Returns(new HomeViewModel(iocMock.Object));
             iocMock.Setup(ioc => ioc.Resolve<AddCustomerViewModel>()).Returns(new AddCustomerViewModel(iocMock.Object));

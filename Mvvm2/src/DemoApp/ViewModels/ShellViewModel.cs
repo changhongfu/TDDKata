@@ -19,9 +19,9 @@ namespace DemoApp.ViewModels
         public ShellViewModel(IIocContainer iocContainer) : base(iocContainer)
         {
             workspaces = new ObservableCollection<WorkspaceViewModel> { iocContainer.Resolve<HomeViewModel>() };
-            SubscribeToMessage<OpenSearchCustomersWorkspaceMessage>(this);
-            SubscribeToMessage<OpenAddCustomerWorkspaceMessage>(this);
-            SubscribeToMessage<CloseWorkspaceMessage>(this);
+            Subscribe<OpenSearchCustomersWorkspaceMessage>(this);
+            Subscribe<OpenAddCustomerWorkspaceMessage>(this);
+            Subscribe<CloseWorkspaceMessage>(this);
         }
 
         public ObservableCollection<WorkspaceViewModel> Workspaces

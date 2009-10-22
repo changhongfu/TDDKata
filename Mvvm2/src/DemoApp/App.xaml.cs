@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using DemoApp.Services;
 using DemoApp.ViewModels;
 using DemoApp.Views;
 using Microsoft.Practices.Unity;
@@ -17,6 +18,7 @@ namespace DemoApp
             var iocConatiner = new UnityIocContainer(container);
             container.RegisterInstance<IIocContainer>(iocConatiner);
             container.RegisterInstance<IEventAggregator>(new EventAggregator());
+            container.RegisterInstance<ICustomerService>(new InMemoryCustomerService());
 
             var window = new ShellView(new ShellViewModel(iocConatiner));
             window.Show();
