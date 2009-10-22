@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows.Input;
 using DemoApp.Messages;
+using Quark.Tools.Extensions;
 using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.Command;
 using Quark.Tools.Wpf.Extension;
@@ -12,9 +14,12 @@ namespace DemoApp.ViewModels
 {
     public class SearchCriteriaViewModel : ViewModelBase
     {
-        private readonly string[] DefaultConditions = new [] { "=<", ">=", "<", ">", "==", "!=" };
-        private readonly string[] StringConditions = new [] { "Equals", "StartsWith", "EndsWith", "Contains" };
-        private readonly List<PropertyInfo> availableProperties = new List<PropertyInfo>();
+        private static readonly string[] DefaultConditions = new [] { "=<", ">=", "<", ">", "==", "!=" };
+        private static readonly string[] StringConditions = new [] { "Equals", "StartsWith", "EndsWith", "Contains" };
+
+        private readonly ObservableCollection<PropertyInfo> availableProperties = new ObservableCollection<PropertyInfo>();
+        private string[] availableConditions = DefaultConditions;
+
         private PropertyInfo _currentProperty;
 
         public SearchCriteriaViewModel(IIocContainer iocContainer) : base(iocContainer)
@@ -37,15 +42,17 @@ namespace DemoApp.ViewModels
             get { return availableProperties; }
         }
 
-        public ICollection<string> AvailableConditions
+        public string[] AvailableConditions
         {
             get
             {
-                if (CurrentProperty == null || CurrentProperty.PropertyType == typeof(String))
-                {
-                    return StringConditions;
-                }
-                return DefaultConditions;
+                return availableConditions;
+            }
+            set
+            {
+                availableConditions = value;
+                availableConditions.WhenCurrentChanged(c => CurrentCondition = c);
+                OnPropertyChanged("AvailableConditions");
             }
         }
 
@@ -59,7 +66,6 @@ namespace DemoApp.ViewModels
             {
                 _currentProperty = value;
                 OnPropertyChanged("CurrentProperty");
-                OnPropertyChanged("AvailableConditions");
             }
         }
 
@@ -71,12 +77,15 @@ namespace DemoApp.ViewModels
 
         public void SetBoundType<T>()
         {
-            var propertyNames = typeof (T).GetProperties();
-            availableProperties.AddRange(propertyNames);
+            IEnumerable<PropertyInfo> properties = typeof (T).GetProperties();
+            properties.ForEach(p => availableProperties.Add(p));
+
             CurrentProperty = availableProperties[0];
-            availableProperties.WhenCurrentChanged(p => CurrentProperty = p);
-            DefaultConditions.WhenCurrentChanged(c => CurrentCondition = c);
-            StringConditions.WhenCurrentChanged(c => CurrentCondition = c);
+            availableProperties.WhenCurrentChanged(p =>
+            {
+                CurrentProperty = p;
+                AvailableConditions = p.PropertyType == typeof(String) ? StringConditions : DefaultConditions;
+            });
         }
     }
 }
