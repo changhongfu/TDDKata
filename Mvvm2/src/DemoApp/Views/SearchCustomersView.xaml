@@ -4,20 +4,8 @@
     xmlns:v="clr-namespace:DemoApp.Views">
 
     <DockPanel LastChildFill="True" Background="White">
-        <Grid DockPanel.Dock="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            
-            <Grid Grid.Row="0" 
-                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  Background="Black">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2"/>
-                </Grid.RowDefinitions>
-
+        <StackPanel DockPanel.Dock="Top">
+            <Border Height="60" Background="Black" BorderThickness="0, 0, 0, 2" BorderBrush="Black">
                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal" VerticalAlignment="Stretch">
                     <Image Source="../Images/Customers.png" 
                            HorizontalAlignment="Left" VerticalAlignment="Center" 
@@ -26,15 +14,10 @@
                            HorizontalAlignment="Left" VerticalAlignment="Center"
                            FontWeight="Bold" Foreground="Orange" FontSize="18" />
                 </StackPanel>
-
-                <Rectangle Grid.Row="1" 
-                           HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-                           Height="2" Fill="Black" />
-            </Grid>
-
+            </Border>
+            
             <v:SearchCriteriaView Grid.Row="1" DataContext="{Binding SearchCriteriaViewModel}"  />
-
-        </Grid>
+        </StackPanel>
 
         <Grid Margin="0" Background="White">
             <Grid.RowDefinitions>
@@ -61,23 +44,23 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="CustomerId" Width="100" 
-                                    DisplayMemberBinding="{Binding Path=CustomerId.DataValue}"/>
+                                        DisplayMemberBinding="{Binding Path=CustomerId}"/>
                         <GridViewColumn Header="FirstName" Width="100" 
-                                    DisplayMemberBinding="{Binding Path=FirstName.DataValue}"/>
+                                        DisplayMemberBinding="{Binding Path=FirstName}"/>
                         <GridViewColumn Header="LastName" Width="100" 
-                                    DisplayMemberBinding="{Binding Path=LastName.DataValue}"/>
+                                        DisplayMemberBinding="{Binding Path=LastName}"/>
                         <GridViewColumn Header="Email" Width="100" 
-                                    DisplayMemberBinding="{Binding Path=Email.DataValue}"/>
+                                        DisplayMemberBinding="{Binding Path=Email}"/>
                         <GridViewColumn Header="HomePhoneNumber" Width="150" 
-                                    DisplayMemberBinding="{Binding Path=HomePhoneNumber.DataValue}"/>
+                                         DisplayMemberBinding="{Binding Path=HomePhoneNumber}"/>
                         <GridViewColumn Header="MobilePhoneNumber" Width="150" 
-                                    DisplayMemberBinding="{Binding Path=MobilePhoneNumber.DataValue}"/>
+                                        DisplayMemberBinding="{Binding Path=MobilePhoneNumber}"/>
                         <GridViewColumn Header="Address1" Width="100" 
-                                    DisplayMemberBinding="{Binding Path=Address1.DataValue}"/>
+                                        DisplayMemberBinding="{Binding Path=Address1}"/>
                         <GridViewColumn Header="Address2" Width="100" 
-                                    DisplayMemberBinding="{Binding Path=Address2.DataValue}"/>
+                                        DisplayMemberBinding="{Binding Path=Address2}"/>
                         <GridViewColumn Header="Address3" Width="100" 
-                                    DisplayMemberBinding="{Binding Path=Address3.DataValue}"/>
+                                        DisplayMemberBinding="{Binding Path=Address3}"/>
                     </GridView>
                 </ListView.View>
 

@@ -72,19 +72,7 @@ namespace DemoApp.ViewModels
 
         public ICommand SearchCommand { get; private set; }
 
-        private string condition;
-
-        public string CurrentCondition
-        {
-            get
-            {
-                return condition;
-            }
-            set
-            {
-                condition = value;
-            }
-        }
+        public string CurrentCondition { get; set; }
 
         public string CurrentFilterText { get; set; }
 

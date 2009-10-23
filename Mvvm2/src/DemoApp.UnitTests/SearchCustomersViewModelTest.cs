@@ -12,7 +12,7 @@ using Quark.Tools.Wpf.Events;
 namespace DemoApp.UnitTests
 {
     [TestFixture]
-    public class SearchViewModelTest : BaseViewModelTest<SearchCustomerViewModel>
+    public class SearchCustomersViewModelTest : BaseViewModelTest<SearchCustomerViewModel>
     {
         [Test]
         public void DisplayName_ShouldBeSearchCustomers()

@@ -1,8 +1,6 @@
-using System;
 using System.Windows.Input;
 using Quark.Tools.Ioc;
 using Quark.Tools.Wpf.Command;
-using Quark.Tools.Wpf.Events;
 
 namespace Quark.Tools.Wpf.ViewModel
 {
