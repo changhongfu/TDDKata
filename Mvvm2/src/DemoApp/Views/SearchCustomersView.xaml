@@ -9,7 +9,7 @@
                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal" VerticalAlignment="Stretch">
                     <Image Source="../Images/Customers.png" 
                            HorizontalAlignment="Left" VerticalAlignment="Center" 
-                           Width="36" Height="36"/>
+                           Width="36" Height="36" />
                     <Label Content="{Binding DisplayName}" 
                            HorizontalAlignment="Left" VerticalAlignment="Center"
                            FontWeight="Bold" Foreground="Orange" FontSize="18" />
@@ -21,12 +21,12 @@
 
         <Grid Margin="0" Background="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" FontWeight="Bold" Margin="10,0,0,0" 
-                   Content="Search customers results"/>
+                   Content="Search customers results" />
             <ListView Grid.Row="1" Margin="0" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Visible"
@@ -44,23 +44,23 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="CustomerId" Width="100" 
-                                        DisplayMemberBinding="{Binding Path=CustomerId}"/>
+                                        DisplayMemberBinding="{Binding Path=CustomerId}" />
                         <GridViewColumn Header="FirstName" Width="100" 
-                                        DisplayMemberBinding="{Binding Path=FirstName}"/>
+                                        DisplayMemberBinding="{Binding Path=FirstName}" />
                         <GridViewColumn Header="LastName" Width="100" 
-                                        DisplayMemberBinding="{Binding Path=LastName}"/>
+                                        DisplayMemberBinding="{Binding Path=LastName}" />
                         <GridViewColumn Header="Email" Width="100" 
-                                        DisplayMemberBinding="{Binding Path=Email}"/>
+                                        DisplayMemberBinding="{Binding Path=Email}" />
                         <GridViewColumn Header="HomePhoneNumber" Width="150" 
-                                         DisplayMemberBinding="{Binding Path=HomePhoneNumber}"/>
+                                         DisplayMemberBinding="{Binding Path=HomePhoneNumber}" />
                         <GridViewColumn Header="MobilePhoneNumber" Width="150" 
-                                        DisplayMemberBinding="{Binding Path=MobilePhoneNumber}"/>
+                                        DisplayMemberBinding="{Binding Path=MobilePhoneNumber}" />
                         <GridViewColumn Header="Address1" Width="100" 
-                                        DisplayMemberBinding="{Binding Path=Address1}"/>
+                                        DisplayMemberBinding="{Binding Path=Address1}" />
                         <GridViewColumn Header="Address2" Width="100" 
-                                        DisplayMemberBinding="{Binding Path=Address2}"/>
+                                        DisplayMemberBinding="{Binding Path=Address2}" />
                         <GridViewColumn Header="Address3" Width="100" 
-                                        DisplayMemberBinding="{Binding Path=Address3}"/>
+                                        DisplayMemberBinding="{Binding Path=Address3}" />
                     </GridView>
                 </ListView.View>
 
