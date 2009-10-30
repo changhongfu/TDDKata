@@ -7,11 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
+using MvcDemo.ErrorHandling;
 
 namespace MvcDemo.Controllers
 {
-
-    [HandleError]
+    [HandleErrorWithElmah]
     public class AccountController : Controller
     {
 
@@ -46,7 +46,7 @@ namespace MvcDemo.Controllers
 
         public ActionResult LogOn()
         {
-
+            throw new Exception("xxxx");
             return View();
         }
 
