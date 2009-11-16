@@ -73,10 +73,17 @@ namespace MvcDemo.Tests.Controllers
 
             //Act
             var propertyToCreate = new RentalProperty();
-            var result = (RedirectToRouteResult)controller.Create(propertyToCreate);
+            var result = controller.Create(propertyToCreate);
 
             //Assert
-            Assert.AreEqual("List", result.RouteValues["action"]);
+            //Assert.AreEqual("List", result.RouteValues["action"]);
+            result.Assert(Redirect.To.Action("List"));
+
+            //controller.Assert(HasError.On("Name").WithMessage("Error Message"));
+
+            //result.Assert(Direct.To.DefaultView());
+            //result.Assert(Direct.To.View("SomeView"));
+            //result.Assert(Redirect.To.Controller("SomeController").Action("SomeAction"));
         }
 
         private static void CreateControllerContextStubFor(ControllerBase controller)
@@ -87,6 +94,8 @@ namespace MvcDemo.Tests.Controllers
 
             var context = new ControllerContext(stubHttpContext, new RouteData(), controller);
             controller.ControllerContext = context;
+
+            
         }
 
         private class FakePropertyService : IPropertyService
