@@ -5,7 +5,7 @@ import auctionsniper.ui.MainWindow;
 import javax.swing.*;
 
 public class Main {
-    public static final String MAIN_WINDOW_NAME = "";
+    public static final String MAIN_WINDOW_NAME = "MainWindow";
     public static final String SNIPER_STATUS_NAME = "";
 
     private MainWindow ui;

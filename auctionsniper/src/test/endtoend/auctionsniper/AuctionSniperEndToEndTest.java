@@ -13,6 +13,5 @@ public class AuctionSniperEndToEndTest {
         auction.hasReceievedJoinRequestFromSniper();
         auction.announceClosed();
         application.showSniperHasLostAuction();
-
     }
 }

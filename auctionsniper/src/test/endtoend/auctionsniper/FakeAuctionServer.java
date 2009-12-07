@@ -7,7 +7,13 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
 
+import java.util.concurrent.ArrayBlockingQueue;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static java.lang.String.format;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class FakeAuctionServer {
     public static final String ITEM_ID_AS_LOGIN = "auction-%s";
@@ -41,21 +47,28 @@ public class FakeAuctionServer {
         return itemId;
     }
 
-    public void hasReceievedJoinRequestFromSniper() {
-
-
+    public void hasReceievedJoinRequestFromSniper() throws InterruptedException {
+        messageListener.receivesMessage();
     }
 
-    public void announceClosed() {
+    public void announceClosed() throws XMPPException {
+        currentChat.sendMessage(new Message());
+    }
 
-
+    public void stop() {
+        connection.disconnect();
     }
 
     private class SingleMessageListener implements MessageListener {
+        private final ArrayBlockingQueue<Message> messages = new ArrayBlockingQueue<Message>(1);
 
         @Override
         public void processMessage(Chat chat, Message message) {
+            messages.add(message);
+        }
 
+        public void receivesMessage() throws InterruptedException {
+            assertThat("Message", messages.poll(5, SECONDS), is(notNullValue()));
         }
     }
 }
