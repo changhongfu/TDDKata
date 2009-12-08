@@ -7,7 +7,7 @@ import com.objogate.wl.swing.driver.JFrameDriver;
 import com.objogate.wl.swing.driver.JLabelDriver;
 import com.objogate.wl.swing.gesture.GesturePerformer;
 
-
+import static org.hamcrest.Matchers.equalTo;
 
 public class AuctionSniperDriver extends JFrameDriver {
     public AuctionSniperDriver(int timeoutMillis) {
@@ -20,6 +20,6 @@ public class AuctionSniperDriver extends JFrameDriver {
 
     public void showSniperStatus(String statusText) {
         JLabelDriver labelDriver = new JLabelDriver(this, named(Main.SNIPER_STATUS_NAME));
-        labelDriver.hasText(org.hamcrest.Matchers.equalTo(statusText));
+        labelDriver.hasText(equalTo(statusText));
     }
 }
