@@ -1,14 +1,14 @@
 package test.endtoend.auctionsniper;
 
 import auctionsniper.Main;
+
 import static test.endtoend.auctionsniper.FakeAuctionServer.XMPP_HOSTNAME;
 
 public class ApplicationRunner {
     public static final String SNIPER_ID = "Sniper";
     public static final String SNIPER_PASSWORD = "sniper";
+
     private AuctionSniperDriver driver;
-    private static final String STATUS_JOINING = "";
-    private static final String STATUS_LOST = "";
 
     public void startBiddingIn(final FakeAuctionServer auction) {
         Thread thread = new Thread("Test Application") {
@@ -24,11 +24,11 @@ public class ApplicationRunner {
         thread.setDaemon(true);
         thread.start();
         driver = new AuctionSniperDriver(1000);
-        driver.showSniperStatus(STATUS_JOINING);
+        driver.showSniperStatus(Main.STATUS_JOINING);
     }
 
     public void showSniperHasLostAuction() {
-        driver.showSniperStatus(STATUS_LOST);
+        driver.showSniperStatus(Main.STATUS_LOST);
     }
 
     public void stop() {
