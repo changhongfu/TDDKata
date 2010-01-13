@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{DB45321C-073F-4C38-8F87-0C694404FB00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{53D96ACF-12E1-43D0-88C5-BCACBB7609AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contract", "Contract\Contract.csproj", "{387CF2C8-B59F-4BB4-92C7-AC56A916B797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{278AFDDD-7CDE-44C8-95AB-42572A1C3648}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHost", "ServiceHost\ServiceHost.csproj", "{38D560E2-B3E3-4CA9-B844-C5FDC1314CB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfClient", "WpfClient\WpfClient.csproj", "{AD9F666B-3E87-4BB0-95A3-F396DEC318AE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{38D560E2-B3E3-4CA9-B844-C5FDC1314CB0} = {38D560E2-B3E3-4CA9-B844-C5FDC1314CB0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightClient", "SilverlightClient\SilverlightClient.csproj", "{8FB332EC-D85F-461C-AF34-54BF0BFA5AC7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{38D560E2-B3E3-4CA9-B844-C5FDC1314CB0} = {38D560E2-B3E3-4CA9-B844-C5FDC1314CB0}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightClient.Web", "SilverlightClient.Web\SilverlightClient.Web.csproj", "{36EE3F4A-95AD-4506-875B-E084725984B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{387CF2C8-B59F-4BB4-92C7-AC56A916B797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387CF2C8-B59F-4BB4-92C7-AC56A916B797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387CF2C8-B59F-4BB4-92C7-AC56A916B797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387CF2C8-B59F-4BB4-92C7-AC56A916B797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{278AFDDD-7CDE-44C8-95AB-42572A1C3648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{278AFDDD-7CDE-44C8-95AB-42572A1C3648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{278AFDDD-7CDE-44C8-95AB-42572A1C3648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{278AFDDD-7CDE-44C8-95AB-42572A1C3648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D560E2-B3E3-4CA9-B844-C5FDC1314CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D560E2-B3E3-4CA9-B844-C5FDC1314CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D560E2-B3E3-4CA9-B844-C5FDC1314CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D560E2-B3E3-4CA9-B844-C5FDC1314CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD9F666B-3E87-4BB0-95A3-F396DEC318AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD9F666B-3E87-4BB0-95A3-F396DEC318AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD9F666B-3E87-4BB0-95A3-F396DEC318AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD9F666B-3E87-4BB0-95A3-F396DEC318AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB332EC-D85F-461C-AF34-54BF0BFA5AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB332EC-D85F-461C-AF34-54BF0BFA5AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB332EC-D85F-461C-AF34-54BF0BFA5AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB332EC-D85F-461C-AF34-54BF0BFA5AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36EE3F4A-95AD-4506-875B-E084725984B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EE3F4A-95AD-4506-875B-E084725984B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36EE3F4A-95AD-4506-875B-E084725984B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36EE3F4A-95AD-4506-875B-E084725984B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{387CF2C8-B59F-4BB4-92C7-AC56A916B797} = {DB45321C-073F-4C38-8F87-0C694404FB00}
+		{278AFDDD-7CDE-44C8-95AB-42572A1C3648} = {DB45321C-073F-4C38-8F87-0C694404FB00}
+		{38D560E2-B3E3-4CA9-B844-C5FDC1314CB0} = {DB45321C-073F-4C38-8F87-0C694404FB00}
+		{AD9F666B-3E87-4BB0-95A3-F396DEC318AE} = {53D96ACF-12E1-43D0-88C5-BCACBB7609AE}
+		{8FB332EC-D85F-461C-AF34-54BF0BFA5AC7} = {53D96ACF-12E1-43D0-88C5-BCACBB7609AE}
+		{36EE3F4A-95AD-4506-875B-E084725984B1} = {53D96ACF-12E1-43D0-88C5-BCACBB7609AE}
+	EndGlobalSection
+EndGlobal
