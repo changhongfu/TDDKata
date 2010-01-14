@@ -69,11 +69,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\Wcf\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -86,36 +81,19 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\AppManifest.xml" />
-    <None Include="Service References\Wcf\EmployeeService.wsdl" />
-    <None Include="Service References\Wcf\EmployeeService.xsd" />
-    <Content Include="ServiceReferences.ClientConfig" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Wcf\" />
+    <ProjectReference Include="..\SilverlightClient.Core\SilverlightClient.Core.csproj">
+      <Project>{696AE3F4-86EE-41C3-82BF-9B3D7320AC61}</Project>
+      <Name>SilverlightClient.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Wcf\EmployeeService.disco" />
-    <None Include="Service References\Wcf\EmployeeService1.xsd" />
-    <None Include="Service References\Wcf\EmployeeService2.xsd" />
+    <Content Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Wcf\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Wcf\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\Wcf\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\Wcf\SilverlightClient.Wcf.EmployeeInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

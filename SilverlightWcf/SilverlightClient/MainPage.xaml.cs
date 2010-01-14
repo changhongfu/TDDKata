@@ -1,6 +1,8 @@
-﻿using System;
-using System.Windows;
-using SilverlightClient.Wcf;
+﻿using System.Windows;
+using SilverlightClient.Core;
+
+//using SilverlightClient.Wcf;
+
 
 namespace SilverlightClient
 {

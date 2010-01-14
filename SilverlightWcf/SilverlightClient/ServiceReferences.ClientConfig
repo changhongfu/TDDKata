@@ -1,17 +1,21 @@
 ﻿<configuration>
-    <system.serviceModel>
-        <bindings>
-            <basicHttpBinding>
-                <binding name="BasicHttpBinding_IEmployeeService" maxBufferSize="2147483647"
-                    maxReceivedMessageSize="2147483647">
-                    <security mode="None" />
-                </binding>
-            </basicHttpBinding>
-        </bindings>
-        <client>
-            <endpoint address="http://localhost:4605/EmployeeService.svc"
-                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IEmployeeService"
-                contract="Wcf.IEmployeeService" name="BasicHttpBinding_IEmployeeService" />
-        </client>
-    </system.serviceModel>
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="BasicHttpBinding_IEmployeeService" maxBufferSize="2147483647"
+            maxReceivedMessageSize="2147483647">
+          <security mode="None">
+            <transport>
+              <extendedProtectionPolicy policyEnforcement="Never" />
+            </transport>
+          </security>
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="http://localhost:4605/EmployeeService.svc"
+          binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IEmployeeService"
+          contract="Wcf.IEmployeeService" name="BasicHttpBinding_IEmployeeService" />
+    </client>
+  </system.serviceModel>
 </configuration>
