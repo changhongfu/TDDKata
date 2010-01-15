@@ -4,8 +4,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
     <StackPanel>
-        <TextBlock x:Name="_textBlock1" />
-        <TextBlock x:Name="_textBlock2" />
+        <Grid>
+            <ListBox x:Name="_employeeListBox" Height="80" ItemsSource="{Binding Employees}" Visibility="{Binding EmployeeListVisibility }">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding FirstName}" FontSize="14" Margin="0, 0, 10, 0" />
+                            <TextBlock Text="{Binding LastName}" FontSize="14" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock x:Name="_loadIndictor" Text="Loading, please wait" Visibility="{Binding LoadIndictorVisibility }" />
+        </Grid>
+
         <Button x:Name="_loadButton" Click="LoadButtonOnClick">
             <TextBlock>Load</TextBlock>
         </Button>

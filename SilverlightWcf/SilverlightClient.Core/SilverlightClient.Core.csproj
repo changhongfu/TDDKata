@@ -48,10 +48,13 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncRunner.cs" />
     <Compile Include="Contract\EmployeeInfo.cs" />
     <Compile Include="Contract\IEmployeeService.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IAsyncRunner.cs" />
+    <Compile Include="ListEmployeeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceProxy\EmployeeServiceClient.cs">
       <SubType>Code</SubType>
