@@ -1,0 +1,15 @@
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\Canzsoft.Silverlight.Rpc.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\Canzsoft.Silverlight.Rpc.pdb
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\System.Xml.Serialization.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\System.Xml.Serialization.xml
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\de\System.Xml.Serialization.resources.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\es\System.Xml.Serialization.resources.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\fr\System.Xml.Serialization.resources.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\it\System.Xml.Serialization.resources.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\ja\System.Xml.Serialization.resources.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\ko\System.Xml.Serialization.resources.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\zh-Hans\System.Xml.Serialization.resources.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\Bin\Debug\zh-Hant\System.Xml.Serialization.resources.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\obj\Debug\ResolveAssemblyReference.cache
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\obj\Debug\Canzsoft.Silverlight.Rpc.dll
+D:\MyWork\changhong\Canzsoft\src\Canzsoft.Silverlight.Rpc\obj\Debug\Canzsoft.Silverlight.Rpc.pdb
