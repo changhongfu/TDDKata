@@ -12,6 +12,7 @@
     <AssemblyName>Canzsoft.Silverlight.Rpc.TestHost</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <SilverlightApplicationList>{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1}|..\Canzsoft.Silverlight.IntegrationTests\Canzsoft.Silverlight.IntegrationTests.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,7 +65,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Canzsoft.Silverlight.IntegrationTestsTestPage.aspx" />
+    <Content Include="Canzsoft.Silverlight.IntegrationTestsTestPage.html" />
+    <Content Include="ClientBin\Canzsoft.Silverlight.IntegrationTests.xap" />
     <Content Include="Global.asax" />
+    <Content Include="Silverlight.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

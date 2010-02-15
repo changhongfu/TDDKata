@@ -11,30 +11,32 @@ namespace Canzsoft.Silverlight.Rpc.Web
 
         public string Post(string requestString)
         {
-            Uri uri = new Uri("http://www.contoso.com");
+            HttpWebRequest request = WebRequest.Create(new Uri("http://localhost:52404/Employee/List")) as HttpWebRequest;
+            request.Method = "POST"; 
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             RequestState state = new RequestState { Request = request };
 
-            IAsyncResult result = request.BeginGetResponse(RespCallback, state);
+            var asyncResult = request.BeginGetResponse(OnReponseReady, state);
 
-            if (result.IsCompleted)
+            while (!asyncResult.IsCompleted)
             {
                 Thread.Sleep(100);
             }
-
-            Stream responseStream = state.Response.GetResponseStream();
-            using (StreamReader sr = new StreamReader(responseStream))
-            {
-                return sr.ReadToEnd().Trim();
-            }
+            
+            return state.Result;
         }
 
-        private static void RespCallback(IAsyncResult asynchronousResult)
+        private static void OnReponseReady(IAsyncResult result)
         {
-            RequestState state = (RequestState) asynchronousResult.AsyncState;
-            HttpWebRequest request = state.Request;
-            state.Response = (HttpWebResponse) request.EndGetResponse(asynchronousResult);
+            var state = result.AsyncState as RequestState;
+            var resp = state.Request.EndGetResponse(result) as HttpWebResponse;
+
+            Stream strm = resp.GetResponseStream();
+
+            using (StreamReader sr = new StreamReader(strm))
+            {
+                state.Result = sr.ReadToEnd().Trim();
+            }
         }
     }
 }

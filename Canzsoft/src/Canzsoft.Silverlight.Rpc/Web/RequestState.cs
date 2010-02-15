@@ -8,5 +8,7 @@ namespace Canzsoft.Silverlight.Rpc.Web
         public HttpWebResponse Response { get; set; }
 
         public HttpWebRequest Request { get; set; }
+
+        public string Result { get; set; }
     }
 }
