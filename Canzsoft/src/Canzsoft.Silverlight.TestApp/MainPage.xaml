@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Canzsoft.Silverlight.TestApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Button x:Name="sendRequestButton" Grid.Row="0" Click="SendRequestButtonClick" Content="Send WebRequest">
+        </Button>
+        <TextBlock x:Name="resultTextBlock" Grid.Row="1"></TextBlock>
+    </Grid>
+</UserControl>

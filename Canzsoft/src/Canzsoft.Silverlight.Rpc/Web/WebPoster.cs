@@ -12,11 +12,12 @@ namespace Canzsoft.Silverlight.Rpc.Web
         public string Post(string requestString)
         {
             var request = WebRequest.Create(new Uri("http://localhost:9999/Myservice")) as HttpWebRequest;
-            request.Method = "POST"; 
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";  
 
             var state = new RequestState { Request = request };
 
-            var asyncResult = request.BeginGetResponse(OnReponseReady, state);
+            var asyncResult = request.BeginGetRequestStream(OnRequestReady, state);
 
             while (!asyncResult.IsCompleted)
             {
@@ -24,6 +25,15 @@ namespace Canzsoft.Silverlight.Rpc.Web
             }
             
             return state.Result;
+        }
+
+        private static void OnRequestReady(IAsyncResult result)
+        {
+            var state = result.AsyncState as RequestState;
+             
+            state.Request.EndGetRequestStream(result);
+
+            state.Request.BeginGetResponse(OnReponseReady, state);
         }
 
         private static void OnReponseReady(IAsyncResult result)
