@@ -11,6 +11,7 @@ namespace Canzsoft.Silverlight.UnitTests.Rpc
         public void Serialize()
         {
             var serializer = new RpcXmlSerializer();
+
             var xmlString = serializer.Serialize(new MyClass { Id = 1 });
 
             var expectedXml = String.Format("<?xml version=\"1.0\" encoding=\"utf-8\"?>{0}<MyClass>{0}{1}<Id>1</Id>{0}</MyClass>", Environment.NewLine, "  ");

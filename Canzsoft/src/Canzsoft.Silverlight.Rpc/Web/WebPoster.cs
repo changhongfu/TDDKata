@@ -11,10 +11,10 @@ namespace Canzsoft.Silverlight.Rpc.Web
 
         public string Post(string requestString)
         {
-            HttpWebRequest request = WebRequest.Create(new Uri("http://localhost:52404/Employee/List")) as HttpWebRequest;
+            var request = WebRequest.Create(new Uri("http://localhost:52404/Employee/List")) as HttpWebRequest;
             request.Method = "POST"; 
 
-            RequestState state = new RequestState { Request = request };
+            var state = new RequestState { Request = request };
 
             var asyncResult = request.BeginGetResponse(OnReponseReady, state);
 
@@ -33,7 +33,7 @@ namespace Canzsoft.Silverlight.Rpc.Web
 
             Stream strm = resp.GetResponseStream();
 
-            using (StreamReader sr = new StreamReader(strm))
+            using (var sr = new StreamReader(strm))
             {
                 state.Result = sr.ReadToEnd().Trim();
             }

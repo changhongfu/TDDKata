@@ -12,7 +12,7 @@
     <AssemblyName>Canzsoft.Silverlight.Rpc.TestHost</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <SilverlightApplicationList>{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1}|..\Canzsoft.Silverlight.IntegrationTests\Canzsoft.Silverlight.IntegrationTests.csproj|ClientBin|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1}|..\Canzsoft.Silverlight.IntegrationTests\Canzsoft.Silverlight.IntegrationTests.csproj|ClientBin|False,{E2D22338-365B-4D14-BE13-D40DDBF491ED}|..\Canzsoft.Silverlight.IntegrationTests\Canzsoft.Silverlight.IntegrationTests.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
