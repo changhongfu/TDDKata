@@ -11,7 +11,7 @@ namespace Canzsoft.Silverlight.Rpc.Web
 
         public string Post(string requestString)
         {
-            var request = WebRequest.Create(new Uri("http://localhost:52404/Employee/List")) as HttpWebRequest;
+            var request = WebRequest.Create(new Uri("http://localhost:9999/Myservice")) as HttpWebRequest;
             request.Method = "POST"; 
 
             var state = new RequestState { Request = request };
