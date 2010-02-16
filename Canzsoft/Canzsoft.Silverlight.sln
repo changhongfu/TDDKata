@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canzsoft.Silverlight.UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canzsoft.Silverlight.Rpc.TestHost", "src\Canzsoft.Silverlight.Rpc.TestHost\Canzsoft.Silverlight.Rpc.TestHost.csproj", "{1D33BD24-D4DF-498C-8C94-8BD16D08F6F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canzsoft.Silverlight.IntegrationTests", "src\Canzsoft.Silverlight.IntegrationTests\Canzsoft.Silverlight.IntegrationTests.csproj", "{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canzsoft.Silverlight.IntegrationTests", "src\Canzsoft.Silverlight.IntegrationTests\Canzsoft.Silverlight.IntegrationTests.csproj", "{E2D22338-365B-4D14-BE13-D40DDBF491ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{1D33BD24-D4DF-498C-8C94-8BD16D08F6F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D33BD24-D4DF-498C-8C94-8BD16D08F6F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D33BD24-D4DF-498C-8C94-8BD16D08F6F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2D22338-365B-4D14-BE13-D40DDBF491ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2D22338-365B-4D14-BE13-D40DDBF491ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2D22338-365B-4D14-BE13-D40DDBF491ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2D22338-365B-4D14-BE13-D40DDBF491ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +40,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2D1FF07F-A5C6-465E-9EF6-895FF454B379} = {96870E2A-5AEB-4F68-901A-AAE8E7C138F2}
 		{1D33BD24-D4DF-498C-8C94-8BD16D08F6F2} = {96870E2A-5AEB-4F68-901A-AAE8E7C138F2}
-		{18E45394-A4B5-45F2-95F2-32EBDDBEFFD1} = {96870E2A-5AEB-4F68-901A-AAE8E7C138F2}
+		{E2D22338-365B-4D14-BE13-D40DDBF491ED} = {96870E2A-5AEB-4F68-901A-AAE8E7C138F2}
 	EndGlobalSection
 EndGlobal
