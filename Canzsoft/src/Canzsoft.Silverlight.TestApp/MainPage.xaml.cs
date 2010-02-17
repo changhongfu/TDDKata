@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Windows;
 using Canzsoft.Silverlight.Rpc.Web;
 
@@ -14,12 +13,7 @@ namespace Canzsoft.Silverlight.TestApp
 
         private void SendRequestButtonClick(object sender, RoutedEventArgs e)
         {
-           // ThreadPool.QueueUserWorkItem(RunPostAsync);
-
-            var poster = new WebPoster();
-            var responseString = poster.Post("<?xml version=\"1.0\" encoding=\"utf-8\"?>{0}<MyClass>{0}{1}<Id>1</Id>{0}</MyClass>");
-
-            resultTextBlock.Text = responseString;
+            ThreadPool.QueueUserWorkItem(RunPostAsync);
         }
 
         private void RunPostAsync(object state)
@@ -27,7 +21,7 @@ namespace Canzsoft.Silverlight.TestApp
             var poster = new WebPoster();
             var responseString = poster.Post("<?xml version=\"1.0\" encoding=\"utf-8\"?>{0}<MyClass>{0}{1}<Id>1</Id>{0}</MyClass>");
 
-            resultTextBlock.Text = responseString;
+            Dispatcher.BeginInvoke(() => resultTextBlock.Text = responseString);
         }
     }
 }

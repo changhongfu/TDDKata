@@ -17,36 +17,31 @@ namespace Canzsoft.Silverlight.Rpc.Web
 
             var state = new RequestState { Request = request };
 
-            var asyncResult = request.BeginGetRequestStream(OnRequestReady, state);
+            request.BeginGetRequestStream(delegate(IAsyncResult asyncResult)
+            {
+                StreamWriter writer = new StreamWriter(request.EndGetRequestStream(asyncResult));
+                writer.WriteLine(requestString);
+                writer.Flush();
+                writer.Close();
 
-            while (!asyncResult.IsCompleted)
+                request.BeginGetResponse(delegate(IAsyncResult asyncResult2)
+                {
+                    HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(asyncResult2);
+                    using (var sr = new StreamReader(response.GetResponseStream()))
+                    {
+                        state.Result = sr.ReadToEnd().Trim();
+                    }
+                }, state);
+
+            }, state);
+
+
+            while (String.IsNullOrEmpty(state.Result))
             {
                 Thread.Sleep(100);
             }
             
             return state.Result;
-        }
-
-        private static void OnRequestReady(IAsyncResult result)
-        {
-            var state = result.AsyncState as RequestState;
-             
-            state.Request.EndGetRequestStream(result);
-
-            state.Request.BeginGetResponse(OnReponseReady, state);
-        }
-
-        private static void OnReponseReady(IAsyncResult result)
-        {
-            var state = result.AsyncState as RequestState;
-            var resp = state.Request.EndGetResponse(result) as HttpWebResponse;
-
-            Stream strm = resp.GetResponseStream();
-
-            using (var sr = new StreamReader(strm))
-            {
-                state.Result = sr.ReadToEnd().Trim();
-            }
         }
     }
 }
