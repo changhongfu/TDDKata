@@ -1,25 +1,26 @@
 using Canzsoft.Silverlight.Rpc.Messaging;
-using Canzsoft.Silverlight.Rpc.Serialization;
 using Canzsoft.Silverlight.Rpc.Web;
 
 namespace Canzsoft.Silverlight.Rpc
 {
     public class ServiceProxy
     {
-        private readonly IXmlSerializer _serializer;
         private readonly IWebPoster _poster;
 
-        public ServiceProxy(IXmlSerializer serializer, IWebPoster poster)
+        public ServiceProxy() : this (new WebPoster())
         {
-            _serializer = serializer;
+        }
+
+        public ServiceProxy(IWebPoster poster)
+        {
             _poster = poster;
         }
 
         public T Invoke<T>(Request request) where T : Response
         {
-            var requestXml = _serializer.Serialize(request);
-            var reponseXml = _poster.Post(requestXml);
-            return _serializer.Deserialize<T>(reponseXml);
+            var requestXml = request.ToXml();
+            var responseXml = _poster.Post(requestXml);
+            return Response.ParseFromXml<T>(responseXml);
         }
     }
 }

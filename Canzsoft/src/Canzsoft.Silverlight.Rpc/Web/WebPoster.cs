@@ -7,34 +7,31 @@ namespace Canzsoft.Silverlight.Rpc.Web
 {
     public class WebPoster : IWebPoster
     {
-        public HttpWebRequest Resuest;
-
         public string Post(string requestString)
         {
-            var request = WebRequest.Create(new Uri("http://localhost:9999/Myservice")) as HttpWebRequest;
+            var request = (HttpWebRequest)WebRequest.Create(new Uri("http://localhost:9999/Myservice"));
+            request.ContentType = "application/x-www-form-urlencoded";
             request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";  
 
-            var state = new RequestState { Request = request };
+            var state = new RequestState();
 
-            request.BeginGetRequestStream(delegate(IAsyncResult asyncResult)
+            request.BeginGetRequestStream(asyncResult =>
             {
-                StreamWriter writer = new StreamWriter(request.EndGetRequestStream(asyncResult));
-                writer.WriteLine(requestString);
-                writer.Flush();
-                writer.Close();
-
-                request.BeginGetResponse(delegate(IAsyncResult asyncResult2)
+                using(var writer = new StreamWriter(request.EndGetRequestStream(asyncResult)))
                 {
-                    HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(asyncResult2);
-                    using (var sr = new StreamReader(response.GetResponseStream()))
-                    {
-                        state.Result = sr.ReadToEnd().Trim();
-                    }
-                }, state);
+                    writer.Write(requestString);
+                    writer.Flush();
+                }
 
+                request.BeginGetResponse(asyncResult2 =>
+                 {
+                     var response = (HttpWebResponse) request.EndGetResponse(asyncResult2);
+                     using (var sr = new StreamReader(response.GetResponseStream()))
+                     {
+                         state.Result = sr.ReadToEnd().Trim();
+                     }
+                 }, state);
             }, state);
-
 
             while (String.IsNullOrEmpty(state.Result))
             {

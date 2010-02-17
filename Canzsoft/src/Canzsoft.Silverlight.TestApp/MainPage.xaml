@@ -8,9 +8,20 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <Button x:Name="sendRequestButton" Grid.Row="0" Click="SendRequestButtonClick" Content="Send WebRequest">
-        </Button>
-        <TextBlock x:Name="resultTextBlock" Grid.Row="1"></TextBlock>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button x:Name="getEmployeesButton" Click="GetEmployeesButtonClick" Content="List Employees" />
+        </StackPanel>
+        
+        <ListBox x:Name="lbEmployees" Grid.Row="1" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,10,10,10" ItemsSource="{Binding}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Name, Mode=OneWay}" FontSize="14"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>

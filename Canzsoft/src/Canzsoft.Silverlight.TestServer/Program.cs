@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -59,8 +58,8 @@ namespace Canzsoft.Silverlight.TestServer
 
                 try
                 {
-                    WriteRequestHeaderInformation(context);
-                    CreateResponseDocument(context);
+                    var requestXml = WriteRequestHeaderInformation(context);
+                    CreateResponseDocument(context, requestXml);
                 }
                 catch (Exception ex)
                 {
@@ -74,13 +73,25 @@ namespace Canzsoft.Silverlight.TestServer
             }
         }
 
-        private static void CreateResponseDocument(HttpListenerContext ctxt)
+        private static string WriteRequestHeaderInformation(HttpListenerContext ctxt)
         {
-            string htmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
-            if (ctxt.Request.Url.ToString().Contains("clientaccesspolicy"))
+            Console.WriteLine("Request Url: {0}", ctxt.Request.Url);
+            Console.WriteLine("Request Method: {0}", ctxt.Request.HttpMethod);
+            using (var sr = new StreamReader(ctxt.Request.InputStream))
             {
-                htmlOutput = "<?xml version=\"1.0\" encoding=\"utf-8\"?><access-policy><cross-domain-access><policy><allow-from http-request-headers=\"*\"><domain uri=\"*\"/></allow-from><grant-to><resource path=\"/\" include-subpaths=\"true\"/></grant-to></policy></cross-domain-access></access-policy>";
+                string requestData = sr.ReadToEnd().Trim();
+                Console.WriteLine("Request Data: {0}", requestData);
+
+                return requestData;
             }
+        }
+
+        private static void CreateResponseDocument(HttpListenerContext ctxt, string requestXml)
+        {
+            string htmlOutput = ctxt.Request.Url.ToString().Contains("clientaccesspolicy") ?
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?><access-policy><cross-domain-access><policy><allow-from http-request-headers=\"*\"><domain uri=\"*\"/></allow-from><grant-to><resource path=\"/\" include-subpaths=\"true\"/></grant-to></policy></cross-domain-access></access-policy>" :
+                GetResponseXml(requestXml);
+            
             ctxt.Response.ContentType = "text/xml";
 
             if (ctxt.Response.OutputStream.CanWrite)
@@ -94,15 +105,25 @@ namespace Canzsoft.Silverlight.TestServer
             Console.WriteLine("Response: {0}", htmlOutput);
         }
 
-        private static void WriteRequestHeaderInformation(HttpListenerContext ctxt)
+        private static string GetResponseXml(string requestXml)
         {
-            Console.WriteLine("Request Url: {0}", ctxt.Request.Url);
-            Console.WriteLine("Request Method: {0}", ctxt.Request.HttpMethod);
-            using (var sr = new StreamReader(ctxt.Request.InputStream))
+            if (requestXml.Contains("GetEmployeesRequest"))
             {
-                string requestData = sr.ReadToEnd().Trim();
-                Console.WriteLine("Request Data: {0}", requestData);
+                EmployeeInfo[] employees = new []
+                {
+                    new EmployeeInfo { Id = Guid.NewGuid(), Name = "Jane Smith" },
+                    new EmployeeInfo { Id = Guid.NewGuid(), Name = "Jack Smith" },
+                    new EmployeeInfo { Id = Guid.NewGuid(), Name = "Joe Smith" },
+                    new EmployeeInfo { Id = Guid.NewGuid(), Name = "Jeff Smith" }
+                };
+                return XmlSerializerHelper.Serialize(new GetEmployeesResponse {Employees = employees});
             }
+            if (requestXml.Contains("GetEmployeeRequest"))
+            {
+                var employee = new EmployeeInfo { Id = Guid.NewGuid(), Name = "Jane Smith" };
+                return XmlSerializerHelper.Serialize(new GetEmployeeResponse { Employee = employee });
+            }
+            return "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
         }
     }
 }

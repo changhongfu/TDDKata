@@ -1,27 +1,24 @@
-﻿using System.Threading;
-using System.Windows;
-using Canzsoft.Silverlight.Rpc.Web;
+﻿using System.Windows;
+using Canzsoft.Silverlight.TestApp.Services;
+using Canzsoft.Silverlight.Tools;
 
 namespace Canzsoft.Silverlight.TestApp
 {
     public partial class MainPage 
     {
+        private readonly IEmployeeService _employeeService = new EmployeeService();
+
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void SendRequestButtonClick(object sender, RoutedEventArgs e)
+        private void GetEmployeesButtonClick(object sender, RoutedEventArgs e)
         {
-            ThreadPool.QueueUserWorkItem(RunPostAsync);
-        }
-
-        private void RunPostAsync(object state)
-        {
-            var poster = new WebPoster();
-            var responseString = poster.Post("<?xml version=\"1.0\" encoding=\"utf-8\"?>{0}<MyClass>{0}{1}<Id>1</Id>{0}</MyClass>");
-
-            Dispatcher.BeginInvoke(() => resultTextBlock.Text = responseString);
+            new AsyncRunner()
+                .Do((obj, args) => args.Result = _employeeService.GetEmployees())
+                .WhenComplete((obj, args) => lbEmployees.DataContext = args.Result)
+                .RunAsync();
         }
     }
 }

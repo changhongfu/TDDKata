@@ -11,12 +11,9 @@ namespace Canzsoft.Silverlight.Rpc.Serialization
         private static readonly Encoding DefaultEncoding = Encoding.UTF8;
         private static readonly XmlWriterSettings DefaultXmlWriterSettings = new XmlWriterSettings { Indent = true, Encoding = DefaultEncoding };
 
-        public XmlSerializer XmlSerializer;
-        public XmlWriter XmlWriter;
-
         public string Serialize<T>(T toBeSerialzed)
         {
-            var serializer = new XmlSerializer(typeof(T));
+            var serializer = new XmlSerializer(toBeSerialzed.GetType());
             var emptyXmlns = new XmlSerializerNamespaces();
             emptyXmlns.Add(String.Empty, String.Empty);
             using (var stream = new MemoryStream())
