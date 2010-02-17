@@ -58,7 +58,7 @@ namespace Canzsoft.Silverlight.UnitTests.Rpc
             _poster = MockRepository.GenerateStub<IWebPoster>();
             _poster.Stub(p => p.Post(String.Empty)).IgnoreArguments().Return(String.Empty);
 
-            return new ServiceProxy(_poster);
+            return new ServiceProxy(_serializer, _poster);
         }
     }
 }
