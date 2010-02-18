@@ -1,8 +1,7 @@
 ﻿<UserControl x:Class="Canzsoft.Silverlight.TestApp.SideBar"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
-    <Grid x:Name="LayoutRoot" Background="Orange" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+    <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Border x:Name="_backgroundBorder" BorderBrush="#FF949494" BorderThickness="1" Background="White" CornerRadius="7"/>
-        <Button />
     </Grid>
 </UserControl>

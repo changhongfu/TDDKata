@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Canzsoft.Silverlight.TestApp.Workspace"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid x:Name="LayoutRoot">
+        <Border x:Name="_borderWorkspace" BorderThickness="1" CornerRadius="6" Background="Orange">
+            <Grid Background="White" Margin="1,30,1,7">
+                <TextBlock x:Name="_header" TextWrapping="Wrap" Margin="7,-30,0,0" Foreground="White" FontSize="21.333" Text="Employees" />
+                <ScrollViewer x:Name="_content" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" BorderThickness="0" Padding="0,0,0,0">
+                </ScrollViewer>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

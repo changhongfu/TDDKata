@@ -5,7 +5,6 @@
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    mc:Ignorable="d"
    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
-
    xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit" xmlns:local="clr-namespace:Canzsoft.Silverlight.TestApp" d:DesignWidth="640" 
    d:DesignHeight="480"
    Title="Shell Page">
@@ -23,7 +22,7 @@
     </navigation:Page.Resources>
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel x:Name="HeaderBar" Background="MidnightBlue" Grid.Row="0" />
@@ -34,12 +33,13 @@
                     <GradientStop Offset="1" Color="#FF638AC9" />
                 </LinearGradientBrush>
             </Controls:DockPanel.Background>
-            <local:SideBar x:Name="_navigator" Background="Orange" Controls:DockPanel.Dock="Left" Margin="14,7,7,7" VerticalAlignment="Top" Width="300">
+            
+            <local:SideBar x:Name="_navigator" Controls:DockPanel.Dock="Left" Margin="14,7,7,7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="250">
                 <local:SideBar.Effect>
                     <DropShadowEffect Opacity="0.35"/>
                 </local:SideBar.Effect>
-     
             </local:SideBar>
+            
             <local:Workspace x:Name="_workspace" Controls:DockPanel.Dock="Right" Margin="7,7,14,7">
                 <local:Workspace.Effect>
                     <DropShadowEffect Opacity="0.35"/>
@@ -47,5 +47,5 @@
             </local:Workspace>
         </Controls:DockPanel>
     </Grid>
-    </navigation:Page>
+</navigation:Page>
 
