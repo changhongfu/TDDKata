@@ -34,11 +34,12 @@
                     <GradientStop Offset="1" Color="#FF638AC9" />
                 </LinearGradientBrush>
             </Controls:DockPanel.Background>
-            <StackPanel x:Name="_navigator" Background="Orange" Controls:DockPanel.Dock="Left" Margin="14,7,7,7" VerticalAlignment="Top">
-                <StackPanel.Effect>
+            <local:SideBar x:Name="_navigator" Background="Orange" Controls:DockPanel.Dock="Left" Margin="14,7,7,7" VerticalAlignment="Top" Width="300">
+                <local:SideBar.Effect>
                     <DropShadowEffect Opacity="0.35"/>
-                </StackPanel.Effect>
-            </StackPanel>
+                </local:SideBar.Effect>
+     
+            </local:SideBar>
             <local:Workspace x:Name="_workspace" Controls:DockPanel.Dock="Right" Margin="7,7,14,7">
                 <local:Workspace.Effect>
                     <DropShadowEffect Opacity="0.35"/>
