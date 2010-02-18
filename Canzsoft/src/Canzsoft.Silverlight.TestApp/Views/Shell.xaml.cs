@@ -1,4 +1,4 @@
-﻿namespace Canzsoft.Silverlight.TestApp
+﻿namespace Canzsoft.Silverlight.TestApp.Views
 {
     public partial class Shell 
     {
@@ -8,3 +8,5 @@
         }
     }
 }
+
+

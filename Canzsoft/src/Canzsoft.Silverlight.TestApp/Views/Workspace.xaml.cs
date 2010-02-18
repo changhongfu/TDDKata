@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-
-namespace Canzsoft.Silverlight.TestApp
+﻿namespace Canzsoft.Silverlight.TestApp.Views
 {
-    public partial class Workspace : UserControl
+    public partial class Workspace 
     {
         public Workspace()
         {
@@ -20,3 +8,5 @@ namespace Canzsoft.Silverlight.TestApp
         }
     }
 }
+
+
