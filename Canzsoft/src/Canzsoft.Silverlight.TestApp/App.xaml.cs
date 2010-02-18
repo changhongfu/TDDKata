@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -26,7 +26,7 @@ namespace Canzsoft.Silverlight.TestApp
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new MainPage();
+            this.RootVisual = new Shell();
         }
 
         private void Application_Exit(object sender, EventArgs e)

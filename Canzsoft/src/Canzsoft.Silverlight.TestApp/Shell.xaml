@@ -1,0 +1,50 @@
+﻿<navigation:Page x:Class="Canzsoft.Silverlight.TestApp.Shell"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   mc:Ignorable="d"
+   xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+
+   xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit" xmlns:local="clr-namespace:Canzsoft.Silverlight.TestApp" d:DesignWidth="640" 
+   d:DesignHeight="480"
+   Title="Shell Page">
+    <navigation:Page.Resources>
+        <Storyboard x:Key="BeginChangeWorkspaceStoryboard">
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="_workspace" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="14,14,21,14" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="EndChangeWorkspaceStoryboard">
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="_workspace" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="7,7,14,7" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </navigation:Page.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="HeaderBar" Background="MidnightBlue" Grid.Row="0" />
+        <Controls:DockPanel Grid.Row="1" LastChildFill="True">
+            <Controls:DockPanel.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                    <GradientStop Offset="0" Color="#FF96B4E0" />
+                    <GradientStop Offset="1" Color="#FF638AC9" />
+                </LinearGradientBrush>
+            </Controls:DockPanel.Background>
+            <StackPanel x:Name="_navigator" Background="Orange" Controls:DockPanel.Dock="Left" Margin="14,7,7,7" VerticalAlignment="Top">
+                <StackPanel.Effect>
+                    <DropShadowEffect Opacity="0.35"/>
+                </StackPanel.Effect>
+            </StackPanel>
+            <local:Workspace x:Name="_workspace" Controls:DockPanel.Dock="Right" Margin="7,7,14,7">
+                <local:Workspace.Effect>
+                    <DropShadowEffect Opacity="0.35"/>
+                </local:Workspace.Effect>
+            </local:Workspace>
+        </Controls:DockPanel>
+    </Grid>
+    </navigation:Page>
+
