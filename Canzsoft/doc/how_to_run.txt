@@ -1,0 +1,6 @@
+How to run:
+
+	1. Development platform required: Visual studio 2008 + sp1 and silverlight 3 (http://www.microsoft.com/downloads/details.aspx?familyid=9442B0F2-7465-417A-88F3-5E7B5409E9DD&displaylang=en)
+	2. Open Visual studio with "Run as administrator" - as the test server will open Http port which needs admin permission
+	3. Run from Visual studio, it will run 2 project - TestServer and silverlight client(in browser).
+	4. There are 2 functions can be tested now. Get list of employees and Get single employee
