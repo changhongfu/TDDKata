@@ -4,10 +4,10 @@ namespace Canzsoft.Silverlight.Tools
 {
     public interface IAsyncRunner
     {
-        AsyncRunner Do(DoWorkEventHandler doWorkEventHandler);
+        AsyncRunner Run(DoWorkEventHandler doWorkEventHandler);
 
         AsyncRunner WhenComplete(RunWorkerCompletedEventHandler completedEventHandler);
 
-        void RunAsync();
+        void Execute();
     }
 }

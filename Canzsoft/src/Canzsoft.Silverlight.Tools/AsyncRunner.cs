@@ -7,7 +7,7 @@ namespace Canzsoft.Silverlight.Tools
         private RunWorkerCompletedEventHandler _completedEventHandler;
         private DoWorkEventHandler _doWorkEventHandler;
 
-        public AsyncRunner Do(DoWorkEventHandler doWorkEventHandler)
+        public AsyncRunner Run(DoWorkEventHandler doWorkEventHandler)
         {
             _doWorkEventHandler = doWorkEventHandler;
             return this;
@@ -19,7 +19,7 @@ namespace Canzsoft.Silverlight.Tools
             return this;
         }
 
-        public void RunAsync()
+        public void Execute()
         {
             var worker = new BackgroundWorker();
 

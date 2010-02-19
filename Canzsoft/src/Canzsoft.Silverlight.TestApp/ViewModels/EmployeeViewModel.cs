@@ -1,4 +1,3 @@
-using System;
 using System.Windows.Input;
 using Canzsoft.Silverlight.TestApp.Models;
 using Canzsoft.Silverlight.TestApp.Services;
@@ -11,7 +10,8 @@ namespace Canzsoft.Silverlight.TestApp.ViewModels
     {
         private readonly IEmployeeService _service;
 
-        public EmployeeInfo[] _employees;
+        private EmployeeInfo[] _employees;
+        private bool _isLoading;
 
         public EmployeeViewModel() : this(new EmployeeService())
         {
@@ -20,15 +20,21 @@ namespace Canzsoft.Silverlight.TestApp.ViewModels
         public EmployeeViewModel(IEmployeeService service)
         {
             _service = service;
-            LoadEmployeesCommand = new DelegateCommand<object>(p => LoadEmployees(), p => true);
+           // LoadEmployeesCommand = new DelegateCommand(p => LoadEmployees());
+            var commandResult = new CommandResult<EmployeeInfo[]>();
+            LoadEmployeesCommand = new DelegateCommand(p => commandResult.Result = _service.GetEmployees())
+                                      .ExecuteAsync()
+                                      .BeforeExecute(() => IsLoading = true)
+                                      .AfterExecute(() => { Employees = commandResult.Result; IsLoading = false; });
         }
 
+        //Can also use AyncRunner do same thing, which is better?
         private void LoadEmployees()
         {
             new AsyncRunner()
-                .Do((sender, args) => args.Result = _service.GetEmployees())
+                .Run((sender, args) => args.Result = _service.GetEmployees())
                 .WhenComplete((sender, args) => Employees = (EmployeeInfo[])args.Result)
-                .RunAsync();
+                .Execute();
         }
 
         public EmployeeInfo[] Employees
@@ -38,6 +44,16 @@ namespace Canzsoft.Silverlight.TestApp.ViewModels
             {
                 _employees = value;
                 OnPropertyChanged("Employees");
+            }
+        }
+
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged("IsLoading");
             }
         }
 

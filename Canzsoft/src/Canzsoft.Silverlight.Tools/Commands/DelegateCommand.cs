@@ -4,18 +4,18 @@ using System.Windows.Input;
 
 namespace Canzsoft.Silverlight.Tools.Commands
 {
-    public class DelegateCommand<T> : ICommand
+    public class DelegateCommand : ICommand
     {
-        private readonly Action<T> _executeMethod;
-        private readonly Func<T, bool> _canExecuteMethod;
+        private readonly Action<object> _executeMethod;
+        private readonly Func<object, bool> _canExecuteMethod;
         private List<WeakReference> _canExecuteChangedHandlers;
 
-        public DelegateCommand(Action<T> executeMethod)
+        public DelegateCommand(Action<object> executeMethod)
             : this(executeMethod, null)
         {
         }
 
-        public DelegateCommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
+        public DelegateCommand(Action<object> executeMethod, Func<object, bool> canExecuteMethod)
         {
             if (executeMethod == null && canExecuteMethod == null)
                 throw new ArgumentNullException("executeMethod", "DelegateCommand Delegates Cannot Be Null");
@@ -24,24 +24,34 @@ namespace Canzsoft.Silverlight.Tools.Commands
             _canExecuteMethod = canExecuteMethod;
         }
 
-        public bool CanExecute(T parameter)
+        public bool CanExecute(object parameter)
         {
-            if (_canExecuteMethod == null) return true;
+            if (_canExecuteMethod == null)
+            {
+                return true;
+            }
             return _canExecuteMethod(parameter);
         }
 
-        public void Execute(T parameter)
+        public void Execute(object parameter)
         {
-            if (_executeMethod == null) return;
+            if (_executeMethod == null)
+            {
+                return;
+            }
             _executeMethod(parameter);
         }
 
         bool ICommand.CanExecute(object parameter)
         {
-            return CanExecute((T)parameter);
+            return CanExecute(parameter);
         }
 
-        
+        void ICommand.Execute(object parameter)
+        {
+            Execute(parameter);
+        }
+
         public event EventHandler CanExecuteChanged
         {
             add
@@ -53,18 +63,11 @@ namespace Canzsoft.Silverlight.Tools.Commands
                 WeakEventHandlerManager.RemoveWeakReferenceHandler(_canExecuteChangedHandlers, value);
             }
         }
-
-        void ICommand.Execute(object parameter)
-        {
-            Execute((T)parameter);
-        }
-
         
         protected virtual void OnCanExecuteChanged()
         {
             WeakEventHandlerManager.CallWeakReferenceHandlers(this, _canExecuteChangedHandlers);
         }
-
 
         public void RaiseCanExecuteChanged()
         {

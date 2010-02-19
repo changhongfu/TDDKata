@@ -55,8 +55,10 @@
     <Compile Include="Commands\CommandBehaviorBase.cs" />
     <Compile Include="Commands\CommandDecorator.cs" />
     <Compile Include="Commands\CommandExtensions.cs" />
+    <Compile Include="Commands\CommandResult.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\ICommandDecorator.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="IAsyncRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelBase.cs" />
