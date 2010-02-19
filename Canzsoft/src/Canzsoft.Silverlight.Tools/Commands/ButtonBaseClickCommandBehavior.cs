@@ -4,8 +4,7 @@ namespace Canzsoft.Silverlight.Tools.Commands
 {
     public class ButtonBaseClickCommandBehavior : CommandBehaviorBase<ButtonBase>
     {
-        public ButtonBaseClickCommandBehavior(ButtonBase clickableObject)
-            : base(clickableObject)
+        public ButtonBaseClickCommandBehavior(ButtonBase clickableObject) : base(clickableObject)
         {
             clickableObject.Click += OnClick;
         }

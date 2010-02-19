@@ -18,7 +18,9 @@ namespace Canzsoft.Silverlight.Tools.Commands
         public DelegateCommand(Action<object> executeMethod, Func<object, bool> canExecuteMethod)
         {
             if (executeMethod == null && canExecuteMethod == null)
+            {
                 throw new ArgumentNullException("executeMethod", "DelegateCommand Delegates Cannot Be Null");
+            }
 
             _executeMethod = executeMethod;
             _canExecuteMethod = canExecuteMethod;

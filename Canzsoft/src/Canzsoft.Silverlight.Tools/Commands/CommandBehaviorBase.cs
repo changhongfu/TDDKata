@@ -4,8 +4,7 @@ using System.Windows.Input;
 
 namespace Canzsoft.Silverlight.Tools.Commands
 {
-    public class CommandBehaviorBase<T>
-        where T : Control
+    public class CommandBehaviorBase<T> where T : Control
     {
         private readonly EventHandler _commandCanExecuteChangedHandler;
         private readonly WeakReference _targetObject;

@@ -46,7 +46,7 @@ namespace Canzsoft.Silverlight.Tools
 
         private class DispatcherProxy
         {
-            Dispatcher innerDispatcher;
+            private readonly Dispatcher innerDispatcher;
 
             private DispatcherProxy(Dispatcher dispatcher)
             {
@@ -55,15 +55,9 @@ namespace Canzsoft.Silverlight.Tools
 
             public static DispatcherProxy CreateDispatcher()
             {
-                DispatcherProxy proxy;
-
-                if (Deployment.Current == null)
-                    return null;
-
-                proxy = new DispatcherProxy(Deployment.Current.Dispatcher);
-
-                return proxy;
-
+                return Deployment.Current == null ? 
+                       null :
+                       new DispatcherProxy(Deployment.Current.Dispatcher);
             }
 
             public bool CheckAccess()
@@ -77,7 +71,7 @@ namespace Canzsoft.Silverlight.Tools
             }
         }
 
-        private static int CleanupOldHandlers(List<WeakReference> handlers, EventHandler[] callees, int count)
+        private static int CleanupOldHandlers(IList<WeakReference> handlers, EventHandler[] callees, int count)
         {
             for (int i = handlers.Count - 1; i >= 0; i--)
             {
