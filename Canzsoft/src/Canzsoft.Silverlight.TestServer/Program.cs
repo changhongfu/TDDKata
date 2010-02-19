@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -10,6 +11,14 @@ namespace Canzsoft.Silverlight.TestServer
     class Program
     {
         const int PORT_NUMBER = 9999;
+
+        private static readonly EmployeeDetails[] EmployeeData =
+        {
+            new EmployeeDetails { Id = Guid.NewGuid(), FirstName = "Jane", LastName = "Smith", Phone = "09-11122234", Email = "jane.smith@canzsoft.com" },
+            new EmployeeDetails { Id = Guid.NewGuid(), FirstName = "Jack", LastName = "Smith", Phone = "09-11122235", Email = "jack.smith@canzsoft.com"  },
+            new EmployeeDetails { Id = Guid.NewGuid(), FirstName = "Joe", LastName = "Smith", Phone = "09-11122236", Email = "joe.smith@canzsoft.com"  },
+            new EmployeeDetails { Id = Guid.NewGuid(), FirstName = "Jeff", LastName = "Smith", Phone = "09-11122237", Email = "jeff.smith@canzsoft.com"  }
+        };
 
         private static bool _keepAppRunning = true;
         private static HttpListener _listener;
@@ -109,18 +118,14 @@ namespace Canzsoft.Silverlight.TestServer
         {
             if (requestXml.Contains("GetEmployeesRequest"))
             {
-                EmployeeInfo[] employees = new []
-                {
-                    new EmployeeInfo { Id = Guid.NewGuid(), Name = "Jane Smith" },
-                    new EmployeeInfo { Id = Guid.NewGuid(), Name = "Jack Smith" },
-                    new EmployeeInfo { Id = Guid.NewGuid(), Name = "Joe Smith" },
-                    new EmployeeInfo { Id = Guid.NewGuid(), Name = "Jeff Smith" }
-                };
+                var employees = EmployeeData.Select(e => new EmployeeInfo { Id = e.Id, Name = e.FirstName + " " + e.LastName }).ToArray();
                 return XmlSerializerHelper.Serialize(new GetEmployeesResponse {Employees = employees});
             }
             if (requestXml.Contains("GetEmployeeRequest"))
             {
-                var employee = new EmployeeInfo { Id = Guid.NewGuid(), Name = "Jane Smith" };
+                int index = requestXml.IndexOf("<Id>") + 4;
+                string id = requestXml.Substring(index, 36);
+                var employee = EmployeeData.Single(e => e.Id == new Guid(id));
                 return XmlSerializerHelper.Serialize(new GetEmployeeResponse { Employee = employee });
             }
             return "<?xml version=\"1.0\" encoding=\"utf-8\"?>";

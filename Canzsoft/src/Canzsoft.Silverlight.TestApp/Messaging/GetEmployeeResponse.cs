@@ -7,6 +7,6 @@ namespace Canzsoft.Silverlight.TestApp.Messaging
     [XmlRoot("GetEmployeeResponse")]
     public class GetEmployeeResponse : Response
     {
-        public EmployeeInfo Employee { get; set; }
+        public EmployeeDetails Employee { get; set; }
     }
 }

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncRunner.cs" />
+    <Compile Include="BindingHelper.cs" />
     <Compile Include="Commands\AfterCommandDecorator.cs" />
     <Compile Include="Commands\AsyncCommandDecorator.cs" />
     <Compile Include="Commands\BeforeCommandDecorator.cs" />

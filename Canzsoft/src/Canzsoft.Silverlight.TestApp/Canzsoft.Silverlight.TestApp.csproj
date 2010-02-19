@@ -70,6 +70,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeDetails.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Views\EmployeeForm.xaml.cs">
       <DependentUpon>EmployeeForm.xaml</DependentUpon>

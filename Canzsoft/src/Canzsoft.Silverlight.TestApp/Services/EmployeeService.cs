@@ -14,7 +14,7 @@ namespace Canzsoft.Silverlight.TestApp.Services
             return response.Employees;
         }
 
-        public EmployeeInfo GetEmployee(Guid id)
+        public EmployeeDetails GetEmployee(Guid id)
         {
             var proxy = new ServiceProxy();
             var response = proxy.Invoke<GetEmployeeResponse>(new GetEmployeeRequest { Id = id });

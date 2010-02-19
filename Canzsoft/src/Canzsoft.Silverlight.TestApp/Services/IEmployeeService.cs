@@ -7,6 +7,6 @@ namespace Canzsoft.Silverlight.TestApp.Services
     {
         EmployeeInfo[] GetEmployees();
 
-        EmployeeInfo GetEmployee(Guid id);
+        EmployeeDetails GetEmployee(Guid id);
     }
 }

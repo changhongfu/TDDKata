@@ -1,4 +1,5 @@
-﻿using Canzsoft.Silverlight.TestApp.ViewModels;
+﻿using System.Windows.Controls;
+using Canzsoft.Silverlight.TestApp.ViewModels;
 
 namespace Canzsoft.Silverlight.TestApp.Views
 {
@@ -8,12 +9,18 @@ namespace Canzsoft.Silverlight.TestApp.Views
         {
             InitializeComponent();
 
-            this.DataContext = new EmployeeViewModel();
+            ViewModel = new EmployeeViewModel();
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private EmployeeViewModel ViewModel
         {
+            get { return DataContext as EmployeeViewModel; }
+            set { DataContext = value; }
+        }
 
+        private void EmployeeButtonOnClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ViewModel.LoadEmployeeDetailsCommand.Execute(((Button)sender).Tag);
         }
     }
 }

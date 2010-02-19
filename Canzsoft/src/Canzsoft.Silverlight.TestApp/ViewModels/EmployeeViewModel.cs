@@ -1,3 +1,5 @@
+using System;
+using System.Windows;
 using System.Windows.Input;
 using Canzsoft.Silverlight.TestApp.Models;
 using Canzsoft.Silverlight.TestApp.Services;
@@ -11,7 +13,9 @@ namespace Canzsoft.Silverlight.TestApp.ViewModels
         private readonly IEmployeeService _service;
 
         private EmployeeInfo[] _employees;
-        private bool _isLoading;
+        private EmployeeDetails _employeeDetails;
+        private bool _isLoadingList;
+        private bool _isLoadingDetails;
 
         public EmployeeViewModel() : this(new EmployeeService())
         {
@@ -24,8 +28,14 @@ namespace Canzsoft.Silverlight.TestApp.ViewModels
             var commandResult = new CommandResult<EmployeeInfo[]>();
             LoadEmployeesCommand = new DelegateCommand(p => commandResult.Result = _service.GetEmployees())
                                       .ExecuteAsync()
-                                      .BeforeExecute(() => IsLoading = true)
-                                      .AfterExecute(() => { Employees = commandResult.Result; IsLoading = false; });
+                                      .BeforeExecute(() => IsLoadingList = true)
+                                      .AfterExecute(() => { Employees = commandResult.Result; IsLoadingList = false; });
+
+            var employeeDetailsResult = new CommandResult<EmployeeDetails>();
+            LoadEmployeeDetailsCommand = new DelegateCommand(p => employeeDetailsResult.Result = _service.GetEmployee((Guid)p))
+                                         .ExecuteAsync()
+                                         .BeforeExecute(() => IsLoadingDetails = true)
+                                         .AfterExecute(() => { CurrentEmployee = employeeDetailsResult.Result; IsLoadingDetails = false; });
         }
 
         //Can also use AyncRunner do same thing, which is better?
@@ -47,16 +57,38 @@ namespace Canzsoft.Silverlight.TestApp.ViewModels
             }
         }
 
-        public bool IsLoading
+        public EmployeeDetails CurrentEmployee
         {
-            get { return _isLoading; }
+            get { return _employeeDetails; }
             set
             {
-                _isLoading = value;
-                OnPropertyChanged("IsLoading");
+                _employeeDetails = value;
+                OnPropertyChanged("CurrentEmployee");
+ ;           }
+        }
+
+        public bool IsLoadingList
+        {
+            get { return _isLoadingList; }
+            set
+            {
+                _isLoadingList = value;
+                OnPropertyChanged("IsLoadingList");
+            }
+        }
+
+        public bool IsLoadingDetails
+        {
+            get { return _isLoadingDetails; }
+            set
+            {
+                _isLoadingDetails = value;
+                OnPropertyChanged("IsLoadingDetails");
             }
         }
 
         public ICommand LoadEmployeesCommand { get; private set; }
+
+        public ICommand LoadEmployeeDetailsCommand { get; private set; }
     }
 }
