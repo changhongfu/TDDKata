@@ -26,13 +26,13 @@ namespace Canzsoft.Silverlight.TestApp.ViewModels
             _service = service;
            // LoadEmployeesCommand = new DelegateCommand(p => LoadEmployees());
             var commandResult = new CommandResult<EmployeeInfo[]>();
-            LoadEmployeesCommand = new DelegateCommand(p => commandResult.Result = _service.GetEmployees())
+            LoadEmployeesCommand = new RelayCommand(p => commandResult.Result = _service.GetEmployees())
                                       .ExecuteAsync()
                                       .BeforeExecute(() => IsLoadingList = true)
                                       .AfterExecute(() => { Employees = commandResult.Result; IsLoadingList = false; });
 
             var employeeDetailsResult = new CommandResult<EmployeeDetails>();
-            LoadEmployeeDetailsCommand = new DelegateCommand(p => employeeDetailsResult.Result = _service.GetEmployee((Guid)p))
+            LoadEmployeeDetailsCommand = new RelayCommand(p => employeeDetailsResult.Result = _service.GetEmployee((Guid)p))
                                          .ExecuteAsync()
                                          .BeforeExecute(() => IsLoadingDetails = true)
                                          .AfterExecute(() => { CurrentEmployee = employeeDetailsResult.Result; IsLoadingDetails = false; });

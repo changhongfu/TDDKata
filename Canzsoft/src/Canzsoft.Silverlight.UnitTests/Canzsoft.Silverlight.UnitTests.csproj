@@ -45,7 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Rhino.Mocks 3.5.Silverlight.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system">
       <Private>True</Private>
@@ -64,15 +66,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rpc\RpcXmlSerializerTest.cs" />
     <Compile Include="Rpc\ServiceProxyTest.cs" />
+    <Compile Include="Tools\AfterCommandDecoratorTest.cs" />
+    <Compile Include="Tools\BeforeCommandDecoratorTest.cs" />
+    <Compile Include="Tools\BoolToVisibilityConverterTest.cs" />
+    <Compile Include="Tools\CommandDecoratorTest.cs" />
+    <Compile Include="Tools\DelegateCommand.cs" />
+    <Compile Include="Tools\RelayCommandTest.cs" />
+    <Compile Include="Tools\ViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Canzsoft.Silverlight.Rpc\Canzsoft.Silverlight.Rpc.csproj">
       <Project>{9626A725-0689-44BD-98D5-08D207474424}</Project>
       <Name>Canzsoft.Silverlight.Rpc</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tools\" />
+    <ProjectReference Include="..\Canzsoft.Silverlight.Tools\Canzsoft.Silverlight.Tools.csproj">
+      <Project>{07F45A47-261F-4779-A8E1-4FFF6F201B6B}</Project>
+      <Name>Canzsoft.Silverlight.Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
