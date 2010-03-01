@@ -1,0 +1,336 @@
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:04:53) [GET]
+
+ActionView::MissingTemplate (Missing template say/hello.erb in view path app/views):
+  
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:06:52) [GET]
+Rendering say/hello
+Completed in 15ms (View: 11, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:11:53) [GET]
+Rendering say/hello
+Completed in 22ms (View: 18, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:12:15) [GET]
+Rendering say/hello
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:19:27) [GET]
+Rendering say/goodbye
+Completed in 15ms (View: 12, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:21:07) [GET]
+Rendering say/hello
+Completed in 125ms (View: 120, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:21:12) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:22:26) [GET]
+Rendering say/goodbye
+ERROR: compiling _run_rhtml_app47views47say47goodbye46rhtml RAISED compile error
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:13: syntax error, unexpected tIDENTIFIER, expecting ')'
+@output_buffer.concat "\t\t\tSay "; @output_buffer.concat(( link_to "Hello, :action => "hello" ).to_s); @output_buffer.concat " again.\n"
+                                                                                             ^
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:13: syntax error, unexpected tIDENTIFIER, expecting ')'
+@output_buffer.concat "\t\t\tSay "; @output_buffer.concat(( link_to "Hello, :action => "hello" ).to_s); @output_buffer.concat " again.\n"
+                                                                                                                                     ^
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:14: syntax error, unexpected $undefined, expecting ')'
+@output_buffer.concat "\t\t</p>\n"
+                        ^
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:15: unknown regexp options - bdy
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:15: syntax error, unexpected $undefined
+@output_buffer.concat "\t</body>\n"
+                                 ^
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:16: unterminated string meets end of file
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:16: syntax error, unexpected tSTRING_END, expecting tSTRING_CONTENT or tREGEXP_END or tSTRING_DBEG or tSTRING_DVAR
+Function body:           def _run_rhtml_app47views47say47goodbye46rhtml(local_assigns)
+            old_output_buffer = output_buffer;;@output_buffer = '';  __in_erb_template=true ; @output_buffer.concat "<html>\n"
+@output_buffer.concat "\t<head>\n"
+@output_buffer.concat "\t\t<title>\n"
+@output_buffer.concat "\t\t\tSee You Latter!\n"
+@output_buffer.concat "\t\t</title>\n"
+@output_buffer.concat "\t</head>\n"
+@output_buffer.concat "\t<body>\n"
+@output_buffer.concat "\t\t<h1>Goodbye!</h1>\n"
+@output_buffer.concat "\t\t<p>\n"
+@output_buffer.concat "\t\t\tIt was nice having you here.\n"
+@output_buffer.concat "\t\t</p>\n"
+@output_buffer.concat "\t\t<p>\n"
+@output_buffer.concat "\t\t\tSay "; @output_buffer.concat(( link_to "Hello, :action => "hello" ).to_s); @output_buffer.concat " again.\n"
+@output_buffer.concat "\t\t</p>\n"
+@output_buffer.concat "\t</body>\n"
+@output_buffer.concat "</html>"; @output_buffer
+          ensure
+            self.output_buffer = old_output_buffer
+          end
+Backtrace: D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:16:in `compile!'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:61:in `compile'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:28:in `render'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/template.rb:205:in `render_template'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:265:in `render'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1250:in `render_for_file'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:945:in `render_without_benchmark'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:10:in `realtime'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1326:in `default_render'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1332:in `perform_action_without_filters'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:617:in `call_filters'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:10:in `realtime'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/flash.rb:146:in `perform_action'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `send'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `process_without_filters'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:606:in `process'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:391:in `process'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:386:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/routing/route_set.rb:437:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:87:in `dispatch'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:121:in `_call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:29:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:29:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:9:in `cache'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:28:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/activerecord-2.3.5/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/string_coercion.rb:25:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/head.rb:9:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/methodoverride.rb:24:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/params_parser.rb:15:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/session/cookie_store.rb:93:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/failsafe.rb:26:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `synchronize'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:114:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/reloader.rb:34:in `run'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:108:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/rails/rack/static.rb:31:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:46:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:40:in `each'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/urlmap.rb:40:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/rails/rack/log_tailer.rb:17:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/content_length.rb:13:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/chunked.rb:15:in `call'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/handler/mongrel.rb:64:in `process'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:159:in `process_client'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:158:in `each'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:158:in `process_client'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:285:in `run'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:285:in `initialize'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:285:in `new'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:285:in `run'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:268:in `initialize'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:268:in `new'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/mongrel-1.1.2-x86-mswin32/lib/mongrel.rb:268:in `run'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rack-1.0.1/lib/rack/handler/mongrel.rb:34:in `run'
+D:/Tools/InstantRails_20/ruby/lib/ruby/gems/1.8/gems/rails-2.3.5/lib/commands/server.rb:111
+D:/Tools/InstantRails_20/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+D:/Tools/InstantRails_20/ruby/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+script/server:3
+
+ActionView::TemplateError (compile error
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:13: syntax error, unexpected tIDENTIFIER, expecting ')'
+@output_buffer.concat "\t\t\tSay "; @output_buffer.concat(( link_to "Hello, :action => "hello" ).to_s); @output_buffer.concat " again.\n"
+                                                                                             ^
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:13: syntax error, unexpected tIDENTIFIER, expecting ')'
+@output_buffer.concat "\t\t\tSay "; @output_buffer.concat(( link_to "Hello, :action => "hello" ).to_s); @output_buffer.concat " again.\n"
+                                                                                                                                     ^
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:14: syntax error, unexpected $undefined, expecting ')'
+@output_buffer.concat "\t\t</p>\n"
+                        ^
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:15: unknown regexp options - bdy
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:15: syntax error, unexpected $undefined
+@output_buffer.concat "\t</body>\n"
+                                 ^
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:16: unterminated string meets end of file
+D:/MyWork/changhong/rails/demo/app/views/say/goodbye.rhtml:16: syntax error, unexpected tSTRING_END, expecting tSTRING_CONTENT or tREGEXP_END or tSTRING_DBEG or tSTRING_DVAR) on line #13 of app/views/say/goodbye.rhtml:
+10: 			It was nice having you here.
+11: 		</p>
+12: 		<p>
+13: 			Say <%= link_to "Hello, :action => "hello" %> again.
+14: 		</p>
+15: 	</body>
+16: </html>
+
+    app/views/say/goodbye.rhtml:16:in `compile!'
+
+Rendered rescues/_trace (276.0ms)
+Rendered rescues/_request_and_response (5.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:22:46) [GET]
+Rendering say/goodbye
+Completed in 23ms (View: 19, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:22:50) [GET]
+Rendering say/hello
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:22:53) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:22:56) [GET]
+Rendering say/hello
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:22:58) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:00) [GET]
+Rendering say/hello
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:03) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:17) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:19) [GET]
+Rendering say/hello
+Completed in 6ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:20) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:21) [GET]
+Rendering say/hello
+Completed in 5ms (View: 2, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:23) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:24) [GET]
+Rendering say/hello
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:25) [GET]
+Rendering say/goodbye
+Completed in 7ms (View: 3, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:26) [GET]
+Rendering say/hello
+Completed in 5ms (View: 2, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:28) [GET]
+Rendering say/goodbye
+Completed in 9ms (View: 3, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:29) [GET]
+Rendering say/hello
+Completed in 6ms (View: 2, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:34) [GET]
+Rendering say/hello
+Completed in 10ms (View: 4, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:36) [GET]
+Rendering say/goodbye
+Completed in 9ms (View: 4, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:38) [GET]
+Rendering say/hello
+Completed in 5ms (View: 2, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:40) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:45) [GET]
+Rendering say/hello
+Completed in 9ms (View: 4, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:47) [GET]
+Rendering say/goodbye
+Completed in 5ms (View: 2, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:50) [GET]
+Rendering say/hello
+Completed in 7ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:53) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:23:55) [GET]
+Rendering say/hello
+Completed in 11ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:23:58) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 4, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:24:01) [GET]
+Rendering say/hello
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:24:02) [GET]
+Rendering say/goodbye
+Completed in 9ms (View: 3, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#goodbye (for 127.0.0.1 at 2010-03-01 22:24:07) [GET]
+Rendering say/goodbye
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/goodbye]
+
+
+Processing SayController#hello (for 127.0.0.1 at 2010-03-01 22:24:11) [GET]
+Rendering say/hello
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/say/hello]
