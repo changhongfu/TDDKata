@@ -750,3 +750,16 @@ Processing ProductsController#index (for 127.0.0.1 at 2010-03-02 16:46:39) [GET]
 Rendering template within layouts/products
 Rendering products/index
 Completed in 57ms (View: 42, DB: 2) | 200 OK [http://localhost/products]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-03-02 17:12:18) [GET]
+
+ActionController::RoutingError (No route matches "/store" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 17:13:15) [GET]
+Rendering store/index
+Completed in 20ms (View: 15, DB: 0) | 200 OK [http://localhost/store]
