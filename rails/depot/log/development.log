@@ -763,3 +763,132 @@ Rendering rescues/layout (not_found)
 Processing StoreController#index (for 127.0.0.1 at 2010-03-02 17:13:15) [GET]
 Rendering store/index
 Completed in 20ms (View: 15, DB: 0) | 200 OK [http://localhost/store]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2010-03-02 22:57:15) [GET]
+  [4;36;1mProduct Load (17.0ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 4734ms (View: 4699, DB: 17) | 200 OK [http://localhost/products/]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2010-03-02 22:57:31) [GET]
+Rendering template within layouts/products
+Rendering products/new
+Completed in 59ms (View: 39, DB: 0) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#create (for 127.0.0.1 at 2010-03-02 23:06:35) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"foIiZ7SvVtsM+K40XvVkkSdwtZ3a8Tl6niHcOO5XWPQ=", "product"=>{"image_url"=>"", "price"=>"0.0", "title"=>"", "description"=>""}}
+  [4;35;1mProduct Load (1.0ms)[0m   [0mSELECT "products".id FROM "products" WHERE ("products"."title" = '') LIMIT 1[0m
+Rendering template within layouts/products
+Rendering products/new
+Completed in 75ms (View: 44, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:07:14) [GET]
+Rendering store/index
+Completed in 35ms (View: 30, DB: 0) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:17:15) [GET]
+  [4;36;1mProduct Load (2.0ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+Rendering store/index
+Completed in 42ms (View: 29, DB: 2) | 200 OK [http://localhost/store/index]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:17:29) [GET]
+  [4;35;1mProduct Load (3.0ms)[0m   [0mSELECT * FROM "products" ORDER BY title[0m
+Rendering store/index
+Completed in 22ms (View: 2, DB: 3) | 200 OK [http://localhost/store/index]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:21:30) [GET]
+  [4;36;1mProduct Load (3.0ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+Rendering store/index
+Completed in 50ms (View: 31, DB: 3) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:29:15) [GET]
+  [4;35;1mProduct Load (2.0ms)[0m   [0mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Completed in 136ms (View: 30, DB: 2) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:30:15) [GET]
+  [4;36;1mProduct Load (3.0ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Completed in 55ms (View: 36, DB: 3) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:30:26) [GET]
+  [4;35;1mProduct Load (3.0ms)[0m   [0mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Completed in 52ms (View: 33, DB: 3) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:32:36) [GET]
+  [4;36;1mProduct Load (2.0ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Completed in 43ms (View: 31, DB: 2) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:33:16) [GET]
+  [4;35;1mProduct Load (2.0ms)[0m   [0mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Completed in 47ms (View: 34, DB: 2) | 200 OK [http://localhost/store/]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:33:19) [POST]
+  Parameters: {"authenticity_token"=>"foIiZ7SvVtsM+K40XvVkkSdwtZ3a8Tl6niHcOO5XWPQ="}
+  [4;36;1mProduct Load (3.0ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Completed in 158ms (View: 137, DB: 3) | 200 OK [http://localhost/store]
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-02 23:38:26) [GET]
+  [4;35;1mProduct Load (2.0ms)[0m   [0mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Completed in 54ms (View: 35, DB: 2) | 200 OK [http://localhost/store/index]
+  [4;36;1mSQL (1.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateProducts (20100301121725)
+Migrating to AddPriceToProduct (20100302033401)
+Migrating to AddTestData (20100302045652)
+Migrating to CreateSessions (20100302124044)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCREATE TABLE "sessions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "session_id" varchar(255) NOT NULL, "data" text, "created_at" datetime, "updated_at" datetime) [0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE INDEX "index_sessions_on_session_id" ON "sessions" ("session_id")[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mCREATE INDEX "index_sessions_on_updated_at" ON "sessions" ("updated_at")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100302124044')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (1.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mPRAGMA index_list("products")[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mPRAGMA index_list("sessions")[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mPRAGMA index_info('index_sessions_on_updated_at')[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mPRAGMA index_info('index_sessions_on_session_id')[0m
+
+
+Processing StoreController#index (for 127.0.0.1 at 2010-03-03 00:07:01) [POST]
+  Parameters: {"authenticity_token"=>"foIiZ7SvVtsM+K40XvVkkSdwtZ3a8Tl6niHcOO5XWPQ="}
+  [4;36;1mProduct Load (2.0ms)[0m   [0;1mSELECT * FROM "products" ORDER BY title[0m
+Rendering template within layouts/store
+Rendering store/index
+Completed in 172ms (View: 158, DB: 2) | 200 OK [http://localhost/store]
