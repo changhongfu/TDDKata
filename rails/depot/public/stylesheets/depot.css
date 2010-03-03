@@ -167,6 +167,7 @@ h1 {
 
 .depot-form fieldset {
   background: #efe;
+  line-height: 30px;
 }
 
 .depot-form legend {
