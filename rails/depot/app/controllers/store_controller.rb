@@ -21,6 +21,15 @@ class StoreController < ApplicationController
     redirect_to_index 
   end
 
+  def checkout
+    @cart = find_cart
+    if @cart.items.empty?
+      redirect_to_index "You cart is empty"
+    else
+      @order = Order.new
+    end
+  end
+
   private
     def find_cart
 	  session[:cart] ||= Cart.new
