@@ -1,8 +1,8 @@
 <div class="depot-form">
-    <%= error_message_for 'order' %>
+    <%= error_messages_for 'order' %>
     <% form_for :order, :url => { :action => :save_order } do |form| %>
       <fieldset>
-        <lenged>Please Enter Your Details</lenged>
+        <legend>Please Enter Your Details</legend>
         <div>
           <%= form.label :name, "Name:" %>
           <%= form.text_field :name, :size => 40 %>
