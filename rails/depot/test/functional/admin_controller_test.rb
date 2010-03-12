@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class AdminControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+
+  test "index" do
+    get :index
+    assert_redirected_to :action => "login"
+    assert_equal "Please log in", flash[:notice]
   end
 end
