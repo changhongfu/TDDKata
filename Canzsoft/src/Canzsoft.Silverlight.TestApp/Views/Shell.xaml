@@ -26,7 +26,18 @@
             <RowDefinition Height="100" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel x:Name="HeaderBar" Background="MidnightBlue" Grid.Row="0" />
+        <Border Background="MidnightBlue" Grid.Row="0">
+            <StackPanel x:Name="HeaderBar"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Image Source="/Images/employee.png" Stretch="None" />
+                    <TextBlock Foreground="White" FontWeight="Bold" FontSize="12">Employees</TextBlock>
+                </StackPanel>
+                <StackPanel Margin="10, 0, 0, 0">
+                    <Image Source="/Images/timesheet.png" Stretch="None" />
+                    <TextBlock Foreground="White" FontWeight="Bold" FontSize="12">Timesheets</TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
         <Controls:DockPanel Grid.Row="1" LastChildFill="True">
             <Controls:DockPanel.Background>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
@@ -35,13 +46,13 @@
                 </LinearGradientBrush>
             </Controls:DockPanel.Background>
             
-            <local:SideBar x:Name="_navigator" Controls:DockPanel.Dock="Left" Margin="14,7,7,7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="250">
+            <!--<local:SideBar x:Name="_navigator" Controls:DockPanel.Dock="Left" Margin="14,7,7,7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="250">
                 <local:SideBar.Effect>
                     <DropShadowEffect Opacity="0.35"/>
                 </local:SideBar.Effect>
-            </local:SideBar>
+            </local:SideBar>-->
             
-            <local:Workspace x:Name="_workspace" Controls:DockPanel.Dock="Right" Margin="7,7,14,7">
+            <local:Workspace x:Name="_workspace" Controls:DockPanel.Dock="Bottom" Margin="7,7,14,7">
                 <local:Workspace.Effect>
                     <DropShadowEffect Opacity="0.35"/>
                 </local:Workspace.Effect>

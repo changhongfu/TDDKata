@@ -8,14 +8,11 @@
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Margin="10, 10, 10, 10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="150" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         
-        <Button Grid.Row="0" Content="Load Employees" cmd:Click.Command="{Binding LoadEmployeesCommand}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="180" Height="35" FontSize="14" />
-        
-        <Grid Grid.Row="1" >
+        <Grid Grid.Row="0" >
             <ListBox x:Name="_employeeList" ItemsSource="{Binding Employees}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -34,7 +31,16 @@
             </Border>
         </Grid>
         
-        <Grid Grid.Row="2">
+        <Border Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Images/add.png" Margin="20, 0, 0, 0" Stretch="None" />
+                <Image Source="/Images/edit.png" Margin="20, 0, 0, 0" Stretch="None" />
+                <Image Source="/Images/delete.png" Margin="20, 0, 0, 0" Stretch="None" />
+            </StackPanel>
+        </Border>
+       
+        
+        <!--<Grid Grid.Row="2">
             <Grid x:Name="_employeeDetails" Margin="0, 20, 0, 0" DataContext="{Binding CurrentEmployee}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150" />
@@ -66,6 +72,6 @@
                     </TextBlock>
                 </Border>
             </Border>
-        </Grid>
+        </Grid>-->
     </Grid>
 </UserControl>
