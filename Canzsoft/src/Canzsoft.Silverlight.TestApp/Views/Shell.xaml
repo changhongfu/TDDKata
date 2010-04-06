@@ -27,16 +27,21 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Background="MidnightBlue" Grid.Row="0">
-            <StackPanel x:Name="HeaderBar"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel>
-                    <Image Source="/Images/employee.png" Stretch="None" />
-                    <TextBlock Foreground="White" FontWeight="Bold" FontSize="12">Employees</TextBlock>
-                </StackPanel>
-                <StackPanel Margin="10, 0, 0, 0">
-                    <Image Source="/Images/timesheet.png" Stretch="None" />
-                    <TextBlock Foreground="White" FontWeight="Bold" FontSize="12">Timesheets</TextBlock>
-                </StackPanel>
-            </StackPanel>
+            <ItemsControl ItemsSource="{Binding Path=Modules}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel x:Name="HeaderBar" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="20, 0, 0, 0" MouseLeftButtonDown="Module_MouseLeftButtonDown" Tag="{Binding}">
+                                <Image Source="{Binding Path=ImageUrl}" Stretch="None" />
+                                <TextBlock Foreground="White" FontWeight="Bold" FontSize="12" Text="{Binding Path=Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Border>
         <Controls:DockPanel Grid.Row="1" LastChildFill="True">
             <Controls:DockPanel.Background>

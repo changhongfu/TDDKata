@@ -71,7 +71,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeDetails.cs" />
+    <Compile Include="Modules\EmployeeModule.cs" />
+    <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\TimesheetModule.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\EmployeeForm.xaml.cs">
       <DependentUpon>EmployeeForm.xaml</DependentUpon>
     </Compile>
