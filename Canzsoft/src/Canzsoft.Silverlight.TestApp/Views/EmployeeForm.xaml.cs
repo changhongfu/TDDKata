@@ -21,7 +21,7 @@ namespace Canzsoft.Silverlight.TestApp.Views
 
         private void EmployeeButtonOnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.LoadEmployeeDetailsCommand.Execute(((Button)sender).Tag);
+           ViewModel.LoadEmployeeDetailsCommand.Execute(((Button)sender).Tag);
         }
     }
 }
