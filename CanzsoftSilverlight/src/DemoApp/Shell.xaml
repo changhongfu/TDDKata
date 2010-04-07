@@ -17,7 +17,7 @@
                 
             </ItemsControl>
         </Border>
-        <Controls:DockPanel Grid.Row="1" LastChildFill="True">
+        <!--<Controls:DockPanel Grid.Row="1" LastChildFill="True">
             <Controls:DockPanel.Background>
                 <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
                     <GradientStop Offset="0" Color="#FF96B4E0" />
@@ -25,6 +25,19 @@
                 </LinearGradientBrush>
             </Controls:DockPanel.Background>
 
-        </Controls:DockPanel>
+        </Controls:DockPanel>-->
+        <Border Grid.Row="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                    <GradientStop Offset="0" Color="#FF96B4E0" />
+                    <GradientStop Offset="1" Color="#FF638AC9" />
+                </LinearGradientBrush> 
+            </Border.Background>
+            <Grid>
+                <ContentControl Regions:RegionManager.RegionName="WorkspaceRegion">
+                    
+                </ContentControl>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

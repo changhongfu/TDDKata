@@ -22,6 +22,7 @@ namespace Employees
             RegisterViewsAndServices();
 
             _regionManager.RegisterViewWithRegion("MainMenuRegion", () => new EmployeeMenu());
+            _regionManager.RegisterViewWithRegion("WorkspaceRegion", () => new EmployeeList());
         }
 
         protected void RegisterViewsAndServices()

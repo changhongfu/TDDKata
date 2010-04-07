@@ -1,7 +1,7 @@
-using Employees.Views;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.Regions;
 using Microsoft.Practices.Unity;
+using Timesheets.Views;
 
 namespace Timesheets
 {

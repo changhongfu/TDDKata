@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Employees.Views.TimesheetMenu"
+﻿<UserControl x:Class="Timesheets.Views.TimesheetMenu"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel Margin="20, 0, 0, 0">
