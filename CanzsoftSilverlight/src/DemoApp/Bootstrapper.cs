@@ -1,6 +1,8 @@
 using System.Windows;
+using Employees;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.UnityExtensions;
+using Timesheets;
 
 namespace DemoApp
 {
@@ -9,7 +11,8 @@ namespace DemoApp
         protected override IModuleCatalog GetModuleCatalog()
         {
             var catalog = new ModuleCatalog();
-            //catalog.AddModule(typeof (MarketModule));
+            catalog.AddModule(typeof (EmployeeModule));
+            catalog.AddModule(typeof (TimesheetModule));
             return catalog;
         }
 

@@ -14,14 +14,7 @@
                         <StackPanel x:Name="HeaderBar" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="20, 0, 0, 0">
-                            <Image Source="{Binding Path=ImageUrl}" Stretch="None" />
-                            <TextBlock Foreground="White" FontWeight="Bold" FontSize="12" Text="{Binding Path=Name}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
+                
             </ItemsControl>
         </Border>
         <Controls:DockPanel Grid.Row="1" LastChildFill="True">

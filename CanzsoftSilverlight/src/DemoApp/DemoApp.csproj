@@ -111,6 +111,16 @@
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Employees\Employees.csproj">
+      <Project>{C6D1D1AA-3800-41C4-97A7-96662FAAF555}</Project>
+      <Name>Employees</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Timesheets\Timesheets.csproj">
+      <Project>{70615A3D-58B1-4C25-AD12-AA00DE11C431}</Project>
+      <Name>Timesheets</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
