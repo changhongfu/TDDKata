@@ -2,9 +2,9 @@
 
 namespace Employees.Views
 {
-    public partial class EmployeeDetails : IModuleView
+    public partial class EmployeeDetailsView : IEmployeeDetailsView
     {
-        public EmployeeDetails()
+        public EmployeeDetailsView()
         {
             InitializeComponent();
         }

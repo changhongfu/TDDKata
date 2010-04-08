@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Input;
+using DemoApp.Shared.Extensions;
 using DemoApp.Shared.Messaging;
 using DemoApp.Shared.Views;
 using Microsoft.Practices.Composite.Events;
@@ -15,11 +16,11 @@ namespace Employees.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IEventAggregator _eventAggregator;
 
-        public EmployeeListViewModel(IUnityContainer container, IRegionManager regionManager, IEventAggregator eventAggregator)
+        public EmployeeListViewModel(IUnityContainer container)
         {
             _container = container;
-            _regionManager = regionManager;
-            _eventAggregator = eventAggregator;
+            _regionManager = _container.Resolve<IRegionManager>();
+            _eventAggregator = _container.Resolve<IEventAggregator>();
 
             _eventAggregator.GetEvent<OpenEmployeeEvent>().Subscribe(OpenEmployee);
 
@@ -32,22 +33,11 @@ namespace Employees.ViewModels
             var view = _container.Resolve<IModuleView>("EmployeeDetails");
            // view.ViewModel = viewModel;
 
-            _regionManager.Regions["WorkspaceRegion"].DeactivateAll();
             _regionManager.AddToRegion("WorkspaceRegion", view);
+            _regionManager.Regions["WorkspaceRegion"].Activate(view);
 
         }
 
         public ICommand OpenEmployeeDetailsCommand { get; set; }
-    }
-
-    public static class RegionExtensions
-    {
-        public static void DeactivateAll(this IRegion region)
-        {
-            foreach (var v in region.Views)
-            {
-                region.Deactivate(v);
-            }
-        }
     }
 }

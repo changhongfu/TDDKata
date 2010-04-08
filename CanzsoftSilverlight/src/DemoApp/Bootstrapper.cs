@@ -26,7 +26,7 @@ namespace DemoApp
         protected override DependencyObject CreateShell()
         {
             var presenter = Container.Resolve<ShellPresenter>();
-            presenter.View.ShowView();
+            presenter.ShowView();
             return presenter.View as DependencyObject;
         }
     }

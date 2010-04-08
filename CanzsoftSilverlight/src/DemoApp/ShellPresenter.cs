@@ -8,5 +8,10 @@
         }
 
         public IShellView View { get; private set; }
+
+        public void ShowView()
+        {
+            View.ShowView();
+        }
     }
 }
