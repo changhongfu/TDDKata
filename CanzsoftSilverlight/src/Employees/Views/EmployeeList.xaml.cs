@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using DemoApp.Shared.Views;
+using Employees.ViewModels;
 
 namespace Employees.Views
 {
-    public partial class EmployeeList : UserControl
+    public partial class EmployeeList : IModuleView
     {
         public EmployeeList()
         {
             InitializeComponent();
+        }
+
+        public EmployeeListViewModel ViewModel
+        {
+            get { return DataContext as EmployeeListViewModel; }
+            set { DataContext = value; }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.OpenEmployeeDetailsCommand.Execute(1);
         }
     }
 }
