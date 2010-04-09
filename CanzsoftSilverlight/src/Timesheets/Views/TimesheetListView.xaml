@@ -4,7 +4,7 @@
     <Grid x:Name="LayoutRoot" Background="White">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="This is Timesheet for"></TextBlock>
-            <Button Content="Jane Smith"></Button>
+            <Button Content="Jane Smith" Click="Button_Click"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

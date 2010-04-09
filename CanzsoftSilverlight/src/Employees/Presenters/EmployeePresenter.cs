@@ -1,5 +1,6 @@
 using DemoApp.Shared.Messaging;
 using DemoApp.Shared.Views;
+using Employees.Models;
 using Employees.Views;
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Regions;
@@ -39,6 +40,11 @@ namespace Employees.Presenters
         private void OpenEmployeeList()
         {
             _regionManager.Regions["WorkspaceRegion"].Activate(_employeeListView);
+            _employeeListView.SetEmployees(new Employee[]
+                                               {
+                                                   new Employee {FullName = "Jane Smith"},
+                                                   new Employee {FullName = "Jack Smith"}
+                                               });
         }
 
         public void OpenEmployeeDetails(int employeeId)

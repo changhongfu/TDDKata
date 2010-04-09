@@ -14,11 +14,12 @@ namespace Timesheets.Presenters
         private readonly IRegionManager _regionManager;
         private readonly IEventAggregator _eventAggregator;
 
-        public TimesheetPresenter(IModuleMenuItemView menuItemView, ITimesheetListView timesheetListView, IRegionManager regionManager)
+        public TimesheetPresenter(IModuleMenuItemView menuItemView, ITimesheetListView timesheetListView, IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             _menuItemView = menuItemView;
             _timesheetListView = timesheetListView;
             _regionManager = regionManager;
+            _eventAggregator = eventAggregator;
         }
 
         public void InitialiseView()
@@ -28,6 +29,7 @@ namespace Timesheets.Presenters
             _regionManager.Regions["WorkspaceRegion"].Deactivate(_timesheetListView);
 
             _menuItemView.Clicked += (sender, args) => OpenTimesheetList();
+            _timesheetListView.EmployeeClicked += (sender, args) => SendOpenEmployeeMessage(args.Item);
         }
 
         private void OpenTimesheetList()

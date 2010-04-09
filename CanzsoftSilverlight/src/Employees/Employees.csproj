@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmployeeModule.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Presenters\EmployeeDetailsPresenter.cs" />
     <Compile Include="Presenters\EmployeePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

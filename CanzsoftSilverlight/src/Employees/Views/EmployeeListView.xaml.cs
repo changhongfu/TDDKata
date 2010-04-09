@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using DemoApp.Shared.Events;
+using Employees.Models;
 
 namespace Employees.Views
 {
     public partial class EmployeeListView : IEmployeeListView
     {
         public event EventHandler<EventArgs<int>> EmployeeSelected;
-
+        
         public EmployeeListView()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void SetEmployees(Employee[] employees)
+        {
+            employeeListBox.DataContext = employees;
+        }
+
+
+        private void EmployeeOnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var handler = EmployeeSelected;
             if (handler != null)
