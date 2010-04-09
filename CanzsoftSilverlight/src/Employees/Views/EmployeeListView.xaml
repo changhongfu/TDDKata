@@ -7,34 +7,85 @@
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>
     </UserControl.Resources>
+    
     <Grid x:Name="LayoutRoot">
-        <Border Background="#AAAAFFFF" CornerRadius="2,2,2,2">
-            <ListBox x:Name="employeeListBox" ItemContainerStyle="{StaticResource StretchedContainerStyle}" ItemsSource="{Binding}" SelectionChanged="EmployeeOnSelectionChanged" FontSize="14" Foreground="#FF535353">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="120" />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row ="0" Grid.Column="0">
-                                <TextBlock x:Name="txtEmployeeName" Text="{Binding Mode=OneWay, Path=FullName}" />
-                            </StackPanel>
-                            <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
-                                <TextBlock x:Name="txtType" Text="Part time" TextWrapping="Wrap" />
-                            </StackPanel>
-                            <StackPanel Grid.Row="1" HorizontalAlignment="Left" Grid.ColumnSpan="2">
-                                <TextBlock x:Name="referenceNumberTextBlock" Text="Something" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Stretch" Grid.Row="1" />
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="Black" Stroke="Black" VerticalAlignment="Top" Height="60" Grid.Column="0" />
+            <Path Fill="Black" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Height="60" Data="M0.5,0.5 L18.939657,0.5 41.5,19.589279 41.5,42.499999 0.5,42.499999 z" Grid.Column="1"/>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="../Images/employees.png" Margin="15, 5, 0, 0"></Image>
+                <TextBlock Text="EMPLOYEES" Margin="5, 0, 0, 0" Foreground="White" FontSize="25" VerticalAlignment="Bottom"></TextBlock>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Row="1" Background="Black" BorderThickness="4" BorderBrush="Black">
+            <Border BorderThickness="0, 4, 0, 0" BorderBrush="Orange">
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                            <GradientStop Offset="0" Color="LightYellow" />
+                            <GradientStop Offset="1" Color="PaleGoldenrod" />
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="800" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid Grid.Column="0" Margin="20, 20, 20, 10" VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <ListBox x:Name="employeeListBox"  Background="Transparent" ItemContainerStyle="{StaticResource StretchedContainerStyle}" VerticalAlignment = "Stretch" ItemsSource="{Binding}" BorderThickness="0" SelectionChanged="EmployeeOnSelectionChanged" FontSize="14" Foreground="#FF535353">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="Moccasin" BorderThickness="1" BorderBrush="SandyBrown" Padding="5, 2, 2, 5">
+                                        <Grid HorizontalAlignment="Stretch" Background="Transparent">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="180" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Source="../Images/employee.png" Grid.Column="0" ></Image>
+
+                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Margin="10, 0, 0, 0">
+                                                <TextBlock x:Name="txtEmployeeName" Text="{Binding Mode=OneWay, Path=FullName}" FontSize="22" />
+                                            </StackPanel>
+
+                                            <StackPanel Grid.Column="2" HorizontalAlignment="Right" Margin="0, 5, 10, 0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontWeight="Bold" Text="H: "></TextBlock>
+                                                    <TextBlock Text="{Binding Path=HomePhone}"></TextBlock>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontWeight="Bold" Text="M: "></TextBlock>
+                                                    <TextBlock Text="{Binding Path=MobilePhone}"></TextBlock>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10, 10, 0, 0">
+                            <Image Source="../Images/add.png"  Stretch="None" MouseLeftButtonDown="AddImage_MouseLeftButtonDown" />
+                            <Image Source="../Images/edit.png" Margin="20, 0, 0, 0" Stretch="None" />
+                            <Image Source="../Images/delete.png" Margin="20, 0, 0, 0" Stretch="None" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
         </Border>
     </Grid>
+    
 </UserControl>

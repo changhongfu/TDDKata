@@ -15,8 +15,8 @@
             <Rectangle Fill="Black" Stroke="Black" VerticalAlignment="Top" Height="60" Grid.Column="0" />
             <Path Fill="Black" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Height="60" Data="M0.5,0.5 L18.939657,0.5 41.5,19.589279 41.5,42.499999 0.5,42.499999 z" Grid.Column="1"/>
             <StackPanel Orientation="Horizontal">
-                <Image Source="../Images/employee.png" Width="30" Height="40" Margin="10, 0, 0, 0"></Image>
-                <TextBlock Text="Employees" Foreground="White" FontSize="25" VerticalAlignment="Bottom"></TextBlock>
+                <Image Source="../Images/employee.png" Margin="15, 5, 0, 0"></Image>
+                <TextBlock Text="{Binding Path=FullName}" Foreground="White" FontSize="25" VerticalAlignment="Bottom"></TextBlock>
             </StackPanel>
         </Grid>
         <Border Grid.Row="1" Background="Black" BorderThickness="4" BorderBrush="Black">

@@ -92,13 +92,21 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\employee.png" />
+    <Resource Include="Images\employees.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DemoApp.Shared\DemoApp.Shared.csproj">
       <Project>{2F34804E-6B83-424A-A19B-F41F0DBFEED2}</Project>
       <Name>DemoApp.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\employee.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

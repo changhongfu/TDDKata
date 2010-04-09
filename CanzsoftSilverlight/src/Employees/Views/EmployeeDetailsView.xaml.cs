@@ -1,4 +1,4 @@
-﻿using DemoApp.Shared.Views;
+﻿using Employees.Models;
 
 namespace Employees.Views
 {
@@ -7,6 +7,11 @@ namespace Employees.Views
         public EmployeeDetailsView()
         {
             InitializeComponent();
+        }
+
+        public void SetEmployee(Employee employee)
+        {
+            DataContext = employee;
         }
     }
 }

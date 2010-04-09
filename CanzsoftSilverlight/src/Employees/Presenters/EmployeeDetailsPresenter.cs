@@ -1,3 +1,4 @@
+using Employees.Models;
 using Employees.Views;
 using Microsoft.Practices.Composite.Regions;
 
@@ -14,8 +15,9 @@ namespace Employees.Presenters
             _employeeDetailsView = employeeDetailsView;
         }
 
-        public void ShowView()
+        public void ShowView(Employee employee)
         {
+            _employeeDetailsView.SetEmployee(employee);
             _regionManager.AddToRegion("WorkspaceRegion", _employeeDetailsView);
             _regionManager.Regions["WorkspaceRegion"].Activate(_employeeDetailsView);
         }

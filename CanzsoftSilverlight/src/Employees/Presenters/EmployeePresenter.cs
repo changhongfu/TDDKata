@@ -1,3 +1,4 @@
+using System.Linq;
 using DemoApp.Shared.Messaging;
 using DemoApp.Shared.Views;
 using Employees.Models;
@@ -10,6 +11,12 @@ namespace Employees.Presenters
 {
     public class EmployeePresenter
     {
+        private static readonly Employee[] Employees = new[]
+        {
+            new Employee {Id = 1, FullName = "Jane Smith", HomePhone = "09-35369874", MobilePhone = "021-97985634"},
+            new Employee {Id = 2, FullName = "Jack Smith", HomePhone = "09-13145987", MobilePhone = "021-78865458"}
+        };
+
         private readonly IModuleMenuItemView _menuItemView;
         private readonly IEmployeeListView _employeeListView;
 
@@ -40,17 +47,13 @@ namespace Employees.Presenters
         private void OpenEmployeeList()
         {
             _regionManager.Regions["WorkspaceRegion"].Activate(_employeeListView);
-            _employeeListView.SetEmployees(new Employee[]
-                                               {
-                                                   new Employee {FullName = "Jane Smith"},
-                                                   new Employee {FullName = "Jack Smith"}
-                                               });
+            _employeeListView.SetEmployees(Employees);
         }
 
         public void OpenEmployeeDetails(int employeeId)
         {
             var presenter = _container.Resolve<EmployeeDetailsPresenter>();
-            presenter.ShowView();
+            presenter.ShowView(Employees.Single(e => e.Id == employeeId));
         }
     }
 }

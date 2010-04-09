@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using DemoApp.Shared.Events;
 using Employees.Models;
 
@@ -20,14 +20,19 @@ namespace Employees.Views
             employeeListBox.DataContext = employees;
         }
 
-
         private void EmployeeOnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var handler = EmployeeSelected;
             if (handler != null)
             {
-                handler(this, new EventArgs<int>(1));
+                var emp = (Employee)e.AddedItems[0];
+                handler(this, new EventArgs<int>(emp.Id));
             }
+        }
+
+        private void AddImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
