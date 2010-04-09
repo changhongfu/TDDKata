@@ -62,10 +62,8 @@
     <Compile Include="Extensions\RegionExtensions.cs" />
     <Compile Include="Messaging\OpenEmployeeEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\IMenuViewModel.cs" />
     <Compile Include="Views\IModuleMenuItemView.cs" />
     <Compile Include="Views\IModuleView.cs" />
-    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
