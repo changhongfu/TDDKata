@@ -3,37 +3,55 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:Regions="clr-namespace:Microsoft.Practices.Composite.Presentation.Regions;assembly=Microsoft.Practices.Composite.Presentation">
     <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        
-        <Border Background="MidnightBlue" Grid.Row="0">
-            <ItemsControl Regions:RegionManager.RegionName="MainMenuRegion">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel x:Name="HeaderBar" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                
-            </ItemsControl>
-        </Border>
-        
-        <Border Grid.Row="1" Padding="20, 20, 20, 20">
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
-                    <GradientStop Offset="0" Color="#FF96B4E0" />
-                    <GradientStop Offset="1" Color="#FF638AC9" />
-                </LinearGradientBrush> 
-            </Border.Background>
-            <ContentControl Regions:RegionManager.RegionName="WorkspaceRegion" 
+        <Image Source="Images/background.png" Stretch="UniformToFill" />
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/logo.png" Margin="10, 10, 0, 0"  />
+                <TextBlock VerticalAlignment="Bottom" Margin="10, 0, 0, 0" Foreground="Green" FontSize="40" Text="CANZTIME"></TextBlock>
+            </StackPanel>
+
+            <Border Grid.Row="1" Padding="20, 20, 20, 20">
+                <ContentControl Regions:RegionManager.RegionName="WorkspaceRegion" 
                             HorizontalAlignment="Stretch" 
                             VerticalAlignment="Stretch" 
                             HorizontalContentAlignment="Stretch" 
                             VerticalContentAlignment="Stretch">
 
-            </ContentControl>
-        </Border>
+                </ContentControl>
+            </Border>
+
+            <Grid Grid.Row="2">
+                <Path VerticalAlignment="Bottom" Stretch="Fill" Stroke="Black" Height="41" UseLayoutRounding="False" Data="M291,0.5 C396.74097,0.50000763 495.91254,4.8865433 581.44116,12.556458 L591.5,13.483887 L591.5,40.5 L0.5,40.5 L0.5,12.561882 L0.55882919,12.556458 C86.087471,4.8865433 185.25905,0.50000763 291,0.5 z" StrokeThickness="2" Grid.Row="1">
+                    <Path.Fill>
+                        <RadialGradientBrush RadiusX="1.053" RadiusY="1.01" GradientOrigin="0.491,0.503">
+                            <GradientStop Color="Black" Offset="0.955"/>
+                            <GradientStop Color="#FF5D6D86"/>
+                            <GradientStop Color="#FF2E3847" Offset="0.509"/>
+                            <GradientStop Color="Black" Offset="0.845"/>
+                            <GradientStop Color="Black" Offset="0.905"/>
+                        </RadialGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Border>
+                    <ItemsControl Regions:RegionManager.RegionName="MainMenuRegion">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel x:Name="HeaderBar" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                    </ItemsControl>
+                </Border>
+            </Grid>
+        </Grid>
+
         
     </Grid>
 </UserControl>

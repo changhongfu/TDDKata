@@ -36,7 +36,7 @@
                         </LinearGradientBrush>
                     </Grid.Background>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="800" />
+                        <ColumnDefinition Width="700" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     

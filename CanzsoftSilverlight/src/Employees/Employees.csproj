@@ -63,8 +63,6 @@
     <Compile Include="Presenters\EmployeeDetailsPresenter.cs" />
     <Compile Include="Presenters\EmployeePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\EmployeeDetailsViewModel.cs" />
-    <Compile Include="ViewModels\EmployeeListViewModel.cs" />
     <Compile Include="Views\EmployeeDetailsView.xaml.cs">
       <DependentUpon>EmployeeDetailsView.xaml</DependentUpon>
     </Compile>

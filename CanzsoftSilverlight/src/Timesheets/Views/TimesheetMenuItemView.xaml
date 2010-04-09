@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="Timesheets.Views.TimesheetMenuItemView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StackPanel Margin="20, 0, 0, 0" MouseLeftButtonDown="Menu_MouseLeftButtonDown">
-        <Image Source="../Images/timesheet.png" Stretch="None" />
-        <TextBlock Foreground="White" FontWeight="Bold" FontSize="12" Text="Timesheet" />
+    <StackPanel Margin="15, 0, 0, 0" MouseLeftButtonDown="Menu_MouseLeftButtonDown">
+        <Image Source="../Images/timesheet.png" Stretch="Fill" Width="40" Height="50" />
+        <TextBlock Foreground="White" FontSize="12" Text="Timesheet" />
     </StackPanel>
 </UserControl>
