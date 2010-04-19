@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace KataPotter
+namespace KataPotter.Tests
 {
     [TestFixture]
     public class CalculatorTest : Calculator
@@ -69,6 +69,12 @@ namespace KataPotter
         public void Complex_case2()
         {
             Assert.AreEqual(51.2, Price(0, 1, 2, 3, 4, 0, 1, 2));
+        }
+
+        [Test]
+        public void Complex_case3()
+        {
+            Assert.AreEqual(51.2, Price(0, 1, 2, 2, 3, 3, 4, 4));
         }
     }
 }

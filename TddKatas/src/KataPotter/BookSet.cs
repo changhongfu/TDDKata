@@ -1,68 +1,47 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace KataPotter
 {
-    internal class BookSet
+    public class BookSet
     {
-        private readonly List<int> books = new List<int>();
+        private static readonly decimal[] DiscountTable = new[] { 0, 1, 0.95m, 0.9m, 0.8m, 0.75m };
 
-        public BookSet()
+        private readonly IList<int> _books = new List<int>();
+
+        public bool CanAdd(int book)
         {
+            return !_books.Contains(book);
         }
 
-        public BookSet(int book)
+        public void Add(int book)
         {
-            books.Add(book);
-        }
-
-        public decimal Total
-        {
-            get { return TotalWith(books); }
-        }
-
-        private static decimal ComputeDiscount(IEnumerable<int> books)
-        {
-            switch (books.Count())
+            if (!CanAdd(book))
             {
-                case 1: return 0;
-                case 2: return 0.05m;
-                case 3: return 0.1m;
-                case 4: return 0.2m;
-                case 5: return 0.25m;
-                default: throw new NotSupportedException();
+               throw new InvalidOperationException("Book " + book + " already in this set");
             }
+            _books.Add(book);
         }
 
-        public bool CanAccept(int book)
+        public decimal Cost()
         {
-            return !books.Contains(book);
+            return _books.Count * 8 * GetDiscount();
         }
 
-        public void Accept(int book)
+        private decimal GetDiscount()
         {
-            books.Add(book);
+            return DiscountTable[_books.Count];
         }
 
-        public decimal TotalWith(int book)
+        public decimal CostWith(int book)
         {
-            return TotalWith(books.Concat(new[] { book }));
-        }
-
-        private static decimal TotalWith(IEnumerable<int> books)
-        {
-            return 8 * books.Count() * (1 - ComputeDiscount(books));
-        }
-
-        public BookSet Clone()
-        {
-            var clone = new BookSet();
-            foreach (var book in books)
+            var set = new BookSet();
+            foreach (var b in _books)
             {
-                clone.books.Add(book);
+                set.Add(b);
             }
-            return clone;
+            set.Add(book);
+            return set.Cost();
         }
     }
 }
