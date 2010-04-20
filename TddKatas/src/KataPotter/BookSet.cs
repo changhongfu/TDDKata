@@ -9,6 +9,15 @@ namespace KataPotter
 
         private readonly IList<int> _books = new List<int>();
 
+        public BookSet()
+        {
+        }
+
+        public BookSet(int book)
+        {
+            _books.Add(book);
+        }
+
         public bool CanAdd(int book)
         {
             return !_books.Contains(book);

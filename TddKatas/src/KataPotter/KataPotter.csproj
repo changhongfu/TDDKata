@@ -52,6 +52,7 @@
     <Compile Include="BookSet.cs" />
     <Compile Include="BookSorter.cs" />
     <Compile Include="Calculator.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
