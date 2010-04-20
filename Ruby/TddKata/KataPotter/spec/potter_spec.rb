@@ -37,4 +37,8 @@ describe 'when calculate cost' do
   it 'should calculate five books' do
     Potter.cost([:one, :two, :three, :four, :five]).should == 8 * 5 * 0.75
   end
+
+  it 'should calculate book in different sets' do
+    Potter.cost([:one, :two, :three, :three, :four, :four, :five, :five]).should == 8 * 4 * 0.8 * 2
+  end
 end

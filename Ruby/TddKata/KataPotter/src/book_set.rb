@@ -16,6 +16,13 @@ class BookSet
     return 8 * @books.size * discount
   end
 
+  def cost_with(book)
+    new_set = BookSet.new
+    @books.each { |b| new_set.add(b) }
+    new_set.add(book)
+    return new_set.cost
+  end
+
   def books
     return @books
   end
